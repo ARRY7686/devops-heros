@@ -1,0 +1,22 @@
+$ kubectl apply -f 01-clusterip/service.yaml
+service/web-service-clusterip created
+
+$ kubectl apply -f 02-nodeport/service.yaml
+service/web-service-nodeport created
+
+$ kubectl apply -f 03-loadbalancer/service.yaml
+service/web-service-loadbalancer created
+
+$ kubectl apply -f 04-externalname/service.yaml
+service/external-database-service created
+
+$ kubectl apply -f 05-headless/service.yaml
+service/web-service-headless created
+
+$ kubectl get svc
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP        PORT(S)        AGE
+external-database-service   ExternalName   <none>           nencyravaliya.me   <none>         15s
+web-service-clusterip       ClusterIP      10.111.19.142    <none>             8080/TCP       15s
+web-service-headless        ClusterIP      None             <none>             80/TCP         15s
+web-service-loadbalancer    LoadBalancer   10.104.251.102   <pending>          80:31166/TCP   15s
+web-service-nodeport        NodePort       10.111.132.223   <none>             80:30080/TCP   15s

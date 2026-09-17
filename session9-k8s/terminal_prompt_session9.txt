@@ -1,0 +1,24 @@
+$ minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+$ kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:49675
+CoreDNS is running at https://127.0.0.1:49675/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+$ kubectl get nodes
+NAME       STATUS   ROLES           AGE    VERSION
+minikube   Ready    control-plane   7d8h   v1.37.0
+
+$ kubectl get pods -n kube-system
+NAME                               Ready   STATUS    RESTARTS   AGE
+coredns-668d6bf947-66xzw           1/1     Running   0          7d8h
+etcd-minikube                      1/1     Running   0          7d8h
+kube-apiserver-minikube            1/1     Running   0          7d8h
+kube-controller-manager-minikube   1/1     Running   0          7d8h
+kube-proxy-kndxl                   1/1     Running   0          7d8h
+kube-scheduler-minikube            1/1     Running   0          7d8h

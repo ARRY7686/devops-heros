@@ -1,0 +1,39 @@
+$ kubectl apply -f pod-lifecycle/
+pod/lifecycle-running created
+pod/lifecycle-succeeded created
+pod/lifecycle-failed created
+pod/lifecycle-crashloop created
+pod/lifecycle-image-error created
+pod/lifecycle-init created
+pod/lifecycle-multi-container created
+
+$ kubectl get pods
+NAME                        READY   STATUS         RESTARTS   AGE
+lifecycle-running           1/1     Running        0          45s
+lifecycle-succeeded         0/1     Completed      0          45s
+lifecycle-failed            0/1     Error          0          45s
+lifecycle-crashloop         0/1     CrashLoopBackOff 2 (20s ago) 45s
+lifecycle-image-error       0/1     ImagePullBackOff 0          45s
+lifecycle-init              1/1     Running        0          45s
+lifecycle-multi-container   2/2     Running        0          45s
+
+$ kubectl apply -f troubleshooting/broken-image.yaml
+deployment.apps/yatri-backend configured
+
+$ kubectl get pods -l app=yatri-backend
+NAME                             READY   STATUS         RESTARTS   AGE
+yatri-backend-77dbb657cd-rlvl5   0/1     ImagePullBackOff 0        16s
+
+$ kubectl apply -f troubleshooting/fixed-broken-image.yaml
+deployment.apps/yatri-backend configured (Image fixed to nginx:1.25-alpine)
+
+$ kubectl apply -f troubleshooting/selector-mismatch.yaml
+Error from server (Invalid): `selector` does not match template `labels`
+
+$ kubectl apply -f troubleshooting/fixed-selector-mismatch.yaml
+deployment.apps/selector-error-demo created (Fixed label selector mismatch)
+
+$ kubectl get deployments
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+selector-error-demo   1/1     1            1           30s
+yatri-backend         3/3     3            3           60s

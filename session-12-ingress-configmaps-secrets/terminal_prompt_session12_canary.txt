@@ -1,0 +1,27 @@
+$ kubectl apply -f 03-canary/deployment-stable.yaml
+deployment.apps/app-stable created (9 replicas - 90% traffic)
+
+$ kubectl apply -f 03-canary/deployment-canary.yaml
+deployment.apps/app-canary created (1 replica - 10% traffic)
+
+$ kubectl get pods -l tier=frontend
+NAME                          READY   STATUS    RESTARTS   AGE
+app-canary-5849994497-pf5n2   1/1     Running   0          30s
+app-stable-6ffb777f9d-4jhlq   1/1     Running   0          30s
+app-stable-6ffb777f9d-55cb2   1/1     Running   0          30s
+app-stable-6ffb777f9d-7ggjr   1/1     Running   0          30s
+app-stable-6ffb777f9d-f2sxc   1/1     Running   0          30s
+app-stable-6ffb777f9d-gswgh   1/1     Running   0          30s
+app-stable-6ffb777f9d-h2hl2   1/1     Running   0          30s
+app-stable-6ffb777f9d-jk6qw   1/1     Running   0          30s
+app-stable-6ffb777f9d-q2kqn   1/1     Running   0          30s
+app-stable-6ffb777f9d-qd7mt   1/1     Running   0          30s
+
+$ kubectl apply -f 04-recreate/deployment-v2.yaml
+deployment.apps/app-recreate configured (Recreate strategy: terminate old -> start new)
+
+$ kubectl get pods -l app=app-recreate
+NAME                            READY   STATUS    RESTARTS   AGE
+app-recreate-7bd8d89b8b-cvfss   1/1     Running   0          15s
+app-recreate-7bd8d89b8b-htz4t   1/1     Running   0          15s
+app-recreate-7bd8d89b8b-ms94h   1/1     Running   0          15s
