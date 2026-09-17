@@ -128,3 +128,5 @@ Kubernetes operates on a master-worker (Control Plane - Node) architecture:
 2. `kube-apiserver` authenticates the user request.
 3. `kube-apiserver` queries `etcd` to fetch the current Pod objects for the namespace.
 4. `kube-apiserver` formats the raw JSON metadata into tabular format and returns it to `kubectl` to display on the user's terminal.
+
+![alt text](image.png)

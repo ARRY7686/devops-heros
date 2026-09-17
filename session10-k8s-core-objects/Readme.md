@@ -172,3 +172,5 @@ spec:
       - name: nginx
         image: nginx:1.25-alpine
 ```
+
+![alt text](image-1.png)

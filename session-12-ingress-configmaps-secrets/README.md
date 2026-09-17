@@ -129,3 +129,7 @@ A **Fully Qualified Domain Name (FQDN)** is an absolute domain name that specifi
    When an application makes a DNS query for `backend`:
    - `ndots:5` forces CoreDNS to append domain search suffixes first (`backend.default.svc.cluster.local`).
    - CoreDNS resolves the name to the virtual ClusterIP (or Pod IPs for Headless services) using internal watch streams from `kube-apiserver`.
+
+
+![alt text](image-1.png)
+![alt text](image-2.png)

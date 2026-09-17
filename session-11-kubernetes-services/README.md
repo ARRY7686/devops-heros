@@ -100,4 +100,4 @@ Kubernetes Pods progress through a defined lifecycle lifecycle phase:
 
 ##  4. Terminal Output Screenshot
 
-![Session 11 Terminal Output](terminal_session11.png)
+![alt text](image-1.png)
