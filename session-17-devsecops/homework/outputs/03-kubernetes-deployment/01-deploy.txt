@@ -1,0 +1,20 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> minikube image load session17-python:1.0
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> git diff --no-index --stat ..\demo\k8s\deployment.yaml k8s\deployment.yaml
+warning: in the working copy of 'k8s\deployment.yaml', LF will be replaced by CRLF the next time Git touches it
+ "..\\demo\\k8s\\deployment.yaml" => "k8s\\deployment.yaml" | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl apply -f k8s\deployment.yaml
+deployment.apps/session17-python created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl apply -f ..\demo\k8s\service.yaml
+service/session17-python created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl get deployment
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+session17-python   2/2     2            2           2s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl get pods -o wide
+NAME                                READY   STATUS    RESTARTS   AGE   IP             NODE       NOMINATED NODE   READINESS GATES
+session17-python-6f4797fdcd-f5d42   1/1     Running   0          2s    10.244.0.107   minikube   <none>           <none>
+session17-python-6f4797fdcd-zrk9t   1/1     Running   0          2s    10.244.0.106   minikube   <none>           <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl get service
+NAME               TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+session17-python   NodePort   10.109.14.208   <none>        80:30001/TCP   1s

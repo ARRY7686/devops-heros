@@ -1,0 +1,22 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> python --version
+Python 3.14.7
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> bandit --version
+python.exe C:\Users\aadig\AppData\Local\Temp\claude\C--Users-aadig\c1cb3b41-4582-4827-9735-2eebe9cbfbf0\scratchpad\venv\Scripts\bandit 1.9.4
+  python version = 3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> pip-audit --version
+pip-audit 2.10.1
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> gitleaks version
+8.30.1
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> trivy --version
+Version: 0.75.0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> act --version
+act version 0.2.89
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> Get-Content ..\homework\manifests\namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: session17
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> kubectl apply -f ..\homework\manifests\namespace.yaml
+namespace/session17 created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> kubectl config set-context --current --namespace=session17
+Context "minikube" modified.

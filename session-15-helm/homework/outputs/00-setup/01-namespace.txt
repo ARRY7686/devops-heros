@@ -1,0 +1,10 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl apply -f manifests\namespace.yaml
+namespace/session15 created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl config set-context --current --namespace=session15
+Context "minikube" modified.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl config view --minify --output=jsonpath='{..namespace}'
+session15
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm version
+version.BuildInfo{Version:"v4.3.0", GitCommit:"bec5b06ed841fe5269972d864d5177944fd5970f", GitTreeState:"clean", GoVersion:"go1.27.1", KubeClientVersion:"v1.37"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm list
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION

@@ -1,0 +1,54 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Get-Content docker-compose.yml
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: taskboard
+      POSTGRES_USER: taskboard
+      POSTGRES_PASSWORD: taskboard
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://taskboard:taskboard@postgres:5432/taskboard
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres-data:
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose up --build -d 2>&1 | Select-Object -Last 8
+ Container session21-python-frontend-1 Creating 
+ Container session21-python-frontend-1 Created 
+ Container session21-python-postgres-1 Starting 
+ Container session21-python-postgres-1 Started 
+ Container session21-python-backend-1 Starting 
+ Container session21-python-backend-1 Started 
+ Container session21-python-frontend-1 Starting 
+ Container session21-python-frontend-1 Started 
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose ps -a
+NAME                          IMAGE                       COMMAND                  SERVICE    CREATED          STATUS                      PORTS
+session21-python-backend-1    session21-python-backend    "sh -c 'alembic upgr…"   backend    26 seconds ago   Exited (1) 24 seconds ago   
+session21-python-frontend-1   session21-python-frontend   "/docker-entrypoint.…"   frontend   26 seconds ago   Up 25 seconds               0.0.0.0:3000->80/tcp, [::]:3000->80/tcp
+session21-python-postgres-1   postgres:16-alpine          "docker-entrypoint.s…"   postgres   26 seconds ago   Up 25 seconds               0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose logs backend --tail 8
+backend-1  |   File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 621, in connect
+backend-1  |     return self.loaded_dbapi.connect(*cargs, **cparams)
+backend-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend-1  |   File "/usr/local/lib/python3.12/site-packages/psycopg/connection.py", line 119, in connect
+backend-1  |     raise last_ex.with_traceback(None)
+backend-1  | sqlalchemy.exc.OperationalError: (psycopg.OperationalError) connection failed: connection to server at "172.18.0.2", port 5432 failed: Connection refused
+backend-1  | 	Is the server running on that host and accepting TCP/IP connections?
+backend-1  | (Background on this error at: https://sqlalche.me/e/20/e3q8)

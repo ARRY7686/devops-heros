@@ -1,0 +1,37 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\04-chart-yaml> Get-Content Chart.yaml
+apiVersion: v2
+name: my-app
+description: A learning chart for the Chart.yaml topic
+type: application
+version: 0.1.0
+appVersion: "1.0"
+keywords:
+  - nginx
+  - web
+maintainers:
+  - name: Student
+    email: student@example.com
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\04-chart-yaml> helm lint ..\05-values-yaml\my-app
+==> Linting ..\05-values-yaml\my-app
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\04-chart-yaml> helm show chart ..\05-values-yaml\my-app
+apiVersion: v2
+appVersion: 1.16.0
+description: A Helm chart for Kubernetes
+name: my-app
+type: application
+version: 0.1.0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\04-chart-yaml> helm template demo ..\05-values-yaml\my-app | Select-String -Pattern 'helm.sh/chart|app.kubernetes.io/version'
+
+    helm.sh/chart: my-app-0.1.0
+    app.kubernetes.io/version: "1.16.0"
+    helm.sh/chart: my-app-0.1.0
+    app.kubernetes.io/version: "1.16.0"
+    helm.sh/chart: my-app-0.1.0
+    app.kubernetes.io/version: "1.16.0"
+        helm.sh/chart: my-app-0.1.0
+        app.kubernetes.io/version: "1.16.0"
+    helm.sh/chart: my-app-0.1.0
+    app.kubernetes.io/version: "1.16.0"

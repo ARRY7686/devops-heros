@@ -1,0 +1,37 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\homework> New-Item -ItemType Directory -Force terraform-s3-demo-fixed | Out-Null; Copy-Item ..\terraform-s3-demo\*.tf, ..\terraform-s3-demo\.terraform.lock.hcl terraform-s3-demo-fixed\
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\homework> (Get-Content terraform-s3-demo-fixed\outputs.tf) | Where-Object { $_ -notmatch '^\s*type\s*=' } | Set-Content terraform-s3-demo-fixed\outputs.tf
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\homework> git diff --no-index ..\terraform-s3-demo\outputs.tf terraform-s3-demo-fixed\outputs.tf
+diff --git "a/..\\terraform-s3-demo\\outputs.tf" "b/terraform-s3-demo-fixed\\outputs.tf"
+index f10c966..599ae2b 100644
+--- "a/..\\terraform-s3-demo\\outputs.tf"
++++ "b/terraform-s3-demo-fixed\\outputs.tf"
+@@ -1,15 +1,12 @@
+ output "bucket_name" {
+-  type        = string
+   description = "Name of the S3 bucket."
+   value       = aws_s3_bucket.devops553.bucket
+ }
+ output "bucket_arn" {
+-  type        = string
+   description = "ARN of the S3 bucket."
+   value       = aws_s3_bucket.devops553.arn
+ }
+ output "bucket_region" {
+-  type        = string
+   description = "AWS region of the S3 bucket."
+   value       = aws_s3_bucket.devops553.region
+ }
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\homework> terraform -chdir=terraform-s3-demo-fixed init
+Initializing the backend...
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Using hashicorp/aws v6.66.0 from the shared cache directory
+
+Terraform has been successfully initialized!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\homework> terraform -chdir=terraform-s3-demo-fixed fmt -check
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\homework> terraform -chdir=terraform-s3-demo-fixed validate
+Success! The configuration is valid.

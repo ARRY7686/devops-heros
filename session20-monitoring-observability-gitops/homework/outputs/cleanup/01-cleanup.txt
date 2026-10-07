@@ -1,0 +1,24 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl delete -f argocd\session20-mini-application.yaml
+application.argoproj.io "session20-mini" deleted from argocd namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl delete namespace session20 gitserver s20-demo
+namespace "session20" deleted
+namespace "gitserver" deleted
+namespace "s20-demo" deleted
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> Get-Job | Stop-Job; Get-Job | Remove-Job
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl delete -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --ignore-not-found | Select-Object -Last 3
+networkpolicy.networking.k8s.io "argocd-redis-network-policy" deleted from argocd namespace
+networkpolicy.networking.k8s.io "argocd-repo-server-network-policy" deleted from argocd namespace
+networkpolicy.networking.k8s.io "argocd-server-network-policy" deleted from argocd namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl delete namespace argocd
+namespace "argocd" deleted
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> Remove-Item -Recurse -Force gitops-repo\.git, gitops-repo-06\.git
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl config set-context --current --namespace=default
+Context "minikube" modified.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   27d
+kube-node-lease   Active   27d
+kube-public       Active   27d
+kube-system       Active   27d

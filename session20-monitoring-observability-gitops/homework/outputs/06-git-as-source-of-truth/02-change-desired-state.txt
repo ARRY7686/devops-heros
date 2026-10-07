@@ -1,0 +1,24 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> (Get-Content app\deployment.yaml) -replace 'replicas: 2', 'replicas: 3' | Set-Content app\deployment.yaml
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git diff
+diff --git a/app/deployment.yaml b/app/deployment.yaml
+index 88d7606..7b4b2c0 100644
+--- a/app/deployment.yaml
++++ b/app/deployment.yaml
+@@ -3,7 +3,7 @@ kind: Deployment
+ metadata:
+   name: session20-gitops-app
+ spec:
+-  replicas: 2
++  replicas: 3
+   selector:
+     matchLabels:
+       app: session20-gitops-app
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git add .
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git commit -m 'Scale application to three replicas'
+[main 08886ee] Scale application to three replicas
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git log --oneline
+08886ee Scale application to three replicas
+3e9b057 Add session 20 application manifests

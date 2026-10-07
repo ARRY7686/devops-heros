@@ -1,0 +1,49 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> pip install -q -r requirements-dev.txt
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> pytest --cov=app --cov-report=term-missing
+============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-8.4.2, pluggy-1.6.0
+rootdir: C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo
+configfile: pytest.ini
+testpaths: tests
+plugins: platformdirs-4.12.3, cov-6.0.0
+collected 8 items
+
+tests\test_app.py ........                                               [100%]
+
+============================== warnings summary ===============================
+app\app.py:13
+  C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo\app\app.py:13: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    _start_time = datetime.datetime.utcnow()
+
+tests/test_app.py::test_health
+  C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo\app\app.py:38: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    uptime_seconds = (datetime.datetime.utcnow() - _start_time).total_seconds()
+
+tests/test_app.py::test_health
+  C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo\app\app.py:42: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+
+tests/test_app.py::test_greet
+  C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo\app\app.py:81: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+
+tests/test_app.py::test_status
+  C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo\app\app.py:49: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    uptime = datetime.datetime.utcnow() - _start_time
+
+tests/test_app.py::test_status
+  C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo\app\app.py:60: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform win32, python 3.14.7-final-0 -----------
+Name              Stmts   Miss  Cover   Missing
+-----------------------------------------------
+app\__init__.py       0      0   100%
+app\app.py          102     32    69%   94, 104-105, 121, 128, 132-133, 145, 179-209, 225, 230, 234
+-----------------------------------------------
+TOTAL               102     32    69%
+
+======================== 8 passed, 6 warnings in 0.52s ========================

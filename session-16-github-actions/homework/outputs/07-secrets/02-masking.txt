@@ -1,0 +1,22 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\07-secrets 10-33-34-248> act push -W deploy-with-secrets.yml -s DOCKER_USERNAME=student -s DOCKER_PASSWORD=S3cr3t-Pa55w0rd
+time="2026-10-07T15:24:27+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Deploy With Secrets Example/docker-publish] ⭐ Run Set up job
+[Deploy With Secrets Example/docker-publish] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Deploy With Secrets Example/docker-publish]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username=*** forcePull=false
+[Deploy With Secrets Example/docker-publish]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deploy With Secrets Example/docker-publish]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deploy With Secrets Example/docker-publish]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Deploy With Secrets Example/docker-publish]   ✅  Success - Set up job
+[Deploy With Secrets Example/docker-publish] ⭐ Run Main Checkout code
+[Deploy With Secrets Example/docker-publish]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\07-secrets 10-33-34-248\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/07-secrets 10-33-34-248
+[Deploy With Secrets Example/docker-publish]   ✅  Success - Main Checkout code [179.0228ms]
+[Deploy With Secrets Example/docker-publish] ⭐ Run Main Authenticate to Docker Hub using encrypted secrets
+[Deploy With Secrets Example/docker-publish]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Deploy With Secrets Example/docker-publish]   | [INFO] Verifying secret masking behavior...
+[Deploy With Secrets Example/docker-publish]   | Username set: ***
+[Deploy With Secrets Example/docker-publish]   | Authenticating securely via stdin...
+[Deploy With Secrets Example/docker-publish]   ✅  Success - Main Authenticate to Docker Hub using encrypted secrets [127.8404ms]
+[Deploy With Secrets Example/docker-publish] ⭐ Run Complete job
+[Deploy With Secrets Example/docker-publish] Cleaning up container for job docker-publish
+[Deploy With Secrets Example/docker-publish]   ✅  Success - Complete job
+[Deploy With Secrets Example/docker-publish] 🏁  Job succeeded

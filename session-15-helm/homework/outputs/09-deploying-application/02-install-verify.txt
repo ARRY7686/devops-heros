@@ -1,0 +1,21 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> helm install my-guestbook guestbook-chart
+NAME: my-guestbook
+LAST DEPLOYED: Wed Oct  7 15:05:29 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+my-guestbook-app-744fd6b4cc-hxbrj   1/1     Running   0          2s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> kubectl get services
+NAME               TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+my-guestbook-svc   NodePort   10.102.214.150   <none>        80:30080/TCP   2s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> kubectl get configmaps
+NAME                  DATA   AGE
+kube-root-ca.crt      1      3m6s
+my-guestbook-config   2      2s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> kubectl exec deploy/my-guestbook-app -- printenv welcome appName
+Welcome to the Guestbook!
+My Guestbook

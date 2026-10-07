@@ -1,0 +1,28 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl top nodes
+NAME       CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+minikube   174m         0%       897Mi           7%          
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl top pods
+NAME            CPU(cores)   MEMORY(bytes)   
+describe-demo   5m           18Mi            
+logs-demo       1m           0Mi             
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl top pod logs-demo --containers
+POD         NAME   CPU(cores)   MEMORY(bytes)   
+logs-demo   app    1m           0Mi             
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl top pods -A --sort-by=memory
+NAMESPACE     NAME                                   CPU(cores)   MEMORY(bytes)   
+kube-system   kube-apiserver-minikube                45m          257Mi           
+kube-system   kube-controller-manager-minikube       16m          56Mi            
+kube-system   etcd-minikube                          26m          54Mi            
+kube-system   kube-scheduler-minikube                6m           28Mi            
+kube-system   metrics-server-768f9f6999-g8gxf        3m           23Mi            
+default       emptydir-demo                          0m           22Mi            
+default       storage-demo                           0m           21Mi            
+kube-system   kindnet-d2x2n                          1m           20Mi            
+session14     describe-demo                          5m           18Mi            
+default       hpa-demo-5d6676989b-jp59w              0m           18Mi            
+kube-system   coredns-559f6c778d-mglzm               2m           15Mi            
+kube-system   coredns-559f6c778d-bm5h2               2m           15Mi            
+kube-system   kube-proxy-q5k6n                       1m           15Mi            
+kube-system   storage-provisioner                    2m           11Mi            
+default       my-release-my-chart-7b6bb865cb-9mrwx   1m           2Mi             
+session14     logs-demo                              1m           0Mi             

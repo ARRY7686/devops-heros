@@ -1,0 +1,21 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242> act -l -W multi-os-matrix.yml
+time="2026-10-07T15:24:23+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID          Job name                   Workflow name           Workflow file        Events
+0      cross-platform  Build on ${{ matrix.os }}  Multi-OS Runner Matrix  multi-os-matrix.yml  push  
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242> act -l -W self-hosted-runner.yml workflow_dispatch
+time="2026-10-07T15:24:24+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID        Job name                      Workflow name               Workflow file           Events           
+0      gpu-workload  High Performance Compute Job  Self-Hosted Runner Example  self-hosted-runner.yml  workflow_dispatch
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242> Get-Content self-hosted-runner.yml | Select-Object -First 12
+name: Self-Hosted Runner Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  gpu-workload:
+    name: High Performance Compute Job
+    runs-on: [self-hosted, linux, gpu]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4

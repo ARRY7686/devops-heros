@@ -1,0 +1,39 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> git diff --no-index service.yaml ..\homework\manifests\mini-project\service-wrong-selector.yaml
+warning: in the working copy of '..\homework\manifests\mini-project\service-wrong-selector.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/service.yaml "b/..\\homework\\manifests\\mini-project\\service-wrong-selector.yaml"
+index 5290e92..157fd8d 100644
+--- a/service.yaml
++++ "b/..\\homework\\manifests\\mini-project\\service-wrong-selector.yaml"
+@@ -1,15 +1,12 @@
+ apiVersion: v1
+ kind: Service
+-
+ metadata:
+   name: troubleshooting-service
+-
+ spec:
+   selector:
+-    app: troubleshooting-app
+-
++    # Intentional break for the challenge (step 8)
++    app: wrong-app
+   ports:
+     - port: 80
+       targetPort: 80
+-
+-  type: ClusterIP
+\ No newline at end of file
++  type: ClusterIP
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl apply -f ..\homework\manifests\mini-project\service-wrong-selector.yaml
+service/troubleshooting-service configured
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get service
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+troubleshooting-service   ClusterIP   10.97.241.226   <none>        80/TCP    29s
+web-service               ClusterIP   10.110.119.45   <none>        80/TCP    4m34s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get endpoints troubleshooting-service
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME                      ENDPOINTS   AGE
+troubleshooting-service   <none>      29s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl exec net-client -- wget -qO- -T 3 http://troubleshooting-service
+wget: can't connect to remote host (10.97.241.226): Connection refused
+command terminated with exit code 1

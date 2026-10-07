@@ -1,0 +1,14 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl logs -n taskboard deployment/taskboard-frontend --tail=4
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/10/07 11:06:45 [emerg] 1#1: host not found in upstream "backend" in /etc/nginx/conf.d/default.conf:13
+nginx: [emerg] host not found in upstream "backend" in /etc/nginx/conf.d/default.conf:13
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get svc -n taskboard -o custom-columns=NAME:.metadata.name,PORT:.spec.ports[0].port
+NAME                          PORT
+taskboard-frontend            80
+taskboard-postgres            5432
+taskboard-taskboard-backend   8000
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Select-String -Path frontend\nginx.conf -Pattern proxy_pass
+
+frontend\nginx.conf:13:    proxy_pass http://backend:8000;
+frontend\nginx.conf:21:    proxy_pass http://backend:8000/health;

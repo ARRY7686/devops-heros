@@ -1,0 +1,41 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl delete pod fail-5-oomkilled-pod
+pod "fail-5-oomkilled-pod" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> git diff --no-index broken.yaml ..\..\homework\manifests\oomkilled\scenario-5-fixed.yaml
+warning: in the working copy of '..\..\homework\manifests\oomkilled\scenario-5-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/broken.yaml "b/..\\..\\homework\\manifests\\oomkilled\\scenario-5-fixed.yaml"
+index ec8ac24..bf7e2d3 100644
+--- a/broken.yaml
++++ "b/..\\..\\homework\\manifests\\oomkilled\\scenario-5-fixed.yaml"
+@@ -13,11 +13,19 @@ spec:
+         - "python3"
+         - "-c"
+         - |
+-          # BUG: Rapidly allocates 200MB of RAM while limit is 20Mi
+-          print("Allocating memory rapidly...")
+-          chunks = []
++          import time
++          # FIX: process the 100 chunks one at a time instead of keeping all
++          # of them (~1000 MB) in a list; peak usage is now one 10 MB chunk.
++          print("Processing chunks one at a time...", flush=True)
+           for i in range(100):
+-              chunks.append(b"x" * (10 * 1024 * 1024))
++              chunk = b"x" * (10 * 1024 * 1024)
++              del chunk
++          print("Done. Memory stayed bounded.", flush=True)
++          while True:
++              time.sleep(60)
+       resources:
++        requests:
++          memory: "32Mi"
+         limits:
+-          memory: "20Mi"
++          # FIX: realistic limit for the bounded workload
++          memory: "64Mi"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl apply -f ..\..\homework\manifests\oomkilled\scenario-5-fixed.yaml
+pod/fail-5-oomkilled-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl get pod fail-5-oomkilled-pod
+NAME                   READY   STATUS    RESTARTS   AGE
+fail-5-oomkilled-pod   1/1     Running   0          9s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl logs fail-5-oomkilled-pod
+Processing chunks one at a time...
+Done. Memory stayed bounded.

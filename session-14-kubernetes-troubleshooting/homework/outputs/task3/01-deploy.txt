@@ -1,0 +1,11 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl apply -f deployment.yaml
+deployment.apps/troubleshooting-app created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl apply -f service.yaml
+service/troubleshooting-service created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get pods -l app=troubleshooting-app
+NAME                                   READY   STATUS    RESTARTS   AGE
+troubleshooting-app-59d4957864-lfp8r   1/1     Running   0          1s
+troubleshooting-app-59d4957864-vldrm   1/1     Running   0          1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get service troubleshooting-service
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+troubleshooting-service   ClusterIP   10.97.241.226   <none>        80/TCP    1s

@@ -1,0 +1,78 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\08-artifacts 10-33-34-260> act push -W upload-download-artifacts.yml --artifact-server-path ..\homework\artifacts\08-upload-download
+time="2026-10-07T15:24:52+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+time="2026-10-07T15:24:52+05:30" level=info msg="Start server on http://10.114.0.31:34567"
+[Upload and Download Artifacts Example/Build Stage] ⭐ Run Set up job
+[Upload and Download Artifacts Example/Build Stage] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Upload and Download Artifacts Example/Build Stage]   ✅  Success - Set up job
+[Upload and Download Artifacts Example/Build Stage]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[Upload and Download Artifacts Example/Build Stage] ⭐ Run Main Checkout code
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\08-artifacts 10-33-34-260\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/08-artifacts 10-33-34-260
+[Upload and Download Artifacts Example/Build Stage]   ✅  Success - Main Checkout code [174.1175ms]
+[Upload and Download Artifacts Example/Build Stage] ⭐ Run Main Generate build output directory
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Upload and Download Artifacts Example/Build Stage]   ✅  Success - Main Generate build output directory [156.0666ms]
+[Upload and Download Artifacts Example/Build Stage] ⭐ Run Main Upload build artifact
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[Upload and Download Artifacts Example/Build Stage]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[Upload and Download Artifacts Example/Build Stage]   | (node:39) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Upload and Download Artifacts Example/Build Stage]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Upload and Download Artifacts Example/Build Stage]   | With the provided path, there will be 2 files uploaded
+[Upload and Download Artifacts Example/Build Stage]   | Artifact name is valid!
+[Upload and Download Artifacts Example/Build Stage]   | Root directory input is valid!
+[Upload and Download Artifacts Example/Build Stage]   | Beginning upload of artifact content to blob storage
+[Upload and Download Artifacts Example/Build Stage]   | (node:39) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[Upload and Download Artifacts Example/Build Stage]   | Uploaded bytes 354
+[Upload and Download Artifacts Example/Build Stage]   | Finished uploading artifact content to blob storage!
+[Upload and Download Artifacts Example/Build Stage]   | SHA256 digest of uploaded artifact zip is 0f12fd703c0a045d195b7cc8272714aa88435aad37bfe82f2449a09a2b837bdf
+[Upload and Download Artifacts Example/Build Stage]   | Finalizing artifact upload
+[Upload and Download Artifacts Example/Build Stage]   | Artifact build-package.zip successfully finalized. Artifact ID 3647314274
+[Upload and Download Artifacts Example/Build Stage]   | Artifact build-package has been successfully uploaded! Final size is 354 bytes. Artifact ID is 3647314274
+[Upload and Download Artifacts Example/Build Stage]   | Artifact download URL: https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3647314274
+[Upload and Download Artifacts Example/Build Stage]   ✅  Success - Main Upload build artifact [2.786765s]
+[Upload and Download Artifacts Example/Build Stage]   ⚙  ::set-output:: artifact-id=3647314274
+[Upload and Download Artifacts Example/Build Stage]   ⚙  ::set-output:: artifact-digest=0f12fd703c0a045d195b7cc8272714aa88435aad37bfe82f2449a09a2b837bdf
+[Upload and Download Artifacts Example/Build Stage]   ⚙  ::set-output:: artifact-url=https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3647314274
+[Upload and Download Artifacts Example/Build Stage] ⭐ Run Complete job
+[Upload and Download Artifacts Example/Build Stage] Cleaning up container for job Build Stage
+[Upload and Download Artifacts Example/Build Stage]   ✅  Success - Complete job
+[Upload and Download Artifacts Example/Build Stage] 🏁  Job succeeded
+[Upload and Download Artifacts Example/Verification Stage] ⭐ Run Set up job
+[Upload and Download Artifacts Example/Verification Stage] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Upload and Download Artifacts Example/Verification Stage]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Upload and Download Artifacts Example/Verification Stage]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Upload and Download Artifacts Example/Verification Stage]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Upload and Download Artifacts Example/Verification Stage]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Upload and Download Artifacts Example/Verification Stage]   ✅  Success - Set up job
+[Upload and Download Artifacts Example/Verification Stage]   ☁  git clone 'https://github.com/actions/download-artifact' # ref=v4
+[Upload and Download Artifacts Example/Verification Stage] ⭐ Run Main Download build artifact from previous stage
+[Upload and Download Artifacts Example/Verification Stage]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-download-artifact@v4/ dst=/var/run/act/actions/actions-download-artifact@v4/
+[Upload and Download Artifacts Example/Verification Stage]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-download-artifact@v4/dist/index.js] user= workdir=
+[Upload and Download Artifacts Example/Verification Stage]   | Downloading single artifact
+[Upload and Download Artifacts Example/Verification Stage]   | (node:32) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Upload and Download Artifacts Example/Verification Stage]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Upload and Download Artifacts Example/Verification Stage]   | Preparing to download the following artifacts:
+[Upload and Download Artifacts Example/Verification Stage]   | - build-package (ID: 3647314274, Size: 0, Expected Digest: undefined)
+[Upload and Download Artifacts Example/Verification Stage]   | Redirecting to blob download url: http://10.114.0.31:34567/twirp/github.actions.results.api.v1.ArtifactService/DownloadArtifact
+[Upload and Download Artifacts Example/Verification Stage]   | Starting download of artifact to: /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/08-artifacts 10-33-34-260/downloaded-dist
+[Upload and Download Artifacts Example/Verification Stage]   | (node:32) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+[Upload and Download Artifacts Example/Verification Stage]   | SHA256 digest of downloaded artifact is 0f12fd703c0a045d195b7cc8272714aa88435aad37bfe82f2449a09a2b837bdf
+[Upload and Download Artifacts Example/Verification Stage]   | Artifact download completed successfully.
+[Upload and Download Artifacts Example/Verification Stage]   | Total of 1 artifact(s) downloaded
+[Upload and Download Artifacts Example/Verification Stage]   | Download artifact has finished successfully
+[Upload and Download Artifacts Example/Verification Stage]   ✅  Success - Main Download build artifact from previous stage [1.8917606s]
+[Upload and Download Artifacts Example/Verification Stage]   ⚙  ::set-output:: download-path=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/08-artifacts 10-33-34-260/downloaded-dist
+[Upload and Download Artifacts Example/Verification Stage] ⭐ Run Main Inspect and verify downloaded artifact
+[Upload and Download Artifacts Example/Verification Stage]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Upload and Download Artifacts Example/Verification Stage]   | [INFO] Inspecting downloaded artifact content:
+[Upload and Download Artifacts Example/Verification Stage]   | Package built at Wed Oct  7 09:54:55 UTC 2026
+[Upload and Download Artifacts Example/Verification Stage]   | v1.0.0-2c57c9ac7026d1c81e15ba4eb0cbd02666989e66
+[Upload and Download Artifacts Example/Verification Stage]   | [PASS] Artifact verification successful
+[Upload and Download Artifacts Example/Verification Stage]   ✅  Success - Main Inspect and verify downloaded artifact [189.3222ms]
+[Upload and Download Artifacts Example/Verification Stage] ⭐ Run Complete job
+[Upload and Download Artifacts Example/Verification Stage] Cleaning up container for job Verification Stage
+[Upload and Download Artifacts Example/Verification Stage]   ✅  Success - Complete job
+[Upload and Download Artifacts Example/Verification Stage] 🏁  Job succeeded

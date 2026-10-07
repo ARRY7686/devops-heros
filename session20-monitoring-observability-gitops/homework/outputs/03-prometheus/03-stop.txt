@@ -1,0 +1,7 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> docker compose down
+ Container session20-prometheus Stopping 
+ Container session20-prometheus Stopped 
+ Container session20-prometheus Removing 
+ Container session20-prometheus Removed 
+ Network 03-prometheus_default Removing 
+ Network 03-prometheus_default Removed 

@@ -1,0 +1,17 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose -f docker-compose.yml -f homework\compose\docker-compose.healthcheck.yml down -v
+ Container session21-python-frontend-1 Stopping 
+ Container session21-python-frontend-1 Stopped 
+ Container session21-python-frontend-1 Removing 
+ Container session21-python-frontend-1 Removed 
+ Container session21-python-backend-1 Stopping 
+ Container session21-python-backend-1 Stopped 
+ Container session21-python-backend-1 Removing 
+ Container session21-python-backend-1 Removed 
+ Container session21-python-postgres-1 Stopping 
+ Container session21-python-postgres-1 Stopped 
+ Container session21-python-postgres-1 Removing 
+ Container session21-python-postgres-1 Removed 
+ Network session21-python_default Removing 
+ Volume session21-python_postgres-data Removing 
+ Volume session21-python_postgres-data Removed 
+ Network session21-python_default Removed 

@@ -1,0 +1,8 @@
+Sanitized secret-scanning demo output.
+
+The original credential values have been removed. Use only disposable dummy values in a local, untracked copy when practicing secret detection.
+
+AWS_ACCESS_KEY_ID = [REDACTED]
+AWS_SECRET_ACCESS_KEY = [REDACTED]
+
+gitleaks would report the credential assignments above if real credentials were used.

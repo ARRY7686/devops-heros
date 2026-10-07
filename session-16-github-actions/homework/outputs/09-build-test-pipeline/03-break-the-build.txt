@@ -1,0 +1,9 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262> Copy-Item -Recurse -Force . ..\homework\failing-test-demo
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262> Set-Location ..\homework\failing-test-demo
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\failing-test-demo> (Get-Content app.py) -replace 'return a \+ b', 'return a - b     # intentionally wrong' | Set-Content app.py
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\failing-test-demo> Select-String -Path app.py -Pattern 'intentionally'
+
+app.py:2:    return a - b     # intentionally wrong

@@ -1,0 +1,30 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl delete pod fail-3-pending-pod
+pod "fail-3-pending-pod" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> git diff --no-index broken.yaml ..\..\homework\manifests\pending\scenario-3-fixed.yaml
+warning: in the working copy of '..\..\homework\manifests\pending\scenario-3-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/broken.yaml "b/..\\..\\homework\\manifests\\pending\\scenario-3-fixed.yaml"
+index 11e55d4..62f90ee 100644
+--- a/broken.yaml
++++ "b/..\\..\\homework\\manifests\\pending\\scenario-3-fixed.yaml"
+@@ -10,7 +10,10 @@ spec:
+     - name: hungry-app
+       image: nginx:alpine
+       resources:
++        # FIX: request what the app needs, well within node allocatable (24 CPU / ~11.5Gi)
+         requests:
+-          # BUG: Demanding 500 CPU cores ensures the pod can never be scheduled!
+-          cpu: "500"
+-          memory: "1000Gi"
++          cpu: "100m"
++          memory: "64Mi"
++        limits:
++          cpu: "250m"
++          memory: "128Mi"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl apply -f ..\..\homework\manifests\pending\scenario-3-fixed.yaml
+pod/fail-3-pending-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl get pod fail-3-pending-pod -o wide
+NAME                 READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+fail-3-pending-pod   1/1     Running   0          1s    10.244.0.87   minikube   <none>           <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl get pod fail-3-pending-pod -o custom-columns=POD:.metadata.name,CPU_REQUEST:.spec.containers[0].resources.requests.cpu,MEM_REQUEST:.spec.containers[0].resources.requests.memory
+POD                  CPU_REQUEST   MEM_REQUEST
+fail-3-pending-pod   100m          64Mi

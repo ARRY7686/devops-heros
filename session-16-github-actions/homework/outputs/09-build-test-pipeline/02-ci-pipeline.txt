@@ -1,0 +1,234 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262> act push -W .github\workflows\ci.yml --artifact-server-path ..\homework\artifacts\09-ci
+time="2026-10-07T15:25:40+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+time="2026-10-07T15:25:40+05:30" level=info msg="Start server on http://10.114.0.31:34567"
+[CI Pipeline/Code Lint] ⭐ Run Set up job
+[CI Pipeline/Code Lint] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Code Lint]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[CI Pipeline/Code Lint]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Code Lint]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Code Lint]   ✅  Success - Set up job
+[CI Pipeline/Code Lint]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CI Pipeline/Code Lint] ⭐ Run Main Checkout code
+[CI Pipeline/Code Lint]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline 10-33-34-262
+[CI Pipeline/Code Lint]   ✅  Success - Main Checkout code [161.4848ms]
+[CI Pipeline/Code Lint] ⭐ Run Main Set up Python
+[CI Pipeline/Code Lint]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CI Pipeline/Code Lint]   ❓  ::group::Installed versions
+[CI Pipeline/Code Lint]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Code Lint]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Code Lint]   | Successfully set up CPython (3.11.17)
+[CI Pipeline/Code Lint]   ❓  ::endgroup::
+[CI Pipeline/Code Lint]   | [command]/opt/hostedtoolcache/Python/3.11.17/x64/bin/pip cache dir
+[CI Pipeline/Code Lint]   | /root/.cache/pip
+[CI Pipeline/Code Lint]   | pip cache is not found
+[CI Pipeline/Code Lint]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CI Pipeline/Code Lint]   ✅  Success - Main Set up Python [4.0816514s]
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-output:: python-version=3.11.17
+[CI Pipeline/Code Lint]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.17/x64/bin/python
+[CI Pipeline/Code Lint]   ⚙  ::set-output:: cache-hit=false
+[CI Pipeline/Code Lint]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64/bin
+[CI Pipeline/Code Lint] ⭐ Run Main Install lint tool
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Code Lint]   | Collecting flake8
+[CI Pipeline/Code Lint]   |   Downloading flake8-7.4.1-py2.py3-none-any.whl.metadata (3.8 kB)
+[CI Pipeline/Code Lint]   | Collecting mccabe<0.8.0,>=0.7.0 (from flake8)
+[CI Pipeline/Code Lint]   |   Downloading mccabe-0.7.0-py2.py3-none-any.whl.metadata (5.0 kB)
+[CI Pipeline/Code Lint]   | Collecting pycodestyle<2.16.0,>=2.15.0 (from flake8)
+[CI Pipeline/Code Lint]   |   Downloading pycodestyle-2.15.0-py2.py3-none-any.whl.metadata (4.5 kB)
+[CI Pipeline/Code Lint]   | Collecting pyflakes<4.1.0,>=4.0.0 (from flake8)
+[CI Pipeline/Code Lint]   |   Downloading pyflakes-4.0.2-py2.py3-none-any.whl.metadata (3.7 kB)
+[CI Pipeline/Code Lint]   | Downloading flake8-7.4.1-py2.py3-none-any.whl (57 kB)
+[CI Pipeline/Code Lint]   | Downloading mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)
+[CI Pipeline/Code Lint]   | Downloading pycodestyle-2.15.0-py2.py3-none-any.whl (31 kB)
+[CI Pipeline/Code Lint]   | Downloading pyflakes-4.0.2-py2.py3-none-any.whl (66 kB)
+[CI Pipeline/Code Lint]   | Installing collected packages: pyflakes, pycodestyle, mccabe, flake8
+[CI Pipeline/Code Lint]   | 
+[CI Pipeline/Code Lint]   | Successfully installed flake8-7.4.1 mccabe-0.7.0 pycodestyle-2.15.0 pyflakes-4.0.2
+[CI Pipeline/Code Lint]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Code Lint]   ✅  Success - Main Install lint tool [2.9203283s]
+[CI Pipeline/Code Lint] ⭐ Run Main Run flake8
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CI Pipeline/Code Lint]   ✅  Success - Main Run flake8 [504.3986ms]
+[CI Pipeline/Code Lint] ⭐ Run Post Set up Python
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[CI Pipeline/Code Lint]   | (node:101) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Code Lint]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Code Lint]   | [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline 10-33-34-262 --files-from manifest.txt --use-compress-program zstdmt
+[CI Pipeline/Code Lint]   | /usr/bin/tar: /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline: Cannot open: No such file or directory
+[CI Pipeline/Code Lint]   | /usr/bin/tar: Error is not recoverable: exiting now
+[CI Pipeline/Code Lint]   🚧  ::warning::Failed to save: "/usr/bin/tar" failed with error: The process '/usr/bin/tar' failed with exit code 2
+[CI Pipeline/Code Lint]   ✅  Success - Post Set up Python [298.427ms]
+[CI Pipeline/Code Lint] ⭐ Run Complete job
+[CI Pipeline/Code Lint] Cleaning up container for job Code Lint
+[CI Pipeline/Code Lint]   ✅  Success - Complete job
+[CI Pipeline/Code Lint] 🏁  Job succeeded
+[CI Pipeline/Run Tests] ⭐ Run Set up job
+[CI Pipeline/Run Tests] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Run Tests]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[CI Pipeline/Run Tests]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Run Tests]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Run Tests]   ✅  Success - Set up job
+[CI Pipeline/Run Tests]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CI Pipeline/Run Tests]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Run Tests]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Run Tests] ⭐ Run Main Checkout code
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline 10-33-34-262
+[CI Pipeline/Run Tests]   ✅  Success - Main Checkout code [96.8683ms]
+[CI Pipeline/Run Tests] ⭐ Run Main Set up Python
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CI Pipeline/Run Tests]   ❓  ::group::Installed versions
+[CI Pipeline/Run Tests]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Run Tests]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Run Tests]   | Successfully set up CPython (3.11.17)
+[CI Pipeline/Run Tests]   ❓  ::endgroup::
+[CI Pipeline/Run Tests]   | [command]/opt/hostedtoolcache/Python/3.11.17/x64/bin/pip cache dir
+[CI Pipeline/Run Tests]   | /root/.cache/pip
+[CI Pipeline/Run Tests]   | pip cache is not found
+[CI Pipeline/Run Tests]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CI Pipeline/Run Tests]   ✅  Success - Main Set up Python [4.3238013s]
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: python-version=3.11.17
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.17/x64/bin/python
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: cache-hit=false
+[CI Pipeline/Run Tests]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64/bin
+[CI Pipeline/Run Tests] ⭐ Run Main Install dependencies
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Run Tests]   | Collecting pytest==7.4.0 (from -r requirements.txt (line 1))
+[CI Pipeline/Run Tests]   |   Downloading pytest-7.4.0-py3-none-any.whl.metadata (8.0 kB)
+[CI Pipeline/Run Tests]   | Collecting pytest-cov==4.1.0 (from -r requirements.txt (line 2))
+[CI Pipeline/Run Tests]   |   Downloading pytest_cov-4.1.0-py3-none-any.whl.metadata (26 kB)
+[CI Pipeline/Run Tests]   | Collecting flake8==6.1.0 (from -r requirements.txt (line 3))
+[CI Pipeline/Run Tests]   |   Downloading flake8-6.1.0-py2.py3-none-any.whl.metadata (3.8 kB)
+[CI Pipeline/Run Tests]   | Collecting iniconfig (from pytest==7.4.0->-r requirements.txt (line 1))
+[CI Pipeline/Run Tests]   |   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+[CI Pipeline/Run Tests]   | Collecting packaging (from pytest==7.4.0->-r requirements.txt (line 1))
+[CI Pipeline/Run Tests]   |   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[CI Pipeline/Run Tests]   | Collecting pluggy<2.0,>=0.12 (from pytest==7.4.0->-r requirements.txt (line 1))
+[CI Pipeline/Run Tests]   |   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+[CI Pipeline/Run Tests]   | Collecting coverage>=5.2.1 (from coverage[toml]>=5.2.1->pytest-cov==4.1.0->-r requirements.txt (line 2))
+[CI Pipeline/Run Tests]   |   Downloading coverage-7.16.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.2 kB)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: mccabe<0.8.0,>=0.7.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from flake8==6.1.0->-r requirements.txt (line 3)) (0.7.0)
+[CI Pipeline/Run Tests]   | Collecting pycodestyle<2.12.0,>=2.11.0 (from flake8==6.1.0->-r requirements.txt (line 3))
+[CI Pipeline/Run Tests]   |   Downloading pycodestyle-2.11.1-py2.py3-none-any.whl.metadata (4.5 kB)
+[CI Pipeline/Run Tests]   | Collecting pyflakes<3.2.0,>=3.1.0 (from flake8==6.1.0->-r requirements.txt (line 3))
+[CI Pipeline/Run Tests]   |   Downloading pyflakes-3.1.0-py2.py3-none-any.whl.metadata (3.5 kB)
+[CI Pipeline/Run Tests]   | Downloading pytest-7.4.0-py3-none-any.whl (323 kB)
+[CI Pipeline/Run Tests]   | Downloading pytest_cov-4.1.0-py3-none-any.whl (21 kB)
+[CI Pipeline/Run Tests]   | Downloading flake8-6.1.0-py2.py3-none-any.whl (58 kB)
+[CI Pipeline/Run Tests]   | Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+[CI Pipeline/Run Tests]   | Downloading pycodestyle-2.11.1-py2.py3-none-any.whl (31 kB)
+[CI Pipeline/Run Tests]   | Downloading pyflakes-3.1.0-py2.py3-none-any.whl (62 kB)
+[CI Pipeline/Run Tests]   | Downloading coverage-7.16.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (256 kB)
+[CI Pipeline/Run Tests]   | Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+[CI Pipeline/Run Tests]   | Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[CI Pipeline/Run Tests]   | Installing collected packages: pyflakes, pycodestyle, pluggy, packaging, iniconfig, coverage, pytest, flake8, pytest-cov
+[CI Pipeline/Run Tests]   |   Attempting uninstall: pyflakes
+[CI Pipeline/Run Tests]   |     Found existing installation: pyflakes 4.0.2
+[CI Pipeline/Run Tests]   |     Uninstalling pyflakes-4.0.2:
+[CI Pipeline/Run Tests]   |       Successfully uninstalled pyflakes-4.0.2
+[CI Pipeline/Run Tests]   |   Attempting uninstall: pycodestyle
+[CI Pipeline/Run Tests]   |     Found existing installation: pycodestyle 2.15.0
+[CI Pipeline/Run Tests]   |     Uninstalling pycodestyle-2.15.0:
+[CI Pipeline/Run Tests]   |       Successfully uninstalled pycodestyle-2.15.0
+[CI Pipeline/Run Tests]   |   Attempting uninstall: flake8
+[CI Pipeline/Run Tests]   |     Found existing installation: flake8 7.4.1
+[CI Pipeline/Run Tests]   |     Uninstalling flake8-7.4.1:
+[CI Pipeline/Run Tests]   |       Successfully uninstalled flake8-7.4.1
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | Successfully installed coverage-7.16.2 flake8-6.1.0 iniconfig-2.3.1 packaging-26.3 pluggy-1.6.0 pycodestyle-2.11.1 pyflakes-3.1.0 pytest-7.4.0 pytest-cov-4.1.0
+[CI Pipeline/Run Tests]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Run Tests]   ✅  Success - Main Install dependencies [4.1341204s]
+[CI Pipeline/Run Tests] ⭐ Run Main Run tests with coverage
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CI Pipeline/Run Tests]   | ============================= test session starts ==============================
+[CI Pipeline/Run Tests]   | platform linux -- Python 3.11.17, pytest-7.4.0, pluggy-1.6.0
+[CI Pipeline/Run Tests]   | rootdir: /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline 10-33-34-262
+[CI Pipeline/Run Tests]   | plugins: cov-4.1.0
+[CI Pipeline/Run Tests]   | collected 4 items
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | tests/test_app.py ....                                                   [100%]
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | - generated xml file: /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline 10-33-34-262/test-results/results.xml -
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | ---------- coverage: platform linux, python 3.11.17-final-0 ----------
+[CI Pipeline/Run Tests]   | Name     Stmts   Miss  Cover   Missing
+[CI Pipeline/Run Tests]   | --------------------------------------
+[CI Pipeline/Run Tests]   | app.py       8      0   100%
+[CI Pipeline/Run Tests]   | --------------------------------------
+[CI Pipeline/Run Tests]   | TOTAL        8      0   100%
+[CI Pipeline/Run Tests]   | Coverage XML written to file coverage.xml
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | ============================== 4 passed in 0.05s ===============================
+[CI Pipeline/Run Tests]   ✅  Success - Main Run tests with coverage [602.4778ms]
+[CI Pipeline/Run Tests] ⭐ Run Main Upload test results
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Run Tests]   | (node:96) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Run Tests]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Run Tests]   | With the provided path, there will be 1 file uploaded
+[CI Pipeline/Run Tests]   | Artifact name is valid!
+[CI Pipeline/Run Tests]   | Root directory input is valid!
+[CI Pipeline/Run Tests]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Run Tests]   | (node:96) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Run Tests]   | Uploaded bytes 356
+[CI Pipeline/Run Tests]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Run Tests]   | SHA256 digest of uploaded artifact zip is 8a1ffac062b4944cade6026605a537fc9bb07d14639935ca52f3968492788e46
+[CI Pipeline/Run Tests]   | Finalizing artifact upload
+[CI Pipeline/Run Tests]   | Artifact test-results.zip successfully finalized. Artifact ID 3486992502
+[CI Pipeline/Run Tests]   | Artifact test-results has been successfully uploaded! Final size is 356 bytes. Artifact ID is 3486992502
+[CI Pipeline/Run Tests]   | Artifact download URL: https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3486992502
+[CI Pipeline/Run Tests]   ✅  Success - Main Upload test results [3.1896174s]
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-id=3486992502
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-digest=8a1ffac062b4944cade6026605a537fc9bb07d14639935ca52f3968492788e46
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-url=https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3486992502
+[CI Pipeline/Run Tests] ⭐ Run Main Upload coverage report
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Run Tests]   | (node:113) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Run Tests]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Run Tests]   | With the provided path, there will be 1 file uploaded
+[CI Pipeline/Run Tests]   | Artifact name is valid!
+[CI Pipeline/Run Tests]   | Root directory input is valid!
+[CI Pipeline/Run Tests]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Run Tests]   | (node:113) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Run Tests]   | Uploaded bytes 583
+[CI Pipeline/Run Tests]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Run Tests]   | SHA256 digest of uploaded artifact zip is b1becee24177846c91408b3b7d93074b0474290d635ec23a87e9aaad0a1d5297
+[CI Pipeline/Run Tests]   | Finalizing artifact upload
+[CI Pipeline/Run Tests]   | Artifact coverage-report.zip successfully finalized. Artifact ID 1798326328
+[CI Pipeline/Run Tests]   | Artifact coverage-report has been successfully uploaded! Final size is 583 bytes. Artifact ID is 1798326328
+[CI Pipeline/Run Tests]   | Artifact download URL: https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/1798326328
+[CI Pipeline/Run Tests]   ✅  Success - Main Upload coverage report [2.64978s]
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-id=1798326328
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-digest=b1becee24177846c91408b3b7d93074b0474290d635ec23a87e9aaad0a1d5297
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-url=https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/1798326328
+[CI Pipeline/Run Tests] ⭐ Run Post Set up Python
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[CI Pipeline/Run Tests]   | (node:130) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Run Tests]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Run Tests]   | [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline 10-33-34-262 --files-from manifest.txt --use-compress-program zstdmt
+[CI Pipeline/Run Tests]   | /usr/bin/tar: /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/09-build-test-pipeline: Cannot open: No such file or directory
+[CI Pipeline/Run Tests]   | /usr/bin/tar: Error is not recoverable: exiting now
+[CI Pipeline/Run Tests]   🚧  ::warning::Failed to save: "/usr/bin/tar" failed with error: The process '/usr/bin/tar' failed with exit code 2
+[CI Pipeline/Run Tests]   ✅  Success - Post Set up Python [339.9175ms]
+[CI Pipeline/Run Tests] ⭐ Run Complete job
+[CI Pipeline/Run Tests] Cleaning up container for job Run Tests
+[CI Pipeline/Run Tests]   ✅  Success - Complete job
+[CI Pipeline/Run Tests] 🏁  Job succeeded

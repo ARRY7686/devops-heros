@@ -1,0 +1,24 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> terraform fmt -check -recursive ..\08-mini-project
+..\08-mini-project\main.tf
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> echo fmt-exit=$LASTEXITCODE
+fmt-exit=3
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> New-Item -ItemType Directory -Force fmt-demo | Out-Null; Copy-Item ..\08-mini-project\main.tf fmt-demo\
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> terraform fmt fmt-demo
+fmt-demo\main.tf
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> git diff --no-index ..\08-mini-project\main.tf fmt-demo\main.tf
+diff --git "a/..\\08-mini-project\\main.tf" "b/fmt-demo\\main.tf"
+index f4b238b..9f9bba7 100644
+--- "a/..\\08-mini-project\\main.tf"
++++ "b/fmt-demo\\main.tf"
+@@ -38,7 +38,7 @@ resource "aws_route_table" "public" {
+ 
+   route {
+     cidr_block = "0.0.0.0/0"
+-    gateway_id  = aws_internet_gateway.main.id
++    gateway_id = aws_internet_gateway.main.id
+   }
+ 
+   tags = {
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> Remove-Item -Recurse -Force fmt-demo
+

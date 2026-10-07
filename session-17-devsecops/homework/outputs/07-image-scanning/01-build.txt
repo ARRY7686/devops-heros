@@ -1,0 +1,19 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> Get-Content Dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY app ./app
+
+EXPOSE 5001
+
+CMD ["python", "app/app.py"]
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> docker build -q -t session17-python:1.0 .
+sha256:7fc9f622fc5b2e59c6d701edacb437f6a8b46f61b5c53bd508b6be1d79f8d073
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> docker images session17-python
+IMAGE                  ID             DISK USAGE   CONTENT SIZE   EXTRA
+session17-python:1.0   7fc9f622fc5b        200MB         49.2MB        

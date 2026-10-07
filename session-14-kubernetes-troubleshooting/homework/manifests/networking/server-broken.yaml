@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: net-server
+  labels:
+    app: net-server
+spec:
+  containers:
+    - name: http
+      image: python:3.11-alpine
+      # BUG: binds to the loopback interface only, so other Pods cannot reach it
+      command: ["python3", "-m", "http.server", "8080", "--bind", "127.0.0.1"]
+      ports:
+        - containerPort: 8080

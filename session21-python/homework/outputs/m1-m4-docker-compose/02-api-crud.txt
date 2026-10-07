@@ -1,0 +1,28 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:8000/health | ConvertTo-Json -Compress
+{"status":"UP"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:8000/ready | ConvertTo-Json -Compress
+{"status":"READY"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> $t1 = Invoke-RestMethod -Method Post http://localhost:8000/api/tasks -ContentType application/json -Body '{"title":"Write Dockerfile","priority":"HIGH","assignee":"Student"}'
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> $t2 = Invoke-RestMethod -Method Post http://localhost:8000/api/tasks -ContentType application/json -Body '{"title":"Configure CI pipeline","priority":"MEDIUM","assignee":"Student"}'
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:8000/api/tasks | Format-Table id, title, status, priority, assignee -AutoSize
+
+id title                 status priority assignee
+-- -----                 ------ -------- --------
+ 2 Configure CI pipeline TODO   MEDIUM   Student 
+ 1 Write Dockerfile      TODO   HIGH     Student 
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod -Method Put "http://localhost:8000/api/tasks/$($t1.id)" -ContentType application/json -Body '{"status":"DONE"}' | Format-Table id, title, status -AutoSize
+
+id title            status
+-- -----            ------
+ 1 Write Dockerfile DONE  
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:8000/api/tasks/stats | ConvertTo-Json -Compress
+{"total":2,"todo":1,"inProgress":0,"done":1}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> (Invoke-WebRequest -UseBasicParsing -Method Delete "http://localhost:8000/api/tasks/$($t2.id)").StatusCode
+204
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:8000/api/tasks | Format-Table id, title, status -AutoSize
+
+id title            status
+-- -----            ------
+ 1 Write Dockerfile DONE  

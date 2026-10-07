@@ -1,0 +1,7 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl apply -f app-settings-configmap.yaml
+configmap/app-settings created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl apply -f broken-pod.yaml
+pod/config-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl get pod config-demo
+NAME          READY   STATUS                       RESTARTS   AGE
+config-demo   0/1     CreateContainerConfigError   0          2s

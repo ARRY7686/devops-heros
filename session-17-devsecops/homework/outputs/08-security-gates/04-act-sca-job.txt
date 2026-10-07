@@ -1,0 +1,143 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> act push -j sca
+time="2026-10-07T15:28:02+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Python DevSecOps Pipeline/SCA - Dependency Scan] ⭐ Run Set up job
+[Python DevSecOps Pipeline/SCA - Dependency Scan] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ✅  Success - Set up job
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[Python DevSecOps Pipeline/SCA - Dependency Scan] ⭐ Run Main Checkout code
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-17-devsecops/demo
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ✅  Success - Main Checkout code [96.5619ms]
+[Python DevSecOps Pipeline/SCA - Dependency Scan] ⭐ Run Main Setup Python
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ❓  ::group::Installed versions
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | (node:32) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Successfully set up CPython (3.12.15)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ❓  ::endgroup::
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ✅  Success - Main Setup Python [4.1194311s]
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/x64
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/x64
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/x64
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/x64
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/x64/lib
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-output:: python-version=3.12.15
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/x64/bin/python
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/x64
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/x64/bin
+[Python DevSecOps Pipeline/SCA - Dependency Scan] ⭐ Run Main Install dependencies
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: Flask==3.1.3 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (3.1.3)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: blinker>=1.9.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (1.9.0)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: click>=8.1.3 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (8.5.0)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: itsdangerous>=2.2.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (2.2.0)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: jinja2>=3.1.2 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (3.1.6)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: markupsafe>=2.1.1 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (3.0.4)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: werkzeug>=3.1.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (3.1.9)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting pip-audit
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading pip_audit-2.10.1-py3-none-any.whl.metadata (28 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting CacheControl>=0.13.0 (from CacheControl[filecache]>=0.13.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading cachecontrol-0.14.4-py3-none-any.whl.metadata (3.1 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting cyclonedx-python-lib<12,>=5 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading cyclonedx_python_lib-11.12.0-py3-none-any.whl.metadata (6.9 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: packaging>=23.0.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from pip-audit) (26.3)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting pip-api>=0.0.28 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading pip_api-0.0.35-py3-none-any.whl.metadata (17 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting pip-requirements-parser>=32.0.0 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading pip_requirements_parser-32.0.1-py3-none-any.whl.metadata (9.3 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting requests>=2.31.0 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting rich>=12.4 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting tomli>=2.2.1 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading tomli-2.4.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting tomli-w>=1.2.0 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading tomli_w-1.2.0-py3-none-any.whl.metadata (5.7 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting platformdirs>=4.2.0 (from pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading platformdirs-4.12.3-py3-none-any.whl.metadata (5.5 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting license-expression<31,>=30 (from cyclonedx-python-lib<12,>=5->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading license_expression-30.4.4-py3-none-any.whl.metadata (11 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting packageurl-python<2,>=0.11 (from cyclonedx-python-lib<12,>=5->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading packageurl_python-0.17.6-py3-none-any.whl.metadata (5.1 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting py-serializable<3.0.0,>=2.1.0 (from cyclonedx-python-lib<12,>=5->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading py_serializable-2.1.0-py3-none-any.whl.metadata (4.3 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting sortedcontainers<3.0.0,>=2.4.0 (from cyclonedx-python-lib<12,>=5->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting typing_extensions<5.0,>=4.6 (from cyclonedx-python-lib<12,>=5->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting boolean.py>=4.0 (from license-expression<31,>=30->cyclonedx-python-lib<12,>=5->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading boolean_py-5.0-py3-none-any.whl.metadata (2.3 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting defusedxml<0.8.0,>=0.7.1 (from py-serializable<3.0.0,>=2.1.0->cyclonedx-python-lib<12,>=5->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting msgpack<2.0.0,>=0.5.2 (from CacheControl>=0.13.0->CacheControl[filecache]>=0.13.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading msgpack-1.2.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting filelock>=3.8.0 (from CacheControl[filecache]>=0.13.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading filelock-4.0.12-py3-none-any.whl.metadata (2.0 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from pip-api>=0.0.28->pip-audit) (26.2.1)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting pyparsing (from pip-requirements-parser>=32.0.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting charset_normalizer<4,>=2 (from requests>=2.31.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting idna<4,>=2.5 (from requests>=2.31.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting urllib3<3,>=1.26 (from requests>=2.31.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting certifi>=2023.5.7 (from requests>=2.31.0->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting markdown-it-py>=2.2.0 (from rich>=12.4->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from rich>=12.4->pip-audit) (2.21.0)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=12.4->pip-audit)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading pip_audit-2.10.1-py3-none-any.whl (62 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading cyclonedx_python_lib-11.12.0-py3-none-any.whl (529 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 529.5/529.5 kB 2.4 MB/s  0:00:00
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading license_expression-30.4.4-py3-none-any.whl (120 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading packageurl_python-0.17.6-py3-none-any.whl (36 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading py_serializable-2.1.0-py3-none-any.whl (23 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading boolean_py-5.0-py3-none-any.whl (26 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading cachecontrol-0.14.4-py3-none-any.whl (22 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading msgpack-1.2.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (472 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading filelock-4.0.12-py3-none-any.whl (111 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading pip_api-0.0.35-py3-none-any.whl (123 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading pip_requirements_parser-32.0.1-py3-none-any.whl (35 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading platformdirs-4.12.3-py3-none-any.whl (32 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading idna-3.20-py3-none-any.whl (69 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading tomli-2.4.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (253 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading tomli_w-1.2.0-py3-none-any.whl (6.7 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Installing collected packages: sortedcontainers, boolean.py, urllib3, typing_extensions, tomli-w, tomli, pyparsing, platformdirs, pip-api, packageurl-python, msgpack, mdurl, license-expression, idna, filelock, defusedxml, charset_normalizer, certifi, requests, py-serializable, pip-requirements-parser, markdown-it-py, rich, cyclonedx-python-lib, CacheControl, pip-audit
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | 
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Successfully installed CacheControl-0.14.4 boolean.py-5.0 certifi-2026.7.22 charset_normalizer-3.5.2 cyclonedx-python-lib-11.12.0 defusedxml-0.7.1 filelock-4.0.12 idna-3.20 license-expression-30.4.4 markdown-it-py-4.2.0 mdurl-0.1.2 msgpack-1.2.3 packageurl-python-0.17.6 pip-api-0.0.35 pip-audit-2.10.1 pip-requirements-parser-32.0.1 platformdirs-4.12.3 py-serializable-2.1.0 pyparsing-3.3.3 requests-2.34.2 rich-15.0.0 sortedcontainers-2.4.0 tomli-2.4.1 tomli-w-1.2.0 typing_extensions-4.16.0 urllib3-2.8.0
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ✅  Success - Main Install dependencies [8.9973405s]
+[Python DevSecOps Pipeline/SCA - Dependency Scan] ⭐ Run Main Run dependency scan
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Found 2 known vulnerabilities in 1 package
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | Name   Version ID              Fix Versions
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | ------ ------- --------------- ------------
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | pytest 8.4.2   PYSEC-2026-1845 9.0.3
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   | pytest 8.4.2   PYSEC-2026-1845 9.0.3
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ❌  Failure - Main Run dependency scan [3.2140698s]
+[Python DevSecOps Pipeline/SCA - Dependency Scan] exitcode '1': failure
+[Python DevSecOps Pipeline/SCA - Dependency Scan] ⭐ Run Complete job
+[Python DevSecOps Pipeline/SCA - Dependency Scan]   ✅  Success - Complete job
+[Python DevSecOps Pipeline/SCA - Dependency Scan] 🏁  Job failed
+Error: Job 'SCA - Dependency Scan' failed

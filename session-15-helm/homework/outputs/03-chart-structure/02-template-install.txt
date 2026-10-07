@@ -1,0 +1,51 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> helm template my-release simple-chart
+---
+# Source: simple-chart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-release-svc
+spec:
+  selector:
+    app: my-release
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+# Source: simple-chart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-release-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-release
+  template:
+    metadata:
+      labels:
+        app: my-release
+    spec:
+      containers:
+        - name: app
+          image: "nginx:latest"
+          ports:
+            - containerPort: 80
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> helm install my-release simple-chart
+NAME: my-release
+LAST DEPLOYED: Wed Oct  7 15:03:16 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> kubectl get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+my-release-app-75cbf546ff-p5j97   1/1     Running   0          14s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> kubectl get services
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+my-release-svc   ClusterIP   10.109.114.41   <none>        80/TCP    14s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> helm uninstall my-release
+release "my-release" uninstalled

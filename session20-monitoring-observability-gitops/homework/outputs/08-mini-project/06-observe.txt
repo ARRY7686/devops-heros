@@ -1,0 +1,18 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl logs deployment/session20-mini -n session20 --tail=8
+Found 3 pods, using pod/session20-mini-68946db7dd-jlhfp
+2026/10/07 10:46:50 [notice] 1#1: start worker process 46
+2026/10/07 10:46:50 [notice] 1#1: start worker process 47
+2026/10/07 10:46:50 [notice] 1#1: start worker process 48
+2026/10/07 10:46:50 [notice] 1#1: start worker process 49
+2026/10/07 10:46:50 [notice] 1#1: start worker process 50
+2026/10/07 10:46:50 [notice] 1#1: start worker process 51
+2026/10/07 10:46:50 [notice] 1#1: start worker process 52
+2026/10/07 10:46:50 [notice] 1#1: start worker process 53
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get pods -n session20
+NAME                              READY   STATUS    RESTARTS   AGE
+session20-mini-68946db7dd-9ltf5   1/1     Running   0          3s
+session20-mini-68946db7dd-jlhfp   1/1     Running   0          11s
+session20-mini-68946db7dd-x87rz   1/1     Running   0          3s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get application session20-mini -n argocd
+NAME             SYNC STATUS   HEALTH STATUS
+session20-mini   Synced        Healthy

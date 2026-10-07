@@ -1,0 +1,19 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl apply -f broken-service.yaml
+service/broken-service created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get service broken-service
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+broken-service   ClusterIP   10.103.235.13   <none>        80/TCP    0s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get endpoints broken-service
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME             ENDPOINTS   AGE
+broken-service   <none>      0s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl describe service broken-service | Select-String -Pattern 'Selector|Endpoints'
+
+Selector:                 app=does-not-exist
+Endpoints:                
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl delete service broken-service
+service "broken-service" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get endpoints web-service
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME          ENDPOINTS                       AGE
+web-service   10.244.0.91:80,10.244.0.92:80   10s

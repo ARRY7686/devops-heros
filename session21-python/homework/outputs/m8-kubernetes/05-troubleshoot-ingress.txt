@@ -1,0 +1,12 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get ingress -n taskboard
+NAME        CLASS   HOSTS             ADDRESS        PORTS   AGE
+taskboard   nginx   taskboard.local   192.168.49.2   80      76s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl describe ingress taskboard -n taskboard | Select-String -Pattern 'Host|/api|/ ' 
+
+  Host             Path  Backends
+                   /api   taskboard-backend:8080 (<error: services "taskboard-backend" not found>)
+                   /      taskboard-frontend:80 ()
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> $ing = Start-Job { kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8081:80 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Ingress-Get /api/tasks
+HTTP 503 The remote server returned an error: (503) Server Unavailable.

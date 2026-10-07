@@ -1,0 +1,163 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242> act push -W matrix-build.yml
+time="2026-10-07T15:23:47+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Python Version Matrix Build/Test on Python 3.9-1 ] ⭐ Run Set up job
+[Python Version Matrix Build/Test on Python 3.9-1 ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Python Version Matrix Build/Test on Python 3.10-2] ⭐ Run Set up job
+[Python Version Matrix Build/Test on Python 3.11-3] ⭐ Run Set up job
+[Python Version Matrix Build/Test on Python 3.10-2] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Python Version Matrix Build/Test on Python 3.11-3] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Python Version Matrix Build/Test on Python 3.10-2]   ✅  Success - Set up job
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ✅  Success - Set up job
+[Python Version Matrix Build/Test on Python 3.11-3]   ✅  Success - Set up job
+[Python Version Matrix Build/Test on Python 3.10-2]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[Python Version Matrix Build/Test on Python 3.11-3]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[Python Version Matrix Build/Test on Python 3.10-2] 🧪  Matrix: map[python-version:3.10]
+[Python Version Matrix Build/Test on Python 3.10-2] ⭐ Run Main Checkout code
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/06-runners 10-33-34-242
+[Python Version Matrix Build/Test on Python 3.10-2]   ✅  Success - Main Checkout code [61.5229ms]
+[Python Version Matrix Build/Test on Python 3.10-2] ⭐ Run Main Set up Python 3.10
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[Python Version Matrix Build/Test on Python 3.9-1 ] 🧪  Matrix: map[python-version:3.9]
+[Python Version Matrix Build/Test on Python 3.9-1 ] ⭐ Run Main Checkout code
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/06-runners 10-33-34-242
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ✅  Success - Main Checkout code [64.2232ms]
+[Python Version Matrix Build/Test on Python 3.9-1 ] ⭐ Run Main Set up Python 3.9
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[Python Version Matrix Build/Test on Python 3.10-2]   ❓  ::group::Installed versions
+[Python Version Matrix Build/Test on Python 3.10-2]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Python Version Matrix Build/Test on Python 3.10-2]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Python Version Matrix Build/Test on Python 3.10-2]   | Successfully set up CPython (3.10.22)
+[Python Version Matrix Build/Test on Python 3.10-2]   ❓  ::endgroup::
+[Python Version Matrix Build/Test on Python 3.10-2]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[Python Version Matrix Build/Test on Python 3.10-2]   ✅  Success - Main Set up Python 3.10 [4.155381s]
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.10.22/x64
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.10.22/x64/lib/pkgconfig
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.10.22/x64
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.10.22/x64
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.10.22/x64
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.10.22/x64/lib
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-output:: python-version=3.10.22
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.10.22/x64/bin/python
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.10.22/x64
+[Python Version Matrix Build/Test on Python 3.10-2]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.10.22/x64/bin
+[Python Version Matrix Build/Test on Python 3.10-2] ⭐ Run Main Display python version
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Python Version Matrix Build/Test on Python 3.10-2]   | Python 3.10.22
+[Python Version Matrix Build/Test on Python 3.10-2]   ✅  Success - Main Display python version [254.5953ms]
+[Python Version Matrix Build/Test on Python 3.10-2] ⭐ Run Post Set up Python 3.10
+[Python Version Matrix Build/Test on Python 3.10-2]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[Python Version Matrix Build/Test on Python 3.10-2]   | (node:51) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Python Version Matrix Build/Test on Python 3.10-2]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Python Version Matrix Build/Test on Python 3.10-2]   ✅  Success - Post Set up Python 3.10 [305.1413ms]
+[Python Version Matrix Build/Test on Python 3.10-2] ⭐ Run Complete job
+[Python Version Matrix Build/Test on Python 3.10-2] Cleaning up container for job Test on Python 3.10
+[Python Version Matrix Build/Test on Python 3.10-2]   ✅  Success - Complete job
+[Python Version Matrix Build/Test on Python 3.10-2] 🏁  Job succeeded
+[Python Version Matrix Build/Test on Python 3.11-3] 🧪  Matrix: map[python-version:3.11]
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ❓  ::group::Installed versions
+[Python Version Matrix Build/Test on Python 3.11-3] ⭐ Run Main Checkout code
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Version 3.9 was not found in the local cache
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/06-runners 10-33-34-242
+[Python Version Matrix Build/Test on Python 3.11-3]   ✅  Success - Main Checkout code [86.0067ms]
+[Python Version Matrix Build/Test on Python 3.11-3] ⭐ Run Main Set up Python 3.11
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Version 3.9 is available for downloading
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Download from "https://github.com/actions/python-versions/releases/download/3.9.25-19039189640/python-3.9.25-linux-24.04-x64.tar.gz"
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[Python Version Matrix Build/Test on Python 3.11-3]   ❓  ::group::Installed versions
+[Python Version Matrix Build/Test on Python 3.11-3]   | (node:32) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Python Version Matrix Build/Test on Python 3.11-3]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Python Version Matrix Build/Test on Python 3.11-3]   | Successfully set up CPython (3.11.17)
+[Python Version Matrix Build/Test on Python 3.11-3]   ❓  ::endgroup::
+[Python Version Matrix Build/Test on Python 3.11-3]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[Python Version Matrix Build/Test on Python 3.11-3]   ✅  Success - Main Set up Python 3.11 [4.6342893s]
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.17/x64
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.17/x64/bin/python
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::set-output:: python-version=3.11.17
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64
+[Python Version Matrix Build/Test on Python 3.11-3]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64/bin
+[Python Version Matrix Build/Test on Python 3.11-3] ⭐ Run Main Display python version
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Python Version Matrix Build/Test on Python 3.11-3]   | Python 3.11.17
+[Python Version Matrix Build/Test on Python 3.11-3]   ✅  Success - Main Display python version [216.5627ms]
+[Python Version Matrix Build/Test on Python 3.11-3] ⭐ Run Post Set up Python 3.11
+[Python Version Matrix Build/Test on Python 3.11-3]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[Python Version Matrix Build/Test on Python 3.11-3]   | (node:52) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Python Version Matrix Build/Test on Python 3.11-3]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Python Version Matrix Build/Test on Python 3.11-3]   ✅  Success - Post Set up Python 3.11 [186.5019ms]
+[Python Version Matrix Build/Test on Python 3.11-3] ⭐ Run Complete job
+[Python Version Matrix Build/Test on Python 3.11-3] Cleaning up container for job Test on Python 3.11
+[Python Version Matrix Build/Test on Python 3.11-3]   ✅  Success - Complete job
+[Python Version Matrix Build/Test on Python 3.11-3] 🏁  Job succeeded
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Extract downloaded archive
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /tmp/2749b546-8eaa-48f0-884b-0a3765a2953e -f /tmp/2baaeb3d-675c-4d06-a149-258fa5049dcb
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Execute installation script
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Check if Python hostedtoolcache folder exist...
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Create Python 3.9.25 folder
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Copy Python binaries to hostedtoolcache folder
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Upgrading pip...
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Looking in links: /tmp/tmpqxqe4jnb
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages (79.0.1)
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages (23.0.1)
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ❗  ::error::WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Collecting pip
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Downloading pip-26.0.1-py3-none-any.whl (1.8 MB)
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 8.9 MB/s eta 0:00:00
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | 
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Installing collected packages: pip
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Attempting uninstall: pip
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Found existing installation: pip 23.0.1
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Uninstalling pip-23.0.1:
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Successfully uninstalled pip-23.0.1
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Successfully installed pip-26.0.1
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Create complete file
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Successfully set up CPython (3.9.25)
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ❓  ::endgroup::
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ✅  Success - Main Set up Python 3.9 [25.2935116s]
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.9.25/x64
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.9.25/x64
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.9.25/x64/lib
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.9.25/x64
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.9.25/x64/lib/pkgconfig
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.9.25/x64
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-output:: python-version=3.9.25
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.9.25/x64/bin/python
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.9.25/x64
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.9.25/x64/bin
+[Python Version Matrix Build/Test on Python 3.9-1 ] ⭐ Run Main Display python version
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | Python 3.9.25
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ✅  Success - Main Display python version [192.7226ms]
+[Python Version Matrix Build/Test on Python 3.9-1 ] ⭐ Run Post Set up Python 3.9
+[Python Version Matrix Build/Test on Python 3.9-1 ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | (node:109) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Python Version Matrix Build/Test on Python 3.9-1 ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ✅  Success - Post Set up Python 3.9 [201.6707ms]
+[Python Version Matrix Build/Test on Python 3.9-1 ] ⭐ Run Complete job
+[Python Version Matrix Build/Test on Python 3.9-1 ] Cleaning up container for job Test on Python 3.9
+[Python Version Matrix Build/Test on Python 3.9-1 ]   ✅  Success - Complete job
+[Python Version Matrix Build/Test on Python 3.9-1 ] 🏁  Job succeeded

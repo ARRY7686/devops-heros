@@ -1,0 +1,42 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> aws ec2 describe-vpcs --filters Name=tag:Name,Values=session19-vpc --query 'Vpcs[].{VpcId:VpcId,Cidr:CidrBlock,State:State}' --output table
+-------------------------------------------------------
+|                    DescribeVpcs                     |
++--------------+------------+-------------------------+
+|     Cidr     |   State    |          VpcId          |
++--------------+------------+-------------------------+
+|  10.0.0.0/16 |  available |  vpc-0a532989e25fd42a0  |
++--------------+------------+-------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> aws ec2 describe-subnets --filters Name=tag:Name,Values=session19-public-subnet --query 'Subnets[].{SubnetId:SubnetId,Cidr:CidrBlock,AZ:AvailabilityZone,PublicIP:MapPublicIpOnLaunch}' --output table
+------------------------------------------------------------------------
+|                            DescribeSubnets                           |
++-------------+--------------+-----------+-----------------------------+
+|     AZ      |    Cidr      | PublicIP  |          SubnetId           |
++-------------+--------------+-----------+-----------------------------+
+|  ap-south-1a|  10.0.1.0/24 |  True     |  subnet-446985c8f505806b6   |
++-------------+--------------+-----------+-----------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> aws ec2 describe-route-tables --filters Name=tag:Name,Values=session19-public-rt --query 'RouteTables[].Routes[].{Dest:DestinationCidrBlock,Target:GatewayId}' --output table
+------------------------------------------
+|           DescribeRouteTables          |
++--------------+-------------------------+
+|     Dest     |         Target          |
++--------------+-------------------------+
+|  10.0.0.0/16 |  local                  |
+|  0.0.0.0/0   |  igw-ddc65ca0c65971273  |
++--------------+-------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> aws ec2 describe-internet-gateways --filters Name=tag:Name,Values=session19-igw --query 'InternetGateways[].{IGW:InternetGatewayId,Vpc:Attachments[0].VpcId}' --output table
+----------------------------------------------------
+|             DescribeInternetGateways             |
++------------------------+-------------------------+
+|           IGW          |           Vpc           |
++------------------------+-------------------------+
+|  igw-ddc65ca0c65971273 |  vpc-0a532989e25fd42a0  |
++------------------------+-------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> aws ec2 describe-security-groups --filters Name=group-name,Values=session19-web-sg --query 'SecurityGroups[].IpPermissions[].{From:FromPort,To:ToPort,Proto:IpProtocol}' --output table
+--------------------------
+| DescribeSecurityGroups |
++------+---------+-------+
+| From |  Proto  |  To   |
++------+---------+-------+
+|  80  |  tcp    |  80   |
+|  443 |  tcp    |  443  |
++------+---------+-------+

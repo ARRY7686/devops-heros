@@ -1,0 +1,23 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act push -n -W .github\workflows\build.yml
+time="2026-10-07T15:22:18+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+*DRYRUN* [Build and Test/build] ⭐ Run Set up job
+*DRYRUN* [Build and Test/build] 🚀  Start image=catthehacker/ubuntu:act-latest
+*DRYRUN* [Build and Test/build]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+*DRYRUN* [Build and Test/build]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+*DRYRUN* [Build and Test/build]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+*DRYRUN* [Build and Test/build]   ✅  Success - Set up job
+*DRYRUN* [Build and Test/build]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+*DRYRUN* [Build and Test/build] ⭐ Run Main Checkout code
+*DRYRUN* [Build and Test/build]   ✅  Success - Main Checkout code [41.0103ms]
+*DRYRUN* [Build and Test/build] ⭐ Run Main Set up Python
+*DRYRUN* [Build and Test/build]   ✅  Success - Main Set up Python [64.8335ms]
+*DRYRUN* [Build and Test/build] ⭐ Run Main Install dependencies
+*DRYRUN* [Build and Test/build]   ✅  Success - Main Install dependencies [104.0433ms]
+*DRYRUN* [Build and Test/build] ⭐ Run Main Run tests
+*DRYRUN* [Build and Test/build]   ✅  Success - Main Run tests [97.277ms]
+*DRYRUN* [Build and Test/build] ⭐ Run Post Set up Python
+*DRYRUN* [Build and Test/build]   ✅  Success - Post Set up Python [29.736ms]
+*DRYRUN* [Build and Test/build] ⭐ Run Complete job
+*DRYRUN* [Build and Test/build] Cleaning up container for job build
+*DRYRUN* [Build and Test/build]   ✅  Success - Complete job
+*DRYRUN* [Build and Test/build] 🏁  Job succeeded

@@ -1,0 +1,21 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> $panel = @{ type = 'timeseries'; title = 'Prometheus HTTP requests/sec'; gridPos = @{ x = 0; y = 0; w = 12; h = 8 }; datasource = @{ type = 'prometheus'; uid = $ds.uid }; targets = @(@{ refId = 'A'; expr = 'sum(rate(prometheus_http_requests_total[1m]))' }) }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> $up = @{ type = 'stat'; title = 'Targets up'; gridPos = @{ x = 12; y = 0; w = 6; h = 8 }; datasource = @{ type = 'prometheus'; uid = $ds.uid }; targets = @(@{ refId = 'A'; expr = 'sum(up)' }) }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> $dash = @{ dashboard = @{ title = 'Session 20 - Prometheus Overview'; panels = @($panel, $up); schemaVersion = 39 }; overwrite = $true } | ConvertTo-Json -Depth 10
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> Invoke-RestMethod -Method Post http://localhost:3000/api/dashboards/db -Headers $auth -ContentType application/json -Body $dash | Format-List
+
+
+folderUid : 
+id        : 1
+slug      : session-20-prometheus-overview
+status    : success
+uid       : 5bc02a00-df54-4425-b165-7deb689fec14
+url       : /d/5bc02a00-df54-4425-b165-7deb689fec14/session-20-prometheus-overview
+version   : 1
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> Invoke-RestMethod 'http://localhost:3000/api/search?type=dash-db' -Headers $auth | Select-Object uid, title, url | Format-Table -AutoSize
+
+uid title url
+--- ----- ---
+             

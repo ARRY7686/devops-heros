@@ -1,0 +1,49 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\backend> git diff --no-index --stat tests\test_api.py ..\homework\tests-fixed\test_api.py
+warning: in the working copy of '..\homework\tests-fixed\test_api.py', LF will be replaced by CRLF the next time Git touches it
+ ...py" => "..\\homework\\tests-fixed\\test_api.py" | 49 ++++++++++++++++++++--
+ 1 file changed, 45 insertions(+), 4 deletions(-)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\backend> docker run --rm -e PYTHONDONTWRITEBYTECODE=1 -v ${PWD}:/app -v ${PWD}\..\homework\tests-fixed:/app/tests_fixed -w /app python:3.12-slim sh -c 'pip install -q --root-user-action=ignore -r requirements.txt && pytest -v -p no:cacheprovider tests_fixed'
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: pip install --upgrade pip
+============================= test session starts ==============================
+platform linux -- Python 3.12.15, pytest-8.3.4, pluggy-1.6.0 -- /usr/local/bin/python3.12
+rootdir: /app
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collecting ... collected 8 items
+
+tests_fixed/test_api.py::test_health PASSED                              [ 12%]
+tests_fixed/test_api.py::test_root PASSED                                [ 25%]
+tests_fixed/test_api.py::test_create_task PASSED                         [ 37%]
+tests_fixed/test_api.py::test_create_task_validation_rejects_empty_title PASSED [ 50%]
+tests_fixed/test_api.py::test_list_and_get_task PASSED                   [ 62%]
+tests_fixed/test_api.py::test_update_task_status PASSED                  [ 75%]
+tests_fixed/test_api.py::test_delete_task_then_404 PASSED                [ 87%]
+tests_fixed/test_api.py::test_stats PASSED                               [100%]
+
+=============================== warnings summary ===============================
+../usr/local/lib/python3.12/site-packages/starlette/testclient.py:40
+  /usr/local/lib/python3.12/site-packages/starlette/testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+app/main.py:16
+  /app/app/main.py:16: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @app.on_event("startup")
+
+../usr/local/lib/python3.12/site-packages/fastapi/applications.py:4495
+  /usr/local/lib/python3.12/site-packages/fastapi/applications.py:4495: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    return self.router.on_event(event_type)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 8 passed, 3 warnings in 1.21s =========================

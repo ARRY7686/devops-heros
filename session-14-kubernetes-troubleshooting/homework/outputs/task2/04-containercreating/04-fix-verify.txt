@@ -1,0 +1,14 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl apply -f web-content-configmap.yaml
+configmap/web-content created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl get pod cc-demo
+NAME      READY   STATUS    RESTARTS   AGE
+cc-demo   1/1     Running   0          17s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl exec cc-demo -- curl -s localhost
+<h1>Session 14 - ContainerCreating fixed</h1>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl events --for pod/cc-demo
+LAST SEEN          TYPE      REASON        OBJECT        MESSAGE
+17s                Normal    Scheduled     Pod/cc-demo   Successfully assigned session14/cc-demo to minikube
+9s (x5 over 16s)   Warning   FailedMount   Pod/cc-demo   MountVolume.SetUp failed for volume "html" : configmap "web-content" not found
+1s                 Normal    Pulled        Pod/cc-demo   Container image "nginx:1.27" already present on machine and can be accessed by the pod
+1s                 Normal    Created       Pod/cc-demo   Container created
+0s                 Normal    Started       Pod/cc-demo   Container started

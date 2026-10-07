@@ -1,0 +1,35 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Get-Content homework\compose\docker-compose.healthcheck.yml
+# Override for ../../docker-compose.yml (use: docker compose -f docker-compose.yml -f homework/compose/docker-compose.healthcheck.yml up)
+# FIX: plain `depends_on: [postgres]` only waits for the container to START, not for
+# PostgreSQL to accept connections. The backend runs `alembic upgrade head` immediately,
+# gets "connection refused" and exits. Wait for a healthy database instead.
+services:
+  postgres:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taskboard -d taskboard"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  backend:
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose -f docker-compose.yml -f homework\compose\docker-compose.healthcheck.yml up -d 2>&1 | Select-Object -Last 6
+ Container session21-python-postgres-1 Starting 
+ Container session21-python-postgres-1 Started 
+ Container session21-python-postgres-1 Waiting 
+ Container session21-python-postgres-1 Healthy 
+ Container session21-python-backend-1 Starting 
+ Container session21-python-backend-1 Started 
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose ps
+NAME                          IMAGE                       COMMAND                  SERVICE    CREATED          STATUS                   PORTS
+session21-python-backend-1    session21-python-backend    "sh -c 'alembic upgr…"   backend    6 seconds ago    Up 2 seconds             0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+session21-python-frontend-1   session21-python-frontend   "/docker-entrypoint.…"   frontend   34 seconds ago   Up 32 seconds            0.0.0.0:3000->80/tcp, [::]:3000->80/tcp
+session21-python-postgres-1   postgres:16-alpine          "docker-entrypoint.s…"   postgres   6 seconds ago    Up 5 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose logs backend --tail 5
+backend-1  | INFO:     Started server process [7]
+backend-1  | INFO:     Waiting for application startup.
+backend-1  | INFO:     Application startup complete.
+backend-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+backend-1  | INFO:     172.18.0.1:47462 - "GET /ready HTTP/1.1" 200 OK

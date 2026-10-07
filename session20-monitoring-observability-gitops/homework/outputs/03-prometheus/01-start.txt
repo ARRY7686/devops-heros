@@ -1,0 +1,32 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> Get-Content docker-compose.yml
+services:
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: session20-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> Get-Content prometheus.yml
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - prometheus:9090
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> docker compose up -d
+ Network 03-prometheus_default Creating 
+ Network 03-prometheus_default Creating 
+ Network 03-prometheus_default Created 
+ Network 03-prometheus_default Created 
+ Container session20-prometheus Creating 
+ Container session20-prometheus Created 
+ Container session20-prometheus Starting 
+ Container session20-prometheus Started 
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> docker compose ps
+NAME                   IMAGE                    COMMAND                  SERVICE      CREATED          STATUS          PORTS
+session20-prometheus   prom/prometheus:v3.5.0   "/bin/prometheus --c…"   prometheus   15 seconds ago   Up 14 seconds   0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> Invoke-RestMethod http://localhost:9090/-/ready
+Prometheus Server is Ready.

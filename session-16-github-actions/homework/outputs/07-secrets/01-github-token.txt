@@ -1,0 +1,17 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\07-secrets 10-33-34-248> act push -W .github\workflows\secrets-demo.yml -s GITHUB_TOKEN=local-dummy-token
+time="2026-10-07T15:24:25+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Secrets Demonstration/secrets-check] ⭐ Run Set up job
+[Secrets Demonstration/secrets-check] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Secrets Demonstration/secrets-check]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Secrets Demonstration/secrets-check]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Secrets Demonstration/secrets-check]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Secrets Demonstration/secrets-check]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Secrets Demonstration/secrets-check]   ✅  Success - Set up job
+[Secrets Demonstration/secrets-check] ⭐ Run Main Validate GITHUB_TOKEN availability
+[Secrets Demonstration/secrets-check]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Secrets Demonstration/secrets-check]   | [PASS] GITHUB_TOKEN is available and automatically provided
+[Secrets Demonstration/secrets-check]   ✅  Success - Main Validate GITHUB_TOKEN availability [147.6784ms]
+[Secrets Demonstration/secrets-check] ⭐ Run Complete job
+[Secrets Demonstration/secrets-check] Cleaning up container for job secrets-check
+[Secrets Demonstration/secrets-check]   ✅  Success - Complete job
+[Secrets Demonstration/secrets-check] 🏁  Job succeeded

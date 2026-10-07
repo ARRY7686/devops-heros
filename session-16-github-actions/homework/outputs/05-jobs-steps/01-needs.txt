@@ -1,0 +1,35 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\05-jobs-steps 10-33-34-238> act push -W .github\workflows\jobs-steps.yml
+time="2026-10-07T15:22:52+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Jobs and Steps Demonstration/build] ⭐ Run Set up job
+[Jobs and Steps Demonstration/build] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Jobs and Steps Demonstration/build]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Jobs and Steps Demonstration/build]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and Steps Demonstration/build]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and Steps Demonstration/build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Jobs and Steps Demonstration/build]   ✅  Success - Set up job
+[Jobs and Steps Demonstration/build] ⭐ Run Main Checkout repository
+[Jobs and Steps Demonstration/build]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\05-jobs-steps 10-33-34-238\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/05-jobs-steps 10-33-34-238
+[Jobs and Steps Demonstration/build]   ✅  Success - Main Checkout repository [154.4465ms]
+[Jobs and Steps Demonstration/build] ⭐ Run Main Build stage
+[Jobs and Steps Demonstration/build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Jobs and Steps Demonstration/build]   | Executing build on runner Linux
+[Jobs and Steps Demonstration/build]   ✅  Success - Main Build stage [158.6613ms]
+[Jobs and Steps Demonstration/build] ⭐ Run Complete job
+[Jobs and Steps Demonstration/build] Cleaning up container for job build
+[Jobs and Steps Demonstration/build]   ✅  Success - Complete job
+[Jobs and Steps Demonstration/build] 🏁  Job succeeded
+[Jobs and Steps Demonstration/test ] ⭐ Run Set up job
+[Jobs and Steps Demonstration/test ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Jobs and Steps Demonstration/test ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Jobs and Steps Demonstration/test ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and Steps Demonstration/test ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and Steps Demonstration/test ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Jobs and Steps Demonstration/test ]   ✅  Success - Set up job
+[Jobs and Steps Demonstration/test ] ⭐ Run Main Test stage
+[Jobs and Steps Demonstration/test ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Jobs and Steps Demonstration/test ]   | Executing test on runner Linux
+[Jobs and Steps Demonstration/test ]   ✅  Success - Main Test stage [168.2752ms]
+[Jobs and Steps Demonstration/test ] ⭐ Run Complete job
+[Jobs and Steps Demonstration/test ] Cleaning up container for job test
+[Jobs and Steps Demonstration/test ]   ✅  Success - Complete job
+[Jobs and Steps Demonstration/test ] 🏁  Job succeeded

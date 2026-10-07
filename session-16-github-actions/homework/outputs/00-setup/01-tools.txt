@@ -1,0 +1,11 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> act --version
+act version 0.2.89
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> Get-Content $env:XDG_CONFIG_HOME\act\actrc
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+--pull=false
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> docker version --format 'Docker server {{.Server.Version}}'
+Docker server 29.7.2
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> git branch --show-current
+main
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> python --version
+Python 3.14.7

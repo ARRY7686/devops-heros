@@ -1,0 +1,17 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> $app = Start-Job { kubectl port-forward svc/session20-gitops-app -n session20 9090:80 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> (Invoke-WebRequest -UseBasicParsing http://localhost:9090/).Content -split "`n" | Select-Object -First 6
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> (Invoke-RestMethod https://localhost:8080/api/v1/applications -Headers @{ Authorization = "Bearer $token" }).items | ForEach-Object { '{0}: sync={1} health={2} repo={3}' -f $_.metadata.name, $_.status.sync.status, $_.status.health.status, $_.spec.source.repoURL }
+session20-app: sync=Synced health=Healthy repo=https://github.com/Nency-Ravaliya/gitops-demo.git
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> Stop-Job $app; Remove-Job $app
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> kubectl delete -f app/argocd-application.yaml
+application.argoproj.io "session20-app" deleted from argocd namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> kubectl delete namespace session20
+namespace "session20" deleted

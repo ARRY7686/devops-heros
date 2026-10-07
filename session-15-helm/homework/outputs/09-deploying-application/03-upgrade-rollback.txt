@@ -1,0 +1,30 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> helm upgrade my-guestbook guestbook-chart --set replicaCount=3
+Release "my-guestbook" has been upgraded. Happy Helming!
+NAME: my-guestbook
+LAST DEPLOYED: Wed Oct  7 15:05:32 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+my-guestbook-app-744fd6b4cc-hxbrj   1/1     Running   0          7s
+my-guestbook-app-744fd6b4cc-ms6w2   1/1     Running   0          4s
+my-guestbook-app-744fd6b4cc-t8tv8   1/1     Running   0          4s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> helm history my-guestbook
+REVISION	UPDATED                 	STATUS    	CHART                	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 15:05:29 2026	superseded	guestbook-chart-0.1.0	1.0        	Install complete
+2       	Wed Oct  7 15:05:32 2026	deployed  	guestbook-chart-0.1.0	1.0        	Upgrade complete
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> helm rollback my-guestbook 1
+Rollback was a success! Happy Helming!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+my-guestbook-app-744fd6b4cc-hxbrj   1/1     Running   0          16s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> helm history my-guestbook
+REVISION	UPDATED                 	STATUS    	CHART                	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 15:05:29 2026	superseded	guestbook-chart-0.1.0	1.0        	Install complete
+2       	Wed Oct  7 15:05:32 2026	superseded	guestbook-chart-0.1.0	1.0        	Upgrade complete
+3       	Wed Oct  7 15:05:36 2026	deployed  	guestbook-chart-0.1.0	1.0        	Rollback to 1   
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\09-deploying-application> helm uninstall my-guestbook
+release "my-guestbook" uninstalled

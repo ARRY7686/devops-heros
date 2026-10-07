@@ -1,0 +1,13 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl logs net-server
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl exec net-server -- wget -qO- -T 3 http://127.0.0.1:8080 | Select-Object -First 4
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl exec net-server -- netstat -tln
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN      
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl get pod net-server -o jsonpath='{.spec.containers[0].command}'
+["python3","-m","http.server","8080","--bind","127.0.0.1"]

@@ -1,0 +1,9 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl get nodes
+NAME       STATUS   ROLES           AGE   VERSION
+minikube   Ready    control-plane   27d   v1.37.0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl create namespace s20-demo
+namespace/s20-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl config set-context --current --namespace=s20-demo
+Context "minikube" modified.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> docker compose version
+Docker Compose version v5.5.0

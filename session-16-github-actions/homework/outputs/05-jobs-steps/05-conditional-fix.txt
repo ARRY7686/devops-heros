@@ -1,0 +1,38 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> git diff --no-index '..\05-jobs-steps 10-33-34-238\conditional-steps.yml' fixes\conditional-steps-fixed.yml
+warning: in the working copy of 'fixes\conditional-steps-fixed.yml', LF will be replaced by CRLF the next time Git touches it
+diff --git "a/..\\05-jobs-steps 10-33-34-238\\conditional-steps.yml" "b/fixes\\conditional-steps-fixed.yml"
+index 4daaf6e..05c43dc 100644
+--- "a/..\\05-jobs-steps 10-33-34-238\\conditional-steps.yml"	
++++ "b/fixes\\conditional-steps-fixed.yml"
+@@ -19,4 +19,5 @@ jobs:
+ 
+       - name: Notification step (Always runs)
+         if: always()
+-        run: echo "Workflow finished with job status: ${{ job.status }}"
++        # FIX: quote the whole value - an unquoted ": " makes YAML read it as a mapping
++        run: 'echo "Workflow finished with job status: ${{ job.status }}"'
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> act push -W fixes\conditional-steps-fixed.yml
+time="2026-10-07T16:14:18+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Set up job
+[Conditional Steps Example/build-and-conditional-deploy] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Set up job
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Main General build step
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Conditional Steps Example/build-and-conditional-deploy]   | Building code on branch main
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Main General build step [170.3309ms]
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Main Deploy step (Only on main branch)
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Conditional Steps Example/build-and-conditional-deploy]   | Production deployment triggered for commit 2c57c9ac7026d1c81e15ba4eb0cbd02666989e66
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Main Deploy step (Only on main branch) [150.4324ms]
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Main Notification step (Always runs)
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Conditional Steps Example/build-and-conditional-deploy]   | Workflow finished with job status: success
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Main Notification step (Always runs) [158.9651ms]
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Complete job
+[Conditional Steps Example/build-and-conditional-deploy] Cleaning up container for job build-and-conditional-deploy
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Complete job
+[Conditional Steps Example/build-and-conditional-deploy] 🏁  Job succeeded

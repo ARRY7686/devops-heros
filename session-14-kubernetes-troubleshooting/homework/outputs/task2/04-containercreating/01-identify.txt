@@ -1,0 +1,5 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl apply -f broken-pod.yaml
+pod/cc-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl get pod cc-demo
+NAME      READY   STATUS              RESTARTS   AGE
+cc-demo   0/1     ContainerCreating   0          11s

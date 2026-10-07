@@ -1,0 +1,8 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl events --for pod/cc-demo --types=Warning
+LAST SEEN          TYPE      REASON        OBJECT        MESSAGE
+4s (x5 over 11s)   Warning   FailedMount   Pod/cc-demo   MountVolume.SetUp failed for volume "html" : configmap "web-content" not found
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl get configmap web-content
+Error from server (NotFound): configmaps "web-content" not found
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\containercreating> kubectl get configmap
+NAME               DATA   AGE
+kube-root-ca.crt   1      6m27s

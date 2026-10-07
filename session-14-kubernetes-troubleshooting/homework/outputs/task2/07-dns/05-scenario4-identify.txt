@@ -1,0 +1,11 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl apply -f broken.yaml
+pod/fail-4-dns-failure-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl get pod fail-4-dns-failure-pod
+NAME                     READY   STATUS    RESTARTS   AGE
+fail-4-dns-failure-pod   1/1     Running   0          7s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl logs fail-4-dns-failure-pod
+Attempting connection to internal database...
+Process sleeping...
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl exec fail-4-dns-failure-pod -- curl -sS --connect-timeout 3 http://postgres-db-wrong-name.production.svc.cluster.local:5432
+curl: (6) Could not resolve host: postgres-db-wrong-name.production.svc.cluster.local
+command terminated with exit code 6

@@ -1,0 +1,8 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> helm uninstall notes-dev
+release "notes-dev" uninstalled
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl get pods
+No resources found in session15 namespace.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl get services
+No resources found in session15 namespace.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> helm list
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION

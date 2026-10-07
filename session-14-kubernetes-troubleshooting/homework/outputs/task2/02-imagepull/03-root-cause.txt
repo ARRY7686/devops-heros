@@ -1,0 +1,19 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> kubectl events --for pod/image-demo
+LAST SEEN          TYPE      REASON      OBJECT           MESSAGE
+20s                Normal    Scheduled   Pod/image-demo   Successfully assigned session14/image-demo to minikube
+18s                Warning   Failed      Pod/image-demo   Failed to pull image "nginx:this-image-does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/library/nginx:this-image-does-not-exist": failed to resolve reference "docker.io/library/nginx:this-image-does-not-exist": docker.io/library/nginx:this-image-does-not-exist: not found
+18s                Warning   Failed      Pod/image-demo   Error: ErrImagePull
+17s                Normal    BackOff     Pod/image-demo   Back-off pulling image "nginx:this-image-does-not-exist"
+17s                Warning   Failed      Pod/image-demo   Error: ImagePullBackOff
+2s (x2 over 19s)   Normal    Pulling     Pod/image-demo   Pulling image "nginx:this-image-does-not-exist"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> kubectl get pod image-demo -o jsonpath='{.spec.containers[0].image}'
+nginx:this-image-does-not-exist
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> docker manifest inspect nginx:this-image-does-not-exist
+no such manifest: docker.io/library/nginx:this-image-does-not-exist
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> docker manifest inspect nginx:1.27 | Select-Object -First 6
+{
+   "schemaVersion": 2,
+   "mediaType": "application/vnd.oci.image.index.v1+json",
+   "manifests": [
+      {
+         "mediaType": "application/vnd.oci.image.manifest.v1+json",

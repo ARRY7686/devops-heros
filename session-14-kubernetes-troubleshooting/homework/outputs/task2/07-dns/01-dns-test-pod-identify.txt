@@ -1,0 +1,10 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl apply -f dns-test-pod.yaml
+pod/dns-test created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get pod dns-test
+NAME       READY   STATUS         RESTARTS   AGE
+dns-test   0/1     ErrImagePull   0          2s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl events --for pod/dns-test --types=Warning
+LAST SEEN   TYPE      REASON   OBJECT         MESSAGE
+1s          Warning   Failed   Pod/dns-test   Failed to pull image "registry.k8s.io/e2e-test-images/dnsutils:1.3": rpc error: code = NotFound desc = failed to pull and unpack image "registry.k8s.io/e2e-test-images/dnsutils:1.3": failed to resolve reference "registry.k8s.io/e2e-test-images/dnsutils:1.3": registry.k8s.io/e2e-test-images/dnsutils:1.3: not found
+1s          Warning   Failed   Pod/dns-test   Error: ErrImagePull
+0s          Warning   Failed   Pod/dns-test   Error: ImagePullBackOff

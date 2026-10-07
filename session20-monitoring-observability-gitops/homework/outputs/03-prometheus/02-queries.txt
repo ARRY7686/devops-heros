@@ -1,0 +1,27 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> (Invoke-RestMethod http://localhost:9090/api/v1/targets).data.activeTargets | Select-Object scrapeUrl, health, lastScrape | Format-Table -AutoSize
+
+scrapeUrl                      health lastScrape                   
+---------                      ------ ----------                   
+http://prometheus:9090/metrics up     2026-10-07T10:33:00.08471043Z
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> (Invoke-RestMethod http://localhost:9090/api/v1/query -Body @{query='up'}).data.result | ForEach-Object { 'up{0} = {1}' -f ($_.metric | ConvertTo-Json -Compress), $_.value[1] }
+up{"__name__":"up","instance":"prometheus:9090","job":"prometheus"} = 1
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> (Invoke-RestMethod http://localhost:9090/api/v1/query -Body @{query='topk(5, prometheus_http_requests_total)'}).data.result | ForEach-Object { '{0,-28} code={1}  {2}' -f $_.metric.handler, $_.metric.code, $_.value[1] }
+/-/ready                     code=200  2
+/-/ready                     code=503  1
+/metrics                     code=200  1
+/-/reload                    code=200  0
+/-/quit                      code=200  0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> (Invoke-RestMethod http://localhost:9090/api/v1/query -Body @{query='process_cpu_seconds_total'}).data.result | ForEach-Object { 'process_cpu_seconds_total = {0}' -f $_.value[1] }
+process_cpu_seconds_total = 0.26
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> (Invoke-RestMethod http://localhost:9090/api/v1/query -Body @{query='sum(rate(prometheus_http_requests_total[1m]))'}).data.result | ForEach-Object { 'requests/sec (1m rate) = {0}' -f $_.value[1] }
+requests/sec (1m rate) = 0.04362
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\03-prometheus> ((Invoke-WebRequest -UseBasicParsing http://localhost:9090/metrics).Content -split "`n") | Select-String -Pattern '^process_' | Select-Object -First 8
+
+process_cpu_seconds_total 0.27
+process_max_fds 1.048576e+06
+process_network_receive_bytes_total 27111
+process_network_transmit_bytes_total 28150
+process_open_fds 13
+process_resident_memory_bytes 8.0216064e+07
+process_start_time_seconds 1.79136916439e+09
+process_virtual_memory_bytes 1.372635136e+09

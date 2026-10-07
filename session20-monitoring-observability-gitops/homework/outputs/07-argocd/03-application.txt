@@ -1,0 +1,40 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> Get-Content app\argocd-application.yaml
+# Apply this file from your local/admin environment; do not put it under the Git source path.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: session20-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Nency-Ravaliya/gitops-demo.git
+    targetRevision: main
+    path: app
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: session20
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> kubectl apply -f app/argocd-application.yaml
+application.argoproj.io/session20-app created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> kubectl get applications -n argocd
+NAME            SYNC STATUS   HEALTH STATUS
+session20-app   Synced        Healthy
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> kubectl get pods -n session20
+NAME                                    READY   STATUS    RESTARTS   AGE
+session20-gitops-app-679fcbbd85-4tmgg   1/1     Running   0          3s
+session20-gitops-app-679fcbbd85-5sm5p   1/1     Running   0          3s
+session20-gitops-app-679fcbbd85-bfsgm   1/1     Running   0          3s
+session20-gitops-app-679fcbbd85-qs9kj   1/1     Running   0          3s
+session20-gitops-app-679fcbbd85-xn2k4   1/1     Running   0          3s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> kubectl get deployment session20-gitops-app -n session20
+NAME                   READY   UP-TO-DATE   AVAILABLE   AGE
+session20-gitops-app   5/5     5            5           3s

@@ -1,0 +1,40 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl get all
+NAME                                       READY   STATUS    RESTARTS   AGE
+pod/cc-demo                                1/1     Running   0          5m8s
+pod/config-demo                            1/1     Running   0          4m45s
+pod/crash-demo                             1/1     Running   0          9m19s
+pod/dns-test                               1/1     Running   0          4m18s
+pod/fail-1-crashloop-pod                   1/1     Running   0          6m29s
+pod/fail-2-imagepull-pod                   1/1     Running   0          5m25s
+pod/fail-3-pending-pod                     1/1     Running   0          5m9s
+pod/fail-4-dns-failure-pod                 1/1     Running   0          3m36s
+pod/fail-5-oomkilled-pod                   1/1     Running   0          46s
+pod/image-demo                             1/1     Running   0          5m31s
+pod/net-client                             1/1     Running   0          4m41s
+pod/net-server                             1/1     Running   0          2m53s
+pod/pending-demo                           1/1     Running   0          5m17s
+pod/project-broken-pod                     1/1     Running   0          12s
+pod/troubleshooting-app-59d4957864-lfp8r   1/1     Running   0          36s
+pod/troubleshooting-app-59d4957864-vldrm   1/1     Running   0          36s
+pod/web-557577df75-64425                   1/1     Running   0          4m41s
+pod/web-557577df75-6r2wk                   1/1     Running   0          4m41s
+
+NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/troubleshooting-service   ClusterIP   10.97.241.226   <none>        80/TCP    36s
+service/web-service               ClusterIP   10.110.119.45   <none>        80/TCP    4m41s
+
+NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/troubleshooting-app   2/2     2            2           36s
+deployment.apps/web                   2/2     2            2           4m41s
+
+NAME                                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/troubleshooting-app-59d4957864   2         2         2       36s
+replicaset.apps/web-557577df75                   2         2         2       4m41s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl delete namespace session14
+namespace "session14" deleted
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl get namespace session14
+Error from server (NotFound): namespaces "session14" not found
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl get pods -A | Select-String session14
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl config set-context --current --namespace=default
+Context "minikube" modified.

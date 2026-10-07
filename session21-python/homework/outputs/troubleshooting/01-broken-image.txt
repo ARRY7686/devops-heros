@@ -1,0 +1,22 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl apply -f troubleshooting\broken-image.yaml
+deployment.apps/taskboard-broken-image created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get pods -n taskboard -l app=broken-image
+NAME                                      READY   STATUS         RESTARTS   AGE
+taskboard-broken-image-6669966b5b-fgkcb   0/1     ErrImagePull   0          30s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl describe pod -n taskboard -l app=broken-image | Select-String -Pattern 'Image:|Reason|Failed' | Select-Object -First 8
+
+    Image:          ghcr.io/example/taskboard-backend:does-not-exist
+      Reason:       ErrImagePull
+  Type     Reason     Age                From               Message
+  Warning  Failed     16s (x2 over 30s)  kubelet            spec.containers{backend}: Failed to pull image "ghcr.io/example/taskboard-backend:does-not-exist": failed to pull and unpack 
+image "ghcr.io/example/taskboard-backend:does-not-exist": failed to resolve reference "ghcr.io/example/taskboard-backend:does-not-exist": failed to authorize: failed to fetch anonymous 
+token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aexample%2Ftaskboard-backend%3Apull&service=ghcr.io: 403 Forbidden
+  Warning  Failed     16s (x2 over 30s)  kubelet            spec.containers{backend}: Error: ErrImagePull
+  Warning  Failed     4s (x2 over 29s)   kubelet            spec.containers{backend}: Error: ImagePullBackOff
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get events -n taskboard --sort-by=.lastTimestamp --field-selector type=Warning | Select-Object -Last 4
+2m32s       Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/taskboard-backend          invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+16s         Warning   Failed                         pod/taskboard-broken-image-6669966b5b-fgkcb        Failed to pull image "ghcr.io/example/taskboard-backend:does-not-exist": failed to pull and unpack image "ghcr.io/example/taskboard-backend:does-not-exist": failed to resolve reference "ghcr.io/example/taskboard-backend:does-not-exist": failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aexample%2Ftaskboard-backend%3Apull&service=ghcr.io: 403 Forbidden
+16s         Warning   Failed                         pod/taskboard-broken-image-6669966b5b-fgkcb        Error: ErrImagePull
+4s          Warning   Failed                         pod/taskboard-broken-image-6669966b5b-fgkcb        Error: ImagePullBackOff
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl delete -f troubleshooting\broken-image.yaml
+deployment.apps "taskboard-broken-image" deleted from taskboard namespace

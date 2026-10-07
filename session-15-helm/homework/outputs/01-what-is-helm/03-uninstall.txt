@@ -1,0 +1,6 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm uninstall my-nginx
+release "my-nginx" uninstalled
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm list
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> kubectl get all
+No resources found in session15 namespace.

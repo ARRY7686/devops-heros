@@ -1,0 +1,49 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\08-artifacts 10-33-34-260> act push -W test-report-artifact.yml --artifact-server-path ..\homework\artifacts\08-test-report
+time="2026-10-07T15:25:24+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+time="2026-10-07T15:25:24+05:30" level=info msg="Start server on http://10.114.0.31:34567"
+[Test Report Artifact Example/test-and-report] ⭐ Run Set up job
+[Test Report Artifact Example/test-and-report] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Test Report Artifact Example/test-and-report]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Test Report Artifact Example/test-and-report]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Test Report Artifact Example/test-and-report]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Test Report Artifact Example/test-and-report]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Test Report Artifact Example/test-and-report]   ✅  Success - Set up job
+[Test Report Artifact Example/test-and-report]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[Test Report Artifact Example/test-and-report] ⭐ Run Main Checkout code
+[Test Report Artifact Example/test-and-report]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\08-artifacts 10-33-34-260\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/08-artifacts 10-33-34-260
+[Test Report Artifact Example/test-and-report]   ✅  Success - Main Checkout code [63.8992ms]
+[Test Report Artifact Example/test-and-report] ⭐ Run Main Generate mock test results
+[Test Report Artifact Example/test-and-report]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Test Report Artifact Example/test-and-report]   ✅  Success - Main Generate mock test results [167.8622ms]
+[Test Report Artifact Example/test-and-report] ⭐ Run Main Upload test report artifact
+[Test Report Artifact Example/test-and-report]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[Test Report Artifact Example/test-and-report]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[Test Report Artifact Example/test-and-report]   | (node:39) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Test Report Artifact Example/test-and-report]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Test Report Artifact Example/test-and-report]   | With the provided path, there will be 1 file uploaded
+[Test Report Artifact Example/test-and-report]   | Artifact name is valid!
+[Test Report Artifact Example/test-and-report]   | Root directory input is valid!
+[Test Report Artifact Example/test-and-report]   | Beginning upload of artifact content to blob storage
+[Test Report Artifact Example/test-and-report]   | (node:39) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[Test Report Artifact Example/test-and-report]   | Uploaded bytes 308
+[Test Report Artifact Example/test-and-report]   | Finished uploading artifact content to blob storage!
+[Test Report Artifact Example/test-and-report]   | SHA256 digest of uploaded artifact zip is faf0a57ba4543a6403d61b7dd771da2639b416ab50378aa7081a6a8c4031b226
+[Test Report Artifact Example/test-and-report]   | Finalizing artifact upload
+[Test Report Artifact Example/test-and-report]   | Artifact test-results.zip successfully finalized. Artifact ID 3486992502
+[Test Report Artifact Example/test-and-report]   | Artifact test-results has been successfully uploaded! Final size is 308 bytes. Artifact ID is 3486992502
+[Test Report Artifact Example/test-and-report]   | Artifact download URL: https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3486992502
+[Test Report Artifact Example/test-and-report]   ✅  Success - Main Upload test report artifact [2.6737883s]
+[Test Report Artifact Example/test-and-report]   ⚙  ::set-output:: artifact-id=3486992502
+[Test Report Artifact Example/test-and-report]   ⚙  ::set-output:: artifact-digest=faf0a57ba4543a6403d61b7dd771da2639b416ab50378aa7081a6a8c4031b226
+[Test Report Artifact Example/test-and-report]   ⚙  ::set-output:: artifact-url=https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3486992502
+[Test Report Artifact Example/test-and-report] ⭐ Run Complete job
+[Test Report Artifact Example/test-and-report] Cleaning up container for job test-and-report
+[Test Report Artifact Example/test-and-report]   ✅  Success - Complete job
+[Test Report Artifact Example/test-and-report] 🏁  Job succeeded
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\08-artifacts 10-33-34-260> Get-ChildItem -Recurse -File ..\homework\artifacts | Select-Object FullName, Length | Format-Table -AutoSize
+
+FullName                                                                                                                                          Length
+--------                                                                                                                                          ------
+C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\artifacts\08-artifacts-demo\1\sample-artifact\sample-artifact.zip    146
+C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\artifacts\08-test-report\1\test-results\test-results.zip             308
+C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\artifacts\08-upload-download\1\build-package\build-package.zip       354

@@ -1,0 +1,22 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> Copy-Item terraform.tfvars.example terraform.tfvars
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> Get-Content terraform.tfvars
+aws_region = "ap-south-1"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> terraform init
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "~> 6.0"...
+- Installing hashicorp/aws v6.67.0...
+- Installed hashicorp/aws v6.67.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> terraform fmt -check -diff
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\06-terraform-vpc> terraform validate
+Success! The configuration is valid.

@@ -1,0 +1,21 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> git log --oneline -5 -- .
+d07887f session21 python added
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Get-Content .gitignore
+.idea/
+.vscode/
+node_modules/
+dist/
+target/
+*.log
+.env
+.terraform/
+*.tfstate
+*.tfstate.*
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> git ls-files | Measure-Object | Select-Object Count
+
+Count
+-----
+   62
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> gitleaks dir . --no-banner
+4:17PM INF scanned ~116157 bytes (116.16 KB) in 39.3ms
+4:17PM INF no leaks found

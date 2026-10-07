@@ -1,0 +1,34 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> (Get-Content app\deployment.yaml) -replace 'replicas: 2', 'replicas: 3' | Set-Content app\deployment.yaml
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git diff
+diff --git a/app/deployment.yaml b/app/deployment.yaml
+index 77c7158..62166a2 100644
+--- a/app/deployment.yaml
++++ b/app/deployment.yaml
+@@ -6,7 +6,7 @@ metadata:
+   labels:
+     app: session20-mini
+ spec:
+-  replicas: 2
++  replicas: 3
+   selector:
+     matchLabels:
+       app: session20-mini
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git add .
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git commit -m 'Scale application to three replicas'
+[main 980818d] Scale application to three replicas
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git push
+To git://localhost:9418/gitops.git
+   61019ad..980818d  main -> main
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl annotate application session20-mini -n argocd argocd.argoproj.io/refresh=normal --overwrite
+application.argoproj.io/session20-mini annotated
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get deployment -n session20
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+session20-mini   3/3     3            3           6s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git log --oneline
+980818d Scale application to three replicas
+61019ad Session 20 mini project: namespace, deployment (2 replicas), service
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get application session20-mini -n argocd -o jsonpath='{.status.sync.revision}'
+980818d409f51e1327d755d2b44d34303b3aebf7

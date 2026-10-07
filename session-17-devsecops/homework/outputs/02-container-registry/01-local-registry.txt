@@ -1,0 +1,46 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> docker run -d -p 5000:5000 --name s17-registry registry:2
+331eeb031e9a3c3b79d8b2638162e07ddc8165b22a1dc0d3bf9f24abaafa4767
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> docker tag session17-python:1.0 localhost:5000/session17-python:1.0
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> docker push localhost:5000/session17-python:1.0
+The push refers to repository [localhost:5000/session17-python]
+75b6a36c64a1: Waiting
+ecc510c1e359: Waiting
+fceba874e1d0: Waiting
+44136fa355b3: Waiting
+fceba874e1d0: Waiting
+44136fa355b3: Waiting
+75b6a36c64a1: Waiting
+ecc510c1e359: Waiting
+fceba874e1d0: Waiting
+44136fa355b3: Waiting
+75b6a36c64a1: Waiting
+ecc510c1e359: Waiting
+75b6a36c64a1: Waiting
+ecc510c1e359: Waiting
+fceba874e1d0: Waiting
+44136fa355b3: Waiting
+44136fa355b3: Waiting
+75b6a36c64a1: Waiting
+ecc510c1e359: Waiting
+fceba874e1d0: Waiting
+fceba874e1d0: Waiting
+44136fa355b3: Waiting
+75b6a36c64a1: Waiting
+ecc510c1e359: Waiting
+fceba874e1d0: Pushed
+44136fa355b3: Pushed
+75b6a36c64a1: Pushed
+927cdc5d2d15: Waiting
+4517fdeee5ca: Pushed
+bbc5a1223747: Pushed
+0ad67ba97563: Pushed
+927cdc5d2d15: Pushed
+4f1bf0a67b4d: Pushed
+ecc510c1e359: Pushed
+6912e23eb445: Pushed
+1.0: digest: sha256:7fc9f622fc5b2e59c6d701edacb437f6a8b46f61b5c53bd508b6be1d79f8d073 size: 856
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> Invoke-RestMethod http://localhost:5000/v2/_catalog | ConvertTo-Json -Compress
+{"repositories":["session17-python"]}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\demo> Invoke-RestMethod http://localhost:5000/v2/session17-python/tags/list | ConvertTo-Json -Compress
+{"name":"session17-python","tags":["1.0"]}

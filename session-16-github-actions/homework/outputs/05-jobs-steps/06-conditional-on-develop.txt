@@ -1,0 +1,25 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> Get-Content fixes\push-develop-event.json
+{
+  "ref": "refs/heads/develop"
+}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> act push -W fixes\conditional-steps-fixed.yml -e fixes\push-develop-event.json
+time="2026-10-07T16:14:20+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Set up job
+[Conditional Steps Example/build-and-conditional-deploy] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Set up job
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Main General build step
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Conditional Steps Example/build-and-conditional-deploy]   | Building code on branch develop
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Main General build step [122.8837ms]
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Main Notification step (Always runs)
+[Conditional Steps Example/build-and-conditional-deploy]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Conditional Steps Example/build-and-conditional-deploy]   | Workflow finished with job status: success
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Main Notification step (Always runs) [116.7865ms]
+[Conditional Steps Example/build-and-conditional-deploy] ⭐ Run Complete job
+[Conditional Steps Example/build-and-conditional-deploy] Cleaning up container for job build-and-conditional-deploy
+[Conditional Steps Example/build-and-conditional-deploy]   ✅  Success - Complete job
+[Conditional Steps Example/build-and-conditional-deploy] 🏁  Job succeeded

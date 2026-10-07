@@ -1,0 +1,19 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl apply -f broken.yaml
+pod/fail-1-crashloop-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl get pod fail-1-crashloop-pod
+NAME                   READY   STATUS             RESTARTS      AGE
+fail-1-crashloop-pod   0/1     CrashLoopBackOff   4 (79s ago)   2m45s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl logs fail-1-crashloop-pod --previous
+[FATAL ERROR]: DATABASE_URL environment variable is MISSING!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl describe pod fail-1-crashloop-pod | Select-String -Pattern 'State:|Reason:|Exit Code|Restart Count|Environment|BackOff'
+
+          print("[FATAL ERROR]: DATABASE_URL environment variable is MISSING!", file=sys.stderr)
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+    Restart Count:  4
+    Environment:    <none>
+  Warning  BackOff    0s (x5 over 2m44s)   kubelet            spec.containers{python-app}: Back-off restarting failed container python-app in pod 
+fail-1-crashloop-pod_session14(d898d648-90b6-4aed-97dc-3ef3b72461df)

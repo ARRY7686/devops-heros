@@ -1,0 +1,14 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm install web-app ./app-chart
+NAME: web-app
+LAST DEPLOYED: Wed Oct  7 15:03:37 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+web-app-app-5769cccf7c-zlq6x   1/1     Running   0          13s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm list
+NAME   	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART          	APP VERSION
+web-app	session15	1       	2026-10-07 15:03:37.0039308 +0530 IST	deployed	app-chart-0.1.0	1.0        

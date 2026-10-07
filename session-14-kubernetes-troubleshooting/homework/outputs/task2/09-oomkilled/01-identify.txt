@@ -1,0 +1,19 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl apply -f broken.yaml
+pod/fail-5-oomkilled-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl get pod fail-5-oomkilled-pod
+NAME                   READY   STATUS      RESTARTS      AGE
+fail-5-oomkilled-pod   0/1     OOMKilled   4 (84s ago)   2m1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl describe pod fail-5-oomkilled-pod | Select-String -Pattern 'State:|Reason:|Exit Code|Restart Count|Limits:|memory:'
+
+    State:          Terminated
+      Reason:       OOMKilled
+      Exit Code:    137
+    Last State:     Terminated
+      Reason:       OOMKilled
+      Exit Code:    137
+    Restart Count:  4
+    Limits:
+      memory:  20Mi
+      memory:     20Mi
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-5-oomkilled> kubectl get pod fail-5-oomkilled-pod -o jsonpath='{.status.containerStatuses[0].lastState.terminated.reason}'
+OOMKilled

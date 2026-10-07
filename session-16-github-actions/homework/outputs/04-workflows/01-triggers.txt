@@ -1,0 +1,24 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act -l -W push-trigger.yml
+time="2026-10-07T15:22:07+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID       Job name     Workflow name         Workflow file     Events
+0      notify-push  notify-push  Push Trigger Example  push-trigger.yml  push  
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act -l -W pr-trigger.yml pull_request
+time="2026-10-07T15:22:08+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID       Job name     Workflow name                 Workflow file   Events      
+0      validate-pr  validate-pr  Pull Request Trigger Example  pr-trigger.yml  pull_request
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act -l -W schedule-cron.yml schedule
+time="2026-10-07T15:22:09+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID               Job name             Workflow name           Workflow file      Events  
+0      nightly-maintenance  nightly-maintenance  Scheduled Cron Example  schedule-cron.yml  schedule
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act -l -W workflow-dispatch.yml workflow_dispatch
+time="2026-10-07T15:22:09+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID            Job name          Workflow name           Workflow file          Events           
+0      manual-execution  manual-execution  Manual Trigger Example  workflow-dispatch.yml  workflow_dispatch
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act -l -W path-filter.yml
+time="2026-10-07T15:22:11+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID           Job name         Workflow name        Workflow file    Events
+0      selective-build  selective-build  Path Filter Example  path-filter.yml  push  
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act -l -W .github\workflows\build.yml
+time="2026-10-07T15:22:11+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID  Job name  Workflow name   Workflow file  Events           
+0      build   build     Build and Test  build.yml      push,pull_request

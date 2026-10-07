@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fail-5-oomkilled-pod
+  labels:
+    tier: triage-gauntlet
+    scenario: oomkilled
+spec:
+  containers:
+    - name: memory-leaker
+      image: python:3.11-alpine
+      command:
+        - "python3"
+        - "-c"
+        - |
+          import time
+          # FIX: process the 100 chunks one at a time instead of keeping all
+          # of them (~1000 MB) in a list; peak usage is now one 10 MB chunk.
+          print("Processing chunks one at a time...", flush=True)
+          for i in range(100):
+              chunk = b"x" * (10 * 1024 * 1024)
+              del chunk
+          print("Done. Memory stayed bounded.", flush=True)
+          while True:
+              time.sleep(60)
+      resources:
+        requests:
+          memory: "32Mi"
+        limits:
+          # FIX: realistic limit for the bounded workload
+          memory: "64Mi"

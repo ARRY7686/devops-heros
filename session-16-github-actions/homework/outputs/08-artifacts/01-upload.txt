@@ -1,0 +1,39 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\08-artifacts 10-33-34-260> act push -W .github\workflows\artifacts-demo.yml --artifact-server-path ..\homework\artifacts\08-artifacts-demo
+time="2026-10-07T15:24:31+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+time="2026-10-07T15:24:31+05:30" level=info msg="Start server on http://10.114.0.31:34567"
+[Artifacts Demonstration/produce-artifact] ⭐ Run Set up job
+[Artifacts Demonstration/produce-artifact] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Artifacts Demonstration/produce-artifact]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Artifacts Demonstration/produce-artifact]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts Demonstration/produce-artifact]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts Demonstration/produce-artifact]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Artifacts Demonstration/produce-artifact]   ✅  Success - Set up job
+[Artifacts Demonstration/produce-artifact]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[Artifacts Demonstration/produce-artifact] ⭐ Run Main Generate build file
+[Artifacts Demonstration/produce-artifact]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Artifacts Demonstration/produce-artifact]   ✅  Success - Main Generate build file [180.9904ms]
+[Artifacts Demonstration/produce-artifact] ⭐ Run Main Upload artifact
+[Artifacts Demonstration/produce-artifact]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[Artifacts Demonstration/produce-artifact]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[Artifacts Demonstration/produce-artifact]   | (node:37) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Artifacts Demonstration/produce-artifact]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Artifacts Demonstration/produce-artifact]   | With the provided path, there will be 1 file uploaded
+[Artifacts Demonstration/produce-artifact]   | Artifact name is valid!
+[Artifacts Demonstration/produce-artifact]   | Root directory input is valid!
+[Artifacts Demonstration/produce-artifact]   | Beginning upload of artifact content to blob storage
+[Artifacts Demonstration/produce-artifact]   | (node:37) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[Artifacts Demonstration/produce-artifact]   | Uploaded bytes 146
+[Artifacts Demonstration/produce-artifact]   | Finished uploading artifact content to blob storage!
+[Artifacts Demonstration/produce-artifact]   | SHA256 digest of uploaded artifact zip is db62e8890a2a598b13abf0c4f9a9a40baea03fbf00069dbb0b6860044f724c26
+[Artifacts Demonstration/produce-artifact]   | Finalizing artifact upload
+[Artifacts Demonstration/produce-artifact]   | Artifact sample-artifact.zip successfully finalized. Artifact ID 3855082236
+[Artifacts Demonstration/produce-artifact]   | Artifact sample-artifact has been successfully uploaded! Final size is 146 bytes. Artifact ID is 3855082236
+[Artifacts Demonstration/produce-artifact]   | Artifact download URL: https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3855082236
+[Artifacts Demonstration/produce-artifact]   ✅  Success - Main Upload artifact [2.7895752s]
+[Artifacts Demonstration/produce-artifact]   ⚙  ::set-output:: artifact-id=3855082236
+[Artifacts Demonstration/produce-artifact]   ⚙  ::set-output:: artifact-digest=db62e8890a2a598b13abf0c4f9a9a40baea03fbf00069dbb0b6860044f724c26
+[Artifacts Demonstration/produce-artifact]   ⚙  ::set-output:: artifact-url=https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3855082236
+[Artifacts Demonstration/produce-artifact] ⭐ Run Complete job
+[Artifacts Demonstration/produce-artifact] Cleaning up container for job produce-artifact
+[Artifacts Demonstration/produce-artifact]   ✅  Success - Complete job
+[Artifacts Demonstration/produce-artifact] 🏁  Job succeeded

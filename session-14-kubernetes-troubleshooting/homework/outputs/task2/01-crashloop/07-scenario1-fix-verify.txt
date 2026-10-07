@@ -1,0 +1,38 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl delete pod fail-1-crashloop-pod
+pod "fail-1-crashloop-pod" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> git diff --no-index broken.yaml ..\..\homework\manifests\crashloop\scenario-1-fixed.yaml
+warning: in the working copy of '..\..\homework\manifests\crashloop\scenario-1-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/broken.yaml "b/..\\..\\homework\\manifests\\crashloop\\scenario-1-fixed.yaml"
+index 238f8c9..d4c9481 100644
+--- a/broken.yaml
++++ "b/..\\..\\homework\\manifests\\crashloop\\scenario-1-fixed.yaml"
+@@ -9,13 +9,20 @@ spec:
+   containers:
+     - name: python-app
+       image: python:3.11-alpine
++      env:
++        # FIX: the app requires DATABASE_URL at startup
++        - name: DATABASE_URL
++          value: "postgres://app:app@postgres-db:5432/appdb"
+       command:
+         - "python3"
+         - "-c"
+         - |
+-          import os, sys
++          import os, sys, time
+           db_url = os.environ.get("DATABASE_URL")
+           if not db_url:
+               print("[FATAL ERROR]: DATABASE_URL environment variable is MISSING!", file=sys.stderr)
+               sys.exit(1)
+-          print("Application started successfully!")
++          print("Application started successfully!", flush=True)
++          # FIX: a long-running service must not exit (restartPolicy: Always would restart it)
++          while True:
++              time.sleep(60)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl apply -f ..\..\homework\manifests\crashloop\scenario-1-fixed.yaml
+pod/fail-1-crashloop-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl get pod fail-1-crashloop-pod
+NAME                   READY   STATUS    RESTARTS   AGE
+fail-1-crashloop-pod   1/1     Running   0          4s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-1-crashloop> kubectl logs fail-1-crashloop-pod
+Application started successfully!

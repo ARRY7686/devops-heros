@@ -1,0 +1,27 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl delete pod project-broken-pod
+pod "project-broken-pod" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> git diff --no-index broken-pod.yaml ..\homework\manifests\mini-project\fixed-pod.yaml
+warning: in the working copy of '..\homework\manifests\mini-project\fixed-pod.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/broken-pod.yaml "b/..\\homework\\manifests\\mini-project\\fixed-pod.yaml"
+index ab5d4a9..a08d229 100644
+--- a/broken-pod.yaml
++++ "b/..\\homework\\manifests\\mini-project\\fixed-pod.yaml"
+@@ -1,10 +1,9 @@
+ apiVersion: v1
+ kind: Pod
+-
+ metadata:
+   name: project-broken-pod
+-
+ spec:
+   containers:
+     - name: app
+-      image: nginx:this-tag-does-not-exist
+\ No newline at end of file
++      # FIX: nginx:this-tag-does-not-exist -> a published tag
++      image: nginx:1.27
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl apply -f ..\homework\manifests\mini-project\fixed-pod.yaml
+pod/project-broken-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get pod project-broken-pod
+NAME                 READY   STATUS    RESTARTS   AGE
+project-broken-pod   1/1     Running   0          1s

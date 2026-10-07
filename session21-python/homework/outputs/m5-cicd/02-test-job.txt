@@ -1,0 +1,467 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> act push -j test
+time="2026-10-07T16:17:03+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[TaskBoard Python CI/CD/test] ⭐ Run Set up job
+[TaskBoard Python CI/CD/test] 🚀  Start image=catthehacker/ubuntu:act-latest
+[TaskBoard Python CI/CD/test]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[TaskBoard Python CI/CD/test]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[TaskBoard Python CI/CD/test]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[TaskBoard Python CI/CD/test]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[TaskBoard Python CI/CD/test]   ✅  Success - Set up job
+[TaskBoard Python CI/CD/test]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[TaskBoard Python CI/CD/test]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v4
+[TaskBoard Python CI/CD/test] ⭐ Run Main actions/checkout@v4
+[TaskBoard Python CI/CD/test]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session21-python
+[TaskBoard Python CI/CD/test]   ✅  Success - Main actions/checkout@v4 [180.1008ms]
+[TaskBoard Python CI/CD/test] ⭐ Run Main actions/setup-python@v5
+[TaskBoard Python CI/CD/test]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[TaskBoard Python CI/CD/test]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[TaskBoard Python CI/CD/test]   ❓  ::group::Installed versions
+[TaskBoard Python CI/CD/test]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[TaskBoard Python CI/CD/test]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[TaskBoard Python CI/CD/test]   | Successfully set up CPython (3.12.15)
+[TaskBoard Python CI/CD/test]   ❓  ::endgroup::
+[TaskBoard Python CI/CD/test]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[TaskBoard Python CI/CD/test]   ✅  Success - Main actions/setup-python@v5 [4.1331729s]
+[TaskBoard Python CI/CD/test]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/x64
+[TaskBoard Python CI/CD/test]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+[TaskBoard Python CI/CD/test]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/x64
+[TaskBoard Python CI/CD/test]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/x64
+[TaskBoard Python CI/CD/test]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/x64
+[TaskBoard Python CI/CD/test]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/x64/lib
+[TaskBoard Python CI/CD/test]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/x64/bin/python
+[TaskBoard Python CI/CD/test]   ⚙  ::set-output:: python-version=3.12.15
+[TaskBoard Python CI/CD/test]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/x64
+[TaskBoard Python CI/CD/test]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/x64/bin
+[TaskBoard Python CI/CD/test] ⭐ Run Main Install backend dependencies
+[TaskBoard Python CI/CD/test]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=backend
+[TaskBoard Python CI/CD/test]   | Collecting fastapi==0.115.6 (from -r requirements.txt (line 1))
+[TaskBoard Python CI/CD/test]   |   Downloading fastapi-0.115.6-py3-none-any.whl.metadata (27 kB)
+[TaskBoard Python CI/CD/test]   | Collecting uvicorn==0.34.0 (from uvicorn[standard]==0.34.0->-r requirements.txt (line 2))
+[TaskBoard Python CI/CD/test]   |   Downloading uvicorn-0.34.0-py3-none-any.whl.metadata (6.5 kB)
+[TaskBoard Python CI/CD/test]   | Collecting sqlalchemy==2.0.36 (from -r requirements.txt (line 3))
+[TaskBoard Python CI/CD/test]   |   Downloading SQLAlchemy-2.0.36-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.7 kB)
+[TaskBoard Python CI/CD/test]   | Collecting psycopg==3.2.3 (from psycopg[binary]==3.2.3->-r requirements.txt (line 4))
+[TaskBoard Python CI/CD/test]   |   Downloading psycopg-3.2.3-py3-none-any.whl.metadata (4.3 kB)
+[TaskBoard Python CI/CD/test]   | Collecting pydantic-settings==2.7.1 (from -r requirements.txt (line 5))
+[TaskBoard Python CI/CD/test]   |   Downloading pydantic_settings-2.7.1-py3-none-any.whl.metadata (3.5 kB)
+[TaskBoard Python CI/CD/test]   | Collecting prometheus-fastapi-instrumentator==7.0.2 (from -r requirements.txt (line 6))
+[TaskBoard Python CI/CD/test]   |   Downloading prometheus_fastapi_instrumentator-7.0.2-py3-none-any.whl.metadata (13 kB)
+[TaskBoard Python CI/CD/test]   | Collecting alembic==1.14.0 (from -r requirements.txt (line 7))
+[TaskBoard Python CI/CD/test]   |   Downloading alembic-1.14.0-py3-none-any.whl.metadata (7.4 kB)
+[TaskBoard Python CI/CD/test]   | Collecting pytest==8.3.4 (from -r requirements.txt (line 8))
+[TaskBoard Python CI/CD/test]   |   Downloading pytest-8.3.4-py3-none-any.whl.metadata (7.5 kB)
+[TaskBoard Python CI/CD/test]   | Collecting httpx==0.28.1 (from -r requirements.txt (line 9))
+[TaskBoard Python CI/CD/test]   |   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+[TaskBoard Python CI/CD/test]   | Collecting starlette<0.42.0,>=0.40.0 (from fastapi==0.115.6->-r requirements.txt (line 1))
+[TaskBoard Python CI/CD/test]   |   Downloading starlette-0.41.3-py3-none-any.whl.metadata (6.0 kB)
+[TaskBoard Python CI/CD/test]   | Collecting pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4 (from fastapi==0.115.6->-r requirements.txt (line 1))
+[TaskBoard Python CI/CD/test]   |   Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: typing-extensions>=4.8.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from fastapi==0.115.6->-r requirements.txt (line 1)) (4.16.0)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: click>=7.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from uvicorn==0.34.0->uvicorn[standard]==0.34.0->-r requirements.txt (line 2)) (8.5.0)
+[TaskBoard Python CI/CD/test]   | Collecting h11>=0.8 (from uvicorn==0.34.0->uvicorn[standard]==0.34.0->-r requirements.txt (line 2))
+[TaskBoard Python CI/CD/test]   |   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+[TaskBoard Python CI/CD/test]   | Collecting greenlet!=0.4.17 (from sqlalchemy==2.0.36->-r requirements.txt (line 3))
+[TaskBoard Python CI/CD/test]   |   Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+[TaskBoard Python CI/CD/test]   | Collecting python-dotenv>=0.21.0 (from pydantic-settings==2.7.1->-r requirements.txt (line 5))
+[TaskBoard Python CI/CD/test]   |   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+[TaskBoard Python CI/CD/test]   | Collecting prometheus-client<1.0.0,>=0.8.0 (from prometheus-fastapi-instrumentator==7.0.2->-r requirements.txt (line 6))
+[TaskBoard Python CI/CD/test]   |   Downloading prometheus_client-0.26.0-py3-none-any.whl.metadata (2.1 kB)
+[TaskBoard Python CI/CD/test]   | Collecting Mako (from alembic==1.14.0->-r requirements.txt (line 7))
+[TaskBoard Python CI/CD/test]   |   Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: iniconfig in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from pytest==8.3.4->-r requirements.txt (line 8)) (2.3.1)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: packaging in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from pytest==8.3.4->-r requirements.txt (line 8)) (26.3)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: pluggy<2,>=1.5 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from pytest==8.3.4->-r requirements.txt (line 8)) (1.6.0)
+[TaskBoard Python CI/CD/test]   | Collecting anyio (from httpx==0.28.1->-r requirements.txt (line 9))
+[TaskBoard Python CI/CD/test]   |   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: certifi in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from httpx==0.28.1->-r requirements.txt (line 9)) (2026.7.22)
+[TaskBoard Python CI/CD/test]   | Collecting httpcore==1.* (from httpx==0.28.1->-r requirements.txt (line 9))
+[TaskBoard Python CI/CD/test]   |   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: idna in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from httpx==0.28.1->-r requirements.txt (line 9)) (3.20)
+[TaskBoard Python CI/CD/test]   | Collecting psycopg-binary==3.2.3 (from psycopg[binary]==3.2.3->-r requirements.txt (line 4))
+[TaskBoard Python CI/CD/test]   |   Downloading psycopg_binary-3.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.8 kB)
+[TaskBoard Python CI/CD/test]   | Collecting httptools>=0.6.3 (from uvicorn[standard]==0.34.0->-r requirements.txt (line 2))
+[TaskBoard Python CI/CD/test]   |   Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+[TaskBoard Python CI/CD/test]   | Collecting pyyaml>=5.1 (from uvicorn[standard]==0.34.0->-r requirements.txt (line 2))
+[TaskBoard Python CI/CD/test]   |   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+[TaskBoard Python CI/CD/test]   | Collecting uvloop!=0.15.0,!=0.15.1,>=0.14.0 (from uvicorn[standard]==0.34.0->-r requirements.txt (line 2))
+[TaskBoard Python CI/CD/test]   |   Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+[TaskBoard Python CI/CD/test]   | Collecting watchfiles>=0.13 (from uvicorn[standard]==0.34.0->-r requirements.txt (line 2))
+[TaskBoard Python CI/CD/test]   |   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+[TaskBoard Python CI/CD/test]   | Collecting websockets>=10.4 (from uvicorn[standard]==0.34.0->-r requirements.txt (line 2))
+[TaskBoard Python CI/CD/test]   |   Downloading websockets-17.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+[TaskBoard Python CI/CD/test]   | Collecting annotated-types>=0.6.0 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.115.6->-r requirements.txt (line 1))
+[TaskBoard Python CI/CD/test]   |   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+[TaskBoard Python CI/CD/test]   | Collecting pydantic-core==2.46.5 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.115.6->-r requirements.txt (line 1))
+[TaskBoard Python CI/CD/test]   |   Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+[TaskBoard Python CI/CD/test]   | Collecting typing-inspection>=0.4.2 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.115.6->-r requirements.txt (line 1))
+[TaskBoard Python CI/CD/test]   |   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+[TaskBoard Python CI/CD/test]   | Requirement already satisfied: MarkupSafe>=2.0 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from Mako->alembic==1.14.0->-r requirements.txt (line 7)) (3.0.4)
+[TaskBoard Python CI/CD/test]   | Downloading fastapi-0.115.6-py3-none-any.whl (94 kB)
+[TaskBoard Python CI/CD/test]   | Downloading uvicorn-0.34.0-py3-none-any.whl (62 kB)
+[TaskBoard Python CI/CD/test]   | Downloading SQLAlchemy-2.0.36-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+[TaskBoard Python CI/CD/test]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 7.7 MB/s  0:00:00
+[TaskBoard Python CI/CD/test]   | Downloading psycopg-3.2.3-py3-none-any.whl (197 kB)
+[TaskBoard Python CI/CD/test]   | Downloading pydantic_settings-2.7.1-py3-none-any.whl (29 kB)
+[TaskBoard Python CI/CD/test]   | Downloading prometheus_fastapi_instrumentator-7.0.2-py3-none-any.whl (18 kB)
+[TaskBoard Python CI/CD/test]   | Downloading alembic-1.14.0-py3-none-any.whl (233 kB)
+[TaskBoard Python CI/CD/test]   | Downloading pytest-8.3.4-py3-none-any.whl (343 kB)
+[TaskBoard Python CI/CD/test]   | Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+[TaskBoard Python CI/CD/test]   | Downloading psycopg_binary-3.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.2 MB)
+[TaskBoard Python CI/CD/test]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.2/4.2 MB 9.5 MB/s  0:00:00
+[TaskBoard Python CI/CD/test]   | Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+[TaskBoard Python CI/CD/test]   | Downloading prometheus_client-0.26.0-py3-none-any.whl (64 kB)
+[TaskBoard Python CI/CD/test]   | Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+[TaskBoard Python CI/CD/test]   | Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+[TaskBoard Python CI/CD/test]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 12.8 MB/s  0:00:00
+[TaskBoard Python CI/CD/test]   | Downloading starlette-0.41.3-py3-none-any.whl (73 kB)
+[TaskBoard Python CI/CD/test]   | Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+[TaskBoard Python CI/CD/test]   | Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+[TaskBoard Python CI/CD/test]   | Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+[TaskBoard Python CI/CD/test]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 7.8 MB/s  0:00:00
+[TaskBoard Python CI/CD/test]   | Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+[TaskBoard Python CI/CD/test]   | Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (523 kB)
+[TaskBoard Python CI/CD/test]   | Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+[TaskBoard Python CI/CD/test]   | Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+[TaskBoard Python CI/CD/test]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 10.8 MB/s  0:00:00
+[TaskBoard Python CI/CD/test]   | Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+[TaskBoard Python CI/CD/test]   | Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.5 MB)
+[TaskBoard Python CI/CD/test]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 8.1 MB/s  0:00:00
+[TaskBoard Python CI/CD/test]   | Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+[TaskBoard Python CI/CD/test]   | Downloading websockets-17.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (225 kB)
+[TaskBoard Python CI/CD/test]   | Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+[TaskBoard Python CI/CD/test]   | Installing collected packages: websockets, uvloop, typing-inspection, pyyaml, python-dotenv, pytest, pydantic-core, psycopg-binary, psycopg, prometheus-client, Mako, httptools, h11, greenlet, anyio, annotated-types, watchfiles, uvicorn, starlette, sqlalchemy, pydantic, httpcore, pydantic-settings, prometheus-fastapi-instrumentator, httpx, fastapi, alembic
+[TaskBoard Python CI/CD/test]   |   Attempting uninstall: pytest
+[TaskBoard Python CI/CD/test]   |     Found existing installation: pytest 8.4.2
+[TaskBoard Python CI/CD/test]   |     Uninstalling pytest-8.4.2:
+[TaskBoard Python CI/CD/test]   |       Successfully uninstalled pytest-8.4.2
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | Successfully installed Mako-1.4.3 alembic-1.14.0 annotated-types-0.8.0 anyio-4.15.1 fastapi-0.115.6 greenlet-3.5.6 h11-0.16.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 prometheus-client-0.26.0 prometheus-fastapi-instrumentator-7.0.2 psycopg-3.2.3 psycopg-binary-3.2.3 pydantic-2.13.5 pydantic-core-2.46.5 pydantic-settings-2.7.1 pytest-8.3.4 python-dotenv-1.2.4 pyyaml-6.0.3 sqlalchemy-2.0.36 starlette-0.41.3 typing-inspection-0.4.4 uvicorn-0.34.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.2
+[TaskBoard Python CI/CD/test]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[TaskBoard Python CI/CD/test]   ✅  Success - Main Install backend dependencies [11.0239911s]
+[TaskBoard Python CI/CD/test] ⭐ Run Main Run backend tests
+[TaskBoard Python CI/CD/test]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=backend
+[TaskBoard Python CI/CD/test]   | ..F                                                                      [100%]
+[TaskBoard Python CI/CD/test]   | =================================== FAILURES ===================================
+[TaskBoard Python CI/CD/test]   | _________________________ test_create_task_validation __________________________
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | self = <sqlalchemy.engine.base.Connection object at 0x7f4bfaa2ec00>
+[TaskBoard Python CI/CD/test]   | dialect = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f4bfab8e000>
+[TaskBoard Python CI/CD/test]   | context = <sqlalchemy.dialects.sqlite.base.SQLiteExecutionContext object at 0x7f4bfaa2cfb0>
+[TaskBoard Python CI/CD/test]   | statement = <sqlalchemy.dialects.sqlite.base.SQLiteCompiler object at 0x7f4bfab8e270>
+[TaskBoard Python CI/CD/test]   | parameters = [('Deploy application', '', 'HIGH', 'TODO', 'Student', '2026-10-07 10:48:18.367066')]
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   |     def _exec_single_context(
+[TaskBoard Python CI/CD/test]   |         self,
+[TaskBoard Python CI/CD/test]   |         dialect: Dialect,
+[TaskBoard Python CI/CD/test]   |         context: ExecutionContext,
+[TaskBoard Python CI/CD/test]   |         statement: Union[str, Compiled],
+[TaskBoard Python CI/CD/test]   |         parameters: Optional[_AnyMultiExecuteParams],
+[TaskBoard Python CI/CD/test]   |     ) -> CursorResult[Any]:
+[TaskBoard Python CI/CD/test]   |         """continue the _execute_context() method for a single DBAPI
+[TaskBoard Python CI/CD/test]   |         cursor.execute() or cursor.executemany() call.
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |         """
+[TaskBoard Python CI/CD/test]   |         if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+[TaskBoard Python CI/CD/test]   |             generic_setinputsizes = context._prepare_set_input_sizes()
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |             if generic_setinputsizes:
+[TaskBoard Python CI/CD/test]   |                 try:
+[TaskBoard Python CI/CD/test]   |                     dialect.do_set_input_sizes(
+[TaskBoard Python CI/CD/test]   |                         context.cursor, generic_setinputsizes, context
+[TaskBoard Python CI/CD/test]   |                     )
+[TaskBoard Python CI/CD/test]   |                 except BaseException as e:
+[TaskBoard Python CI/CD/test]   |                     self._handle_dbapi_exception(
+[TaskBoard Python CI/CD/test]   |                         e, str(statement), parameters, None, context
+[TaskBoard Python CI/CD/test]   |                     )
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |         cursor, str_statement, parameters = (
+[TaskBoard Python CI/CD/test]   |             context.cursor,
+[TaskBoard Python CI/CD/test]   |             context.statement,
+[TaskBoard Python CI/CD/test]   |             context.parameters,
+[TaskBoard Python CI/CD/test]   |         )
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |         effective_parameters: Optional[_AnyExecuteParams]
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |         if not context.executemany:
+[TaskBoard Python CI/CD/test]   |             effective_parameters = parameters[0]
+[TaskBoard Python CI/CD/test]   |         else:
+[TaskBoard Python CI/CD/test]   |             effective_parameters = parameters
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |         if self._has_events or self.engine._has_events:
+[TaskBoard Python CI/CD/test]   |             for fn in self.dispatch.before_cursor_execute:
+[TaskBoard Python CI/CD/test]   |                 str_statement, effective_parameters = fn(
+[TaskBoard Python CI/CD/test]   |                     self,
+[TaskBoard Python CI/CD/test]   |                     cursor,
+[TaskBoard Python CI/CD/test]   |                     str_statement,
+[TaskBoard Python CI/CD/test]   |                     effective_parameters,
+[TaskBoard Python CI/CD/test]   |                     context,
+[TaskBoard Python CI/CD/test]   |                     context.executemany,
+[TaskBoard Python CI/CD/test]   |                 )
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |         if self._echo:
+[TaskBoard Python CI/CD/test]   |             self._log_info(str_statement)
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |             stats = context._get_cache_stats()
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |             if not self.engine.hide_parameters:
+[TaskBoard Python CI/CD/test]   |                 self._log_info(
+[TaskBoard Python CI/CD/test]   |                     "[%s] %r",
+[TaskBoard Python CI/CD/test]   |                     stats,
+[TaskBoard Python CI/CD/test]   |                     sql_util._repr_params(
+[TaskBoard Python CI/CD/test]   |                         effective_parameters,
+[TaskBoard Python CI/CD/test]   |                         batches=10,
+[TaskBoard Python CI/CD/test]   |                         ismulti=context.executemany,
+[TaskBoard Python CI/CD/test]   |                     ),
+[TaskBoard Python CI/CD/test]   |                 )
+[TaskBoard Python CI/CD/test]   |             else:
+[TaskBoard Python CI/CD/test]   |                 self._log_info(
+[TaskBoard Python CI/CD/test]   |                     "[%s] [SQL parameters hidden due to hide_parameters=True]",
+[TaskBoard Python CI/CD/test]   |                     stats,
+[TaskBoard Python CI/CD/test]   |                 )
+[TaskBoard Python CI/CD/test]   |     
+[TaskBoard Python CI/CD/test]   |         evt_handled: bool = False
+[TaskBoard Python CI/CD/test]   |         try:
+[TaskBoard Python CI/CD/test]   |             if context.execute_style is ExecuteStyle.EXECUTEMANY:
+[TaskBoard Python CI/CD/test]   |                 effective_parameters = cast(
+[TaskBoard Python CI/CD/test]   |                     "_CoreMultiExecuteParams", effective_parameters
+[TaskBoard Python CI/CD/test]   |                 )
+[TaskBoard Python CI/CD/test]   |                 if self.dialect._has_events:
+[TaskBoard Python CI/CD/test]   |                     for fn in self.dialect.dispatch.do_executemany:
+[TaskBoard Python CI/CD/test]   |                         if fn(
+[TaskBoard Python CI/CD/test]   |                             cursor,
+[TaskBoard Python CI/CD/test]   |                             str_statement,
+[TaskBoard Python CI/CD/test]   |                             effective_parameters,
+[TaskBoard Python CI/CD/test]   |                             context,
+[TaskBoard Python CI/CD/test]   |                         ):
+[TaskBoard Python CI/CD/test]   |                             evt_handled = True
+[TaskBoard Python CI/CD/test]   |                             break
+[TaskBoard Python CI/CD/test]   |                 if not evt_handled:
+[TaskBoard Python CI/CD/test]   |                     self.dialect.do_executemany(
+[TaskBoard Python CI/CD/test]   |                         cursor,
+[TaskBoard Python CI/CD/test]   |                         str_statement,
+[TaskBoard Python CI/CD/test]   |                         effective_parameters,
+[TaskBoard Python CI/CD/test]   |                         context,
+[TaskBoard Python CI/CD/test]   |                     )
+[TaskBoard Python CI/CD/test]   |             elif not effective_parameters and context.no_parameters:
+[TaskBoard Python CI/CD/test]   |                 if self.dialect._has_events:
+[TaskBoard Python CI/CD/test]   |                     for fn in self.dialect.dispatch.do_execute_no_params:
+[TaskBoard Python CI/CD/test]   |                         if fn(cursor, str_statement, context):
+[TaskBoard Python CI/CD/test]   |                             evt_handled = True
+[TaskBoard Python CI/CD/test]   |                             break
+[TaskBoard Python CI/CD/test]   |                 if not evt_handled:
+[TaskBoard Python CI/CD/test]   |                     self.dialect.do_execute_no_params(
+[TaskBoard Python CI/CD/test]   |                         cursor, str_statement, context
+[TaskBoard Python CI/CD/test]   |                     )
+[TaskBoard Python CI/CD/test]   |             else:
+[TaskBoard Python CI/CD/test]   |                 effective_parameters = cast(
+[TaskBoard Python CI/CD/test]   |                     "_CoreSingleExecuteParams", effective_parameters
+[TaskBoard Python CI/CD/test]   |                 )
+[TaskBoard Python CI/CD/test]   |                 if self.dialect._has_events:
+[TaskBoard Python CI/CD/test]   |                     for fn in self.dialect.dispatch.do_execute:
+[TaskBoard Python CI/CD/test]   |                         if fn(
+[TaskBoard Python CI/CD/test]   |                             cursor,
+[TaskBoard Python CI/CD/test]   |                             str_statement,
+[TaskBoard Python CI/CD/test]   |                             effective_parameters,
+[TaskBoard Python CI/CD/test]   |                             context,
+[TaskBoard Python CI/CD/test]   |                         ):
+[TaskBoard Python CI/CD/test]   |                             evt_handled = True
+[TaskBoard Python CI/CD/test]   |                             break
+[TaskBoard Python CI/CD/test]   |                 if not evt_handled:
+[TaskBoard Python CI/CD/test]   | >                   self.dialect.do_execute(
+[TaskBoard Python CI/CD/test]   |                         cursor, str_statement, effective_parameters, context
+[TaskBoard Python CI/CD/test]   |                     )
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/base.py:1967: 
+[TaskBoard Python CI/CD/test]   | _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f4bfab8e000>
+[TaskBoard Python CI/CD/test]   | cursor = <sqlite3.Cursor object at 0x7f4bfaad0a40>
+[TaskBoard Python CI/CD/test]   | statement = 'INSERT INTO tasks (title, description, priority, status, assignee, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+[TaskBoard Python CI/CD/test]   | parameters = ('Deploy application', '', 'HIGH', 'TODO', 'Student', '2026-10-07 10:48:18.367066')
+[TaskBoard Python CI/CD/test]   | context = <sqlalchemy.dialects.sqlite.base.SQLiteExecutionContext object at 0x7f4bfaa2cfb0>
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   |     def do_execute(self, cursor, statement, parameters, context=None):
+[TaskBoard Python CI/CD/test]   | >       cursor.execute(statement, parameters)
+[TaskBoard Python CI/CD/test]   | E       sqlite3.OperationalError: no such table: tasks
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/default.py:941: OperationalError
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | The above exception was the direct cause of the following exception:
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   |     def test_create_task_validation():
+[TaskBoard Python CI/CD/test]   | >       response = client.post("/api/tasks", json={"title": "Deploy application", "priority": "HIGH", "assignee": "Student"})
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | tests/test_api.py:18: 
+[TaskBoard Python CI/CD/test]   | _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:593: in post
+[TaskBoard Python CI/CD/test]   |     return super().post(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/httpx/_client.py:1144: in post
+[TaskBoard Python CI/CD/test]   |     return self.request(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:484: in request
+[TaskBoard Python CI/CD/test]   |     return super().request(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/httpx/_client.py:825: in request
+[TaskBoard Python CI/CD/test]   |     return self.send(request, auth=auth, follow_redirects=follow_redirects)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/httpx/_client.py:914: in send
+[TaskBoard Python CI/CD/test]   |     response = self._send_handling_auth(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/httpx/_client.py:942: in _send_handling_auth
+[TaskBoard Python CI/CD/test]   |     response = self._send_handling_redirects(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/httpx/_client.py:979: in _send_handling_redirects
+[TaskBoard Python CI/CD/test]   |     response = self._send_single_request(request)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/httpx/_client.py:1014: in _send_single_request
+[TaskBoard Python CI/CD/test]   |     response = transport.handle_request(request)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:377: in handle_request
+[TaskBoard Python CI/CD/test]   |     raise exc
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:374: in handle_request
+[TaskBoard Python CI/CD/test]   |     portal.call(self.app, scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/anyio/from_thread.py:340: in call
+[TaskBoard Python CI/CD/test]   |     return cast(T_Retval, self.start_task_soon(func, *args).result())
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/concurrent/futures/_base.py:456: in result
+[TaskBoard Python CI/CD/test]   |     return self.__get_result()
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+[TaskBoard Python CI/CD/test]   |     raise self._exception
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/anyio/from_thread.py:265: in _call_func
+[TaskBoard Python CI/CD/test]   |     retval = await retval_or_awaitable
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/fastapi/applications.py:1054: in __call__
+[TaskBoard Python CI/CD/test]   |     await super().__call__(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/applications.py:113: in __call__
+[TaskBoard Python CI/CD/test]   |     await self.middleware_stack(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/middleware/errors.py:187: in __call__
+[TaskBoard Python CI/CD/test]   |     raise exc
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/middleware/errors.py:165: in __call__
+[TaskBoard Python CI/CD/test]   |     await self.app(scope, receive, _send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/prometheus_fastapi_instrumentator/middleware.py:174: in __call__
+[TaskBoard Python CI/CD/test]   |     raise exc
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/prometheus_fastapi_instrumentator/middleware.py:172: in __call__
+[TaskBoard Python CI/CD/test]   |     await self.app(scope, receive, send_wrapper)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/middleware/cors.py:85: in __call__
+[TaskBoard Python CI/CD/test]   |     await self.app(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/middleware/exceptions.py:62: in __call__
+[TaskBoard Python CI/CD/test]   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+[TaskBoard Python CI/CD/test]   |     raise exc
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+[TaskBoard Python CI/CD/test]   |     await app(scope, receive, sender)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/routing.py:715: in __call__
+[TaskBoard Python CI/CD/test]   |     await self.middleware_stack(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/routing.py:735: in app
+[TaskBoard Python CI/CD/test]   |     await route.handle(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/routing.py:288: in handle
+[TaskBoard Python CI/CD/test]   |     await self.app(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/routing.py:76: in app
+[TaskBoard Python CI/CD/test]   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+[TaskBoard Python CI/CD/test]   |     raise exc
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+[TaskBoard Python CI/CD/test]   |     await app(scope, receive, sender)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/routing.py:73: in app
+[TaskBoard Python CI/CD/test]   |     response = await f(request)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/fastapi/routing.py:301: in app
+[TaskBoard Python CI/CD/test]   |     raw_response = await run_endpoint_function(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/fastapi/routing.py:214: in run_endpoint_function
+[TaskBoard Python CI/CD/test]   |     return await run_in_threadpool(dependant.call, **values)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/concurrency.py:39: in run_in_threadpool
+[TaskBoard Python CI/CD/test]   |     return await anyio.to_thread.run_sync(func, *args)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/anyio/to_thread.py:65: in run_sync
+[TaskBoard Python CI/CD/test]   |     return await get_async_backend().run_sync_in_worker_thread(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:2706: in run_sync_in_worker_thread
+[TaskBoard Python CI/CD/test]   |     return await future
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:1100: in run
+[TaskBoard Python CI/CD/test]   |     result = context.run(func, *args)
+[TaskBoard Python CI/CD/test]   | app/main.py:55: in create_task
+[TaskBoard Python CI/CD/test]   |     db.commit()
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/session.py:2028: in commit
+[TaskBoard Python CI/CD/test]   |     trans.commit(_to_root=True)
+[TaskBoard Python CI/CD/test]   | <string>:2: in commit
+[TaskBoard Python CI/CD/test]   |     ???
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py:139: in _go
+[TaskBoard Python CI/CD/test]   |     ret_value = fn(self, *arg, **kw)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/session.py:1313: in commit
+[TaskBoard Python CI/CD/test]   |     self._prepare_impl()
+[TaskBoard Python CI/CD/test]   | <string>:2: in _prepare_impl
+[TaskBoard Python CI/CD/test]   |     ???
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py:139: in _go
+[TaskBoard Python CI/CD/test]   |     ret_value = fn(self, *arg, **kw)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/session.py:1288: in _prepare_impl
+[TaskBoard Python CI/CD/test]   |     self.session.flush()
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/session.py:4352: in flush
+[TaskBoard Python CI/CD/test]   |     self._flush(objects)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/session.py:4487: in _flush
+[TaskBoard Python CI/CD/test]   |     with util.safe_reraise():
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py:146: in __exit__
+[TaskBoard Python CI/CD/test]   |     raise exc_value.with_traceback(exc_tb)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/session.py:4448: in _flush
+[TaskBoard Python CI/CD/test]   |     flush_context.execute()
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py:466: in execute
+[TaskBoard Python CI/CD/test]   |     rec.execute(self)
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py:642: in execute
+[TaskBoard Python CI/CD/test]   |     util.preloaded.orm_persistence.save_obj(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py:93: in save_obj
+[TaskBoard Python CI/CD/test]   |     _emit_insert_statements(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py:1233: in _emit_insert_statements
+[TaskBoard Python CI/CD/test]   |     result = connection.execute(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/base.py:1418: in execute
+[TaskBoard Python CI/CD/test]   |     return meth(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/sql/elements.py:515: in _execute_on_connection
+[TaskBoard Python CI/CD/test]   |     return connection._execute_clauseelement(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/base.py:1640: in _execute_clauseelement
+[TaskBoard Python CI/CD/test]   |     ret = self._execute_context(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/base.py:1846: in _execute_context
+[TaskBoard Python CI/CD/test]   |     return self._exec_single_context(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/base.py:1986: in _exec_single_context
+[TaskBoard Python CI/CD/test]   |     self._handle_dbapi_exception(
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/base.py:2355: in _handle_dbapi_exception
+[TaskBoard Python CI/CD/test]   |     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/base.py:1967: in _exec_single_context
+[TaskBoard Python CI/CD/test]   |     self.dialect.do_execute(
+[TaskBoard Python CI/CD/test]   | _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | self = <sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7f4bfab8e000>
+[TaskBoard Python CI/CD/test]   | cursor = <sqlite3.Cursor object at 0x7f4bfaad0a40>
+[TaskBoard Python CI/CD/test]   | statement = 'INSERT INTO tasks (title, description, priority, status, assignee, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+[TaskBoard Python CI/CD/test]   | parameters = ('Deploy application', '', 'HIGH', 'TODO', 'Student', '2026-10-07 10:48:18.367066')
+[TaskBoard Python CI/CD/test]   | context = <sqlalchemy.dialects.sqlite.base.SQLiteExecutionContext object at 0x7f4bfaa2cfb0>
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   |     def do_execute(self, cursor, statement, parameters, context=None):
+[TaskBoard Python CI/CD/test]   | >       cursor.execute(statement, parameters)
+[TaskBoard Python CI/CD/test]   | E       sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: tasks
+[TaskBoard Python CI/CD/test]   | E       [SQL: INSERT INTO tasks (title, description, priority, status, assignee, created_at) VALUES (?, ?, ?, ?, ?, ?)]
+[TaskBoard Python CI/CD/test]   | E       [parameters: ('Deploy application', '', 'HIGH', 'TODO', 'Student', '2026-10-07 10:48:18.367066')]
+[TaskBoard Python CI/CD/test]   | E       (Background on this error at: https://sqlalche.me/e/20/e3q8)
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/sqlalchemy/engine/default.py:941: OperationalError
+[TaskBoard Python CI/CD/test]   | =============================== warnings summary ===============================
+[TaskBoard Python CI/CD/test]   | ../../../../../../../../../opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:40
+[TaskBoard Python CI/CD/test]   |   /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/starlette/testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+[TaskBoard Python CI/CD/test]   |     _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | app/main.py:16
+[TaskBoard Python CI/CD/test]   |   /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session21-python/backend/app/main.py:16: DeprecationWarning: 
+[TaskBoard Python CI/CD/test]   |           on_event is deprecated, use lifespan event handlers instead.
+[TaskBoard Python CI/CD/test]   |   
+[TaskBoard Python CI/CD/test]   |           Read more about it in the
+[TaskBoard Python CI/CD/test]   |           [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+[TaskBoard Python CI/CD/test]   |           
+[TaskBoard Python CI/CD/test]   |     @app.on_event("startup")
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | ../../../../../../../../../opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/fastapi/applications.py:4495
+[TaskBoard Python CI/CD/test]   |   /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/fastapi/applications.py:4495: DeprecationWarning: 
+[TaskBoard Python CI/CD/test]   |           on_event is deprecated, use lifespan event handlers instead.
+[TaskBoard Python CI/CD/test]   |   
+[TaskBoard Python CI/CD/test]   |           Read more about it in the
+[TaskBoard Python CI/CD/test]   |           [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+[TaskBoard Python CI/CD/test]   |           
+[TaskBoard Python CI/CD/test]   |     return self.router.on_event(event_type)
+[TaskBoard Python CI/CD/test]   | 
+[TaskBoard Python CI/CD/test]   | -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+[TaskBoard Python CI/CD/test]   | =========================== short test summary info ============================
+[TaskBoard Python CI/CD/test]   | FAILED tests/test_api.py::test_create_task_validation - sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: tasks
+[TaskBoard Python CI/CD/test]   | [SQL: INSERT INTO tasks (title, description, priority, status, assignee, created_at) VALUES (?, ?, ?, ?, ?, ?)]
+[TaskBoard Python CI/CD/test]   | [parameters: ('Deploy application', '', 'HIGH', 'TODO', 'Student', '2026-10-07 10:48:18.367066')]
+[TaskBoard Python CI/CD/test]   | (Background on this error at: https://sqlalche.me/e/20/e3q8)
+[TaskBoard Python CI/CD/test]   | 1 failed, 2 passed, 3 warnings in 1.03s
+[TaskBoard Python CI/CD/test]   ❌  Failure - Main Run backend tests [1.8802023s]
+[TaskBoard Python CI/CD/test] exitcode '1': failure
+[TaskBoard Python CI/CD/test] ⭐ Run Complete job
+[TaskBoard Python CI/CD/test]   ✅  Success - Complete job
+[TaskBoard Python CI/CD/test] 🏁  Job failed
+Error: Job 'test' failed

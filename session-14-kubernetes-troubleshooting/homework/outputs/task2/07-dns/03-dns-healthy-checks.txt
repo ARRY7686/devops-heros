@@ -1,0 +1,16 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec dns-test -- nslookup web-service
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+Name:	web-service.session14.svc.cluster.local
+Address: 10.110.119.45
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec dns-test -- nslookup web-service.session14.svc.cluster.local
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+Name:	web-service.session14.svc.cluster.local
+Address: 10.110.119.45
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec dns-test -- cat /etc/resolv.conf
+search session14.svc.cluster.local svc.cluster.local cluster.local
+nameserver 10.96.0.10
+options ndots:5

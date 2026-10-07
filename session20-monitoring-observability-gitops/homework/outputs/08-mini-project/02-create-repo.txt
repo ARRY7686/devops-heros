@@ -1,0 +1,26 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> New-Item -ItemType Directory -Force gitops-repo\app | Out-Null; Copy-Item ..\08-mini-project\app\namespace.yaml, ..\08-mini-project\app\deployment.yaml, ..\08-mini-project\app\service.yaml gitops-repo\app\
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> Set-Location gitops-repo
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git init -b main
+Initialized empty Git repository in C:/Users/aadig/OneDrive/Desktop/devops-heros/session20-monitoring-observability-gitops/homework/gitops-repo/.git/
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git config user.name 'devops-student'; git config user.email 'student@example.com'
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git config sendpack.sideband false
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git remote add origin git://localhost:9418/gitops.git
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git add .
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git commit -m 'Session 20 mini project: namespace, deployment (2 replicas), service'
+[main (root-commit) 61019ad] Session 20 mini project: namespace, deployment (2 replicas), service
+ 3 files changed, 37 insertions(+)
+ create mode 100644 app/deployment.yaml
+ create mode 100644 app/namespace.yaml
+ create mode 100644 app/service.yaml
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> $gitpf = Start-Job { kubectl port-forward svc/git-server -n gitserver 9418:9418 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git push -u origin main
+To git://localhost:9418/gitops.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.

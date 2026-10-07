@@ -1,0 +1,40 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\02-kubectl-describe> kubectl describe service kubernetes -n default
+Name:                     kubernetes
+Namespace:                default
+Labels:                   component=apiserver
+                          provider=kubernetes
+Annotations:              <none>
+Selector:                 <none>
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.96.0.1
+IPs:                      10.96.0.1
+Port:                     https  443/TCP
+TargetPort:               8443/TCP
+Endpoints:                192.168.49.2:8443
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\02-kubectl-describe> kubectl describe node minikube | Select-String -Pattern Allocatable: -Context 0,7
+
+> Allocatable:
+    cpu:                24
+    ephemeral-storage:  1081101176832
+    hugepages-1Gi:      0
+    hugepages-2Mi:      0
+    memory:             12056240Ki
+    pods:               110
+  System Info:
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\02-kubectl-describe> kubectl describe node minikube | Select-String -Pattern 'Allocated resources' -Context 0,9
+
+> Allocated resources:
+    (Total limits may be over 100 percent, i.e., overcommitted.)
+    Resource           Requests    Limits
+    --------           --------    ------
+    cpu                1150m (4%)  300m (1%)
+    memory             490Mi (4%)  390Mi (3%)
+    ephemeral-storage  0 (0%)      0 (0%)
+    hugepages-1Gi      0 (0%)      0 (0%)
+    hugepages-2Mi      0 (0%)      0 (0%)
+  Events:

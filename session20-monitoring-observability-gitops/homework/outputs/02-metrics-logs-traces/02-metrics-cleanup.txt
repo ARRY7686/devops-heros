@@ -1,0 +1,13 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\02-metrics-logs-traces> kubectl top pods
+NAME                              CPU(cores)   MEMORY(bytes)   
+session20-demo-6698db549f-v46lb   3m           0Mi             
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\02-metrics-logs-traces> kubectl get events --sort-by=.lastTimestamp | Select-Object -Last 6
+35s         Normal   Scheduled           pod/session20-demo-6698db549f-v46lb    Successfully assigned s20-demo/session20-demo-6698db549f-v46lb to minikube
+35s         Normal   Pulled              pod/session20-demo-6698db549f-v46lb    Container image "busybox:1.36" already present on machine and can be accessed by the pod
+35s         Normal   Created             pod/session20-demo-6698db549f-v46lb    Container created
+35s         Normal   SuccessfulCreate    replicaset/session20-demo-6698db549f   Created pod: session20-demo-6698db549f-v46lb
+35s         Normal   ScalingReplicaSet   deployment/session20-demo              Scaled up replica set session20-demo-6698db549f from 0 to 1
+34s         Normal   Started             pod/session20-demo-6698db549f-v46lb    Container started
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\02-metrics-logs-traces> kubectl delete -f k8s-demo/
+deployment.apps "session20-demo" deleted from s20-demo namespace
+service "session20-demo" deleted from s20-demo namespace

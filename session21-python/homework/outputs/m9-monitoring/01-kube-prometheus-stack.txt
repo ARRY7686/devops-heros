@@ -1,0 +1,30 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+"prometheus-community" has been added to your repositories
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm repo update prometheus-community
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "prometheus-community" chart repository
+Update Complete. ⎈Happy Helming!⎈
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Get-Content monitoring\prometheus-values.yaml
+grafana:
+  enabled: true
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorNamespaceSelector: {}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --create-namespace -f monitoring\prometheus-values.yaml --wait --timeout 15m | Select-Object -First 8
+Release "kube-prometheus-stack" does not exist. Installing it now.
+NAME: kube-prometheus-stack
+LAST DEPLOYED: Wed Oct  7 16:24:09 2026
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+NOTES:
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get pods -n monitoring
+NAME                                                        READY   STATUS            RESTARTS   AGE
+alertmanager-kube-prometheus-stack-alertmanager-0           2/2     Running           0          104s
+kube-prometheus-stack-grafana-6664c48fb-j8rf2               3/3     Running           0          119s
+kube-prometheus-stack-kube-state-metrics-78dc75b868-h88kv   1/1     Running           0          119s
+kube-prometheus-stack-operator-548bb47ddd-x72qt             1/1     Running           0          119s
+kube-prometheus-stack-prometheus-node-exporter-ch6qr        1/1     Running           0          119s
+prometheus-kube-prometheus-stack-prometheus-0               0/2     PodInitializing   0          103s

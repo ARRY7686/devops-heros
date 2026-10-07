@@ -1,0 +1,16 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl scale deployment session20-mini -n session20 --replicas=1
+deployment.apps/session20-mini scaled
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get deployment -n session20
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+session20-mini   1/1     1            1           7s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get deployment -n session20
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+session20-mini   3/3     3            3           10s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get application session20-mini -n argocd -o jsonpath='{.status.operationState.message}'
+successfully synced (all tasks run)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get events -n session20 --sort-by=.lastTimestamp | Select-String -Pattern 'Scaled' | Select-Object -Last 4
+
+10s         Normal   ScalingReplicaSet   deployment/session20-mini              Scaled up replica set session20-mini-68946db7dd from 0 to 2
+6s          Normal   ScalingReplicaSet   deployment/session20-mini              Scaled up replica set session20-mini-68946db7dd from 2 to 3
+3s          Normal   ScalingReplicaSet   deployment/session20-mini              Scaled down replica set session20-mini-68946db7dd from 3 to 1
+2s          Normal   ScalingReplicaSet   deployment/session20-mini              Scaled up replica set session20-mini-68946db7dd from 1 to 3

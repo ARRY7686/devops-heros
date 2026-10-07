@@ -1,0 +1,72 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\05-events> kubectl apply -f pod.yaml
+pod/events-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\05-events> kubectl get events --sort-by=.lastTimestamp
+LAST SEEN   TYPE     REASON      OBJECT              MESSAGE
+2m58s       Normal   Started     pod/get-demo        Container started
+2m58s       Normal   Scheduled   pod/get-demo        Successfully assigned session14/get-demo to minikube
+2m58s       Normal   Pulled      pod/get-demo        Container image "nginx:1.27" already present on machine and can be accessed by the pod
+2m58s       Normal   Created     pod/get-demo        Container created
+2m53s       Normal   Killing     pod/get-demo        Stopping container nginx
+2m46s       Normal   Scheduled   pod/describe-demo   Successfully assigned session14/describe-demo to minikube
+2m45s       Normal   Pulled      pod/describe-demo   Container image "nginx:1.27" already present on machine and can be accessed by the pod
+2m45s       Normal   Created     pod/describe-demo   Container created
+2m45s       Normal   Started     pod/describe-demo   Container started
+2m43s       Normal   Scheduled   pod/logs-demo       Successfully assigned session14/logs-demo to minikube
+2m42s       Normal   Created     pod/logs-demo       Container created
+2m42s       Normal   Pulled      pod/logs-demo       Container image "busybox:1.36" already present on machine and can be accessed by the pod
+2m42s       Normal   Started     pod/logs-demo       Container started
+2m15s       Normal   Scheduled   pod/exec-demo       Successfully assigned session14/exec-demo to minikube
+2m14s       Normal   Started     pod/exec-demo       Container started
+2m14s       Normal   Pulled      pod/exec-demo       Container image "nginx:1.27" already present on machine and can be accessed by the pod
+2m14s       Normal   Created     pod/exec-demo       Container created
+2m11s       Normal   Created     pod/events-demo     Container created
+2m11s       Normal   Started     pod/events-demo     Container started
+2m11s       Normal   Pulled      pod/events-demo     Container image "nginx:1.27" already present on machine and can be accessed by the pod
+2m11s       Normal   Scheduled   pod/events-demo     Successfully assigned session14/events-demo to minikube
+90s         Normal   Killing     pod/exec-demo       Stopping container nginx
+90s         Normal   Killing     pod/events-demo     Stopping container nginx
+90s         Normal   Killing     pod/logs-demo       Stopping container app
+90s         Normal   Killing     pod/describe-demo   Stopping container nginx
+50s         Normal   Created     pod/get-demo        Container created
+50s         Normal   Pulled      pod/get-demo        Container image "nginx:1.27" already present on machine and can be accessed by the pod
+50s         Normal   Scheduled   pod/get-demo        Successfully assigned session14/get-demo to minikube
+49s         Normal   Started     pod/get-demo        Container started
+44s         Normal   Killing     pod/get-demo        Stopping container nginx
+37s         Normal   Scheduled   pod/describe-demo   Successfully assigned session14/describe-demo to minikube
+37s         Normal   Pulled      pod/describe-demo   Container image "nginx:1.27" already present on machine and can be accessed by the pod
+37s         Normal   Created     pod/describe-demo   Container created
+36s         Normal   Started     pod/describe-demo   Container started
+34s         Normal   Scheduled   pod/logs-demo       Successfully assigned session14/logs-demo to minikube
+34s         Normal   Pulled      pod/logs-demo       Container image "busybox:1.36" already present on machine and can be accessed by the pod
+34s         Normal   Created     pod/logs-demo       Container created
+34s         Normal   Started     pod/logs-demo       Container started
+5s          Normal   Started     pod/exec-demo       Container started
+5s          Normal   Created     pod/exec-demo       Container created
+5s          Normal   Pulled      pod/exec-demo       Container image "nginx:1.27" already present on machine and can be accessed by the pod
+5s          Normal   Scheduled   pod/exec-demo       Successfully assigned session14/exec-demo to minikube
+2s          Normal   Scheduled   pod/events-demo     Successfully assigned session14/events-demo to minikube
+1s          Normal   Started     pod/events-demo     Container started
+1s          Normal   Pulled      pod/events-demo     Container image "nginx:1.27" already present on machine and can be accessed by the pod
+1s          Normal   Created     pod/events-demo     Container created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\05-events> kubectl events --for pod/events-demo
+LAST SEEN   TYPE     REASON      OBJECT            MESSAGE
+2m12s       Normal   Scheduled   Pod/events-demo   Successfully assigned session14/events-demo to minikube
+2m12s       Normal   Pulled      Pod/events-demo   Container image "nginx:1.27" already present on machine and can be accessed by the pod
+2m12s       Normal   Created     Pod/events-demo   Container created
+2m12s       Normal   Started     Pod/events-demo   Container started
+91s         Normal   Killing     Pod/events-demo   Stopping container nginx
+3s          Normal   Scheduled   Pod/events-demo   Successfully assigned session14/events-demo to minikube
+2s          Normal   Pulled      Pod/events-demo   Container image "nginx:1.27" already present on machine and can be accessed by the pod
+2s          Normal   Created     Pod/events-demo   Container created
+2s          Normal   Started     Pod/events-demo   Container started
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\05-events> kubectl events --types=Warning
+No events found in session14 namespace.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\05-events> kubectl describe pod events-demo | Select-String -Pattern ^Events: -Context 0,8
+
+> Events:
+    Type    Reason     Age   From               Message
+    ----    ------     ----  ----               -------
+    Normal  Scheduled  3s    default-scheduler  Successfully assigned session14/events-demo to minikube
+    Normal  Pulled     2s    kubelet            spec.containers{nginx}: Container image "nginx:1.27" already present on machine and can be accessed by the pod
+    Normal  Created    2s    kubelet            spec.containers{nginx}: Container created
+    Normal  Started    2s    kubelet            spec.containers{nginx}: Container started

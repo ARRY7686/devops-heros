@@ -1,0 +1,61 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> git diff --no-index helm\taskboard homework\helm\taskboard
+warning: in the working copy of 'homework\helm\taskboard/templates/ingress.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'homework\helm\taskboard/templates/backend-alias-service.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git "a/homework\\helm\\taskboard/templates/backend-alias-service.yaml" "b/homework\\helm\\taskboard/templates/backend-alias-service.yaml"
+new file mode 100644
+index 0000000..160c984
+--- /dev/null
++++ "b/homework\\helm\\taskboard/templates/backend-alias-service.yaml"
+@@ -0,0 +1,14 @@
++# FIX: the frontend image's nginx.conf proxies /api/ to http://backend:8000 (the Docker
++# Compose service name). Without a Service called "backend", nginx cannot resolve the
++# upstream at startup and the frontend Pod crashes. This alias Service provides that name.
++apiVersion: v1
++kind: Service
++metadata:
++  name: backend
++  labels: {app: taskboard-backend}
++spec:
++  selector: {app: taskboard-backend}
++  ports:
++    - port: 8000
++      targetPort: 8000
++      name: http
+diff --git "a/helm\\taskboard/templates/ingress.yaml" "b/homework\\helm\\taskboard/templates/ingress.yaml"
+index 50cef97..416abcf 100644
+--- "a/helm\\taskboard/templates/ingress.yaml"
++++ "b/homework\\helm\\taskboard/templates/ingress.yaml"
+@@ -8,6 +8,8 @@ spec:
+   - host: {{ .Values.ingress.host }}
+     http:
+       paths:
+-      - {path: /api, pathType: Prefix, backend: {service: {name: taskboard-backend, port: {number: 8080}}}}
++      # FIX: the backend Service is named <release>-taskboard-backend (see backend-service.yaml)
++      # and listens on port 8000, not taskboard-backend:8080
++      - {path: /api, pathType: Prefix, backend: {service: {name: {{ include "taskboard.fullname" . }}-backend, port: {number: 8000}}}}
+       - {path: /, pathType: Prefix, backend: {service: {name: taskboard-frontend, port: {number: 80}}}}
+ {{- end }}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm upgrade taskboard homework\helm\taskboard -n taskboard -f homework\helm\values-local.yaml -f helm\taskboard\values-dev.yaml --set monitoring.serviceMonitor.enabled=false
+Release "taskboard" has been upgraded. Happy Helming!
+NAME: taskboard
+LAST DEPLOYED: Wed Oct  7 16:37:13 2026
+NAMESPACE: taskboard
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl rollout restart deployment/taskboard-frontend -n taskboard
+deployment.apps/taskboard-frontend restarted
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get pods -n taskboard
+NAME                                           READY   STATUS    RESTARTS      AGE
+taskboard-frontend-5677d697dc-5fw2z            1/1     Running   0             17s
+taskboard-postgres-755b4497b-2m2bg             1/1     Running   0             100s
+taskboard-taskboard-backend-7d8fb7697c-tkw9t   1/1     Running   2 (96s ago)   100s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl describe ingress taskboard -n taskboard | Select-String -Pattern '/api|/ ' 
+
+                   /api   taskboard-taskboard-backend:8000 (10.244.0.162:8000)
+                   /      taskboard-frontend:80 (10.244.0.165:80)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm history taskboard -n taskboard
+REVISION	UPDATED                 	STATUS    	CHART          	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 16:35:50 2026	superseded	taskboard-1.0.0	1.0.0      	Install complete
+2       	Wed Oct  7 16:37:13 2026	deployed  	taskboard-1.0.0	1.0.0      	Upgrade complete

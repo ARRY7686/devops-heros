@@ -1,0 +1,9 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl apply -f ..\homework\manifests\service\wrong-targetport-service.yaml
+service/web-wrong-port created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get endpoints web-wrong-port
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME             ENDPOINTS                           AGE
+web-wrong-port   10.244.0.91:8080,10.244.0.92:8080   3s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec net-client -- wget -qO- -T 3 http://web-wrong-port
+wget: can't connect to remote host (10.97.7.159): Connection refused
+command terminated with exit code 1

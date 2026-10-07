@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-demo
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "echo LOG_LEVEL=$LOG_LEVEL APP_MODE=$APP_MODE; sleep 3600"]
+      env:
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: app-settings
+              # FIX: reference the key that actually exists in the ConfigMap
+              key: log_level
+        - name: APP_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: app-settings
+              key: app_mode

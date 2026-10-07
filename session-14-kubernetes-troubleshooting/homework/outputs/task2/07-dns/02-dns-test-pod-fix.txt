@@ -1,0 +1,26 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl delete pod dns-test
+pod "dns-test" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> git diff --no-index dns-test-pod.yaml ..\homework\manifests\dns\dns-test-pod-fixed.yaml
+warning: in the working copy of '..\homework\manifests\dns\dns-test-pod-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/dns-test-pod.yaml "b/..\\homework\\manifests\\dns\\dns-test-pod-fixed.yaml"
+index dad2dce..c2ddbc8 100644
+--- a/dns-test-pod.yaml
++++ "b/..\\homework\\manifests\\dns\\dns-test-pod-fixed.yaml"
+@@ -7,7 +7,9 @@ metadata:
+ spec:
+   containers:
+     - name: dns-test
+-      image: registry.k8s.io/e2e-test-images/dnsutils:1.3
++      # FIX: registry.k8s.io/e2e-test-images/dnsutils:1.3 does not exist (not found);
++      # the image used in the official Kubernetes DNS debugging guide is jessie-dnsutils:1.3
++      image: registry.k8s.io/e2e-test-images/jessie-dnsutils:1.3
+       command:
+         - sleep
+-        - "3600"
+\ No newline at end of file
++        - "3600"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl apply -f ..\homework\manifests\dns\dns-test-pod-fixed.yaml
+pod/dns-test created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get pod dns-test
+NAME       READY   STATUS    RESTARTS   AGE
+dns-test   1/1     Running   0          1s

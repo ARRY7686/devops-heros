@@ -1,0 +1,5 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl apply -f broken-pod.yaml
+pod/crash-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl get pod crash-demo
+NAME         READY   STATUS   RESTARTS      AGE
+crash-demo   0/1     Error    4 (84s ago)   2m1s

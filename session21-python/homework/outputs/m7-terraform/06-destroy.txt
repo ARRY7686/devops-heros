@@ -1,0 +1,8 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> terraform destroy -auto-approve | Select-Object -Last 3
+module.vpc.aws_vpc.this[0]: Destruction complete after 1s
+
+Destroy complete! Resources: 51 destroyed.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> (terraform state list | Measure-Object).Count
+0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> Remove-Item tfplan
+

@@ -1,0 +1,14 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl apply -f broken.yaml
+pod/fail-3-pending-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl get pod fail-3-pending-pod -o wide
+NAME                 READY   STATUS    RESTARTS   AGE   IP       NODE     NOMINATED NODE   READINESS GATES
+fail-3-pending-pod   0/1     Pending   0          5s    <none>   <none>   <none>           <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl events --for pod/fail-3-pending-pod
+LAST SEEN   TYPE      REASON             OBJECT                   MESSAGE
+5s          Warning   FailedScheduling   Pod/fail-3-pending-pod   0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl get node minikube -o custom-columns=NODE:.metadata.name,CPU:.status.allocatable.cpu,MEMORY:.status.allocatable.memory
+NODE       CPU   MEMORY
+minikube   24    12056240Ki
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-3-pending> kubectl get pod fail-3-pending-pod -o custom-columns=POD:.metadata.name,CPU_REQUEST:.spec.containers[0].resources.requests.cpu,MEM_REQUEST:.spec.containers[0].resources.requests.memory
+POD                  CPU_REQUEST   MEM_REQUEST
+fail-3-pending-pod   500           1000Gi

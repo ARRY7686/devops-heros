@@ -1,0 +1,10 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> $pf = Start-Job { kubectl port-forward svc/session17-python 8080:80 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> Invoke-RestMethod http://localhost:8080/health | ConvertTo-Json -Compress
+{"status":"healthy","timestamp":"2026-10-07T09:58:42.072264Z","uptime_seconds":2.09}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> Invoke-RestMethod http://localhost:8080/api/status | ConvertTo-Json -Compress
+{"app":"DevSecOps Dashboard","platform":"Linux","python_version":"3.12.15","status":"running","timestamp":"2026-10-07T09:58:42.107508Z","total_requests":4,"uptime":"00h 00m 02s","version":"2.0.0"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> (Invoke-WebRequest -UseBasicParsing http://localhost:8080/).StatusCode
+200
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> Stop-Job $pf; Remove-Job $pf
+

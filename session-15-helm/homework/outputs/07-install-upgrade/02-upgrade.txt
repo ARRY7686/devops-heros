@@ -1,0 +1,40 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm upgrade web-app ./app-chart --set replicaCount=3
+Release "web-app" has been upgraded. Happy Helming!
+NAME: web-app
+LAST DEPLOYED: Wed Oct  7 15:03:51 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> kubectl get pods
+NAME                           READY   STATUS    RESTARTS   AGE
+web-app-app-5769cccf7c-lxpr6   1/1     Running   0          1s
+web-app-app-5769cccf7c-q4lqv   1/1     Running   0          1s
+web-app-app-5769cccf7c-zlq6x   1/1     Running   0          15s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm list
+NAME   	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART          	APP VERSION
+web-app	session15	2       	2026-10-07 15:03:51.5243908 +0530 IST	deployed	app-chart-0.1.0	1.0        
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm history web-app
+REVISION	UPDATED                 	STATUS    	CHART          	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 15:03:37 2026	superseded	app-chart-0.1.0	1.0        	Install complete
+2       	Wed Oct  7 15:03:51 2026	deployed  	app-chart-0.1.0	1.0        	Upgrade complete
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm install web-app ./app-chart
+level=ERROR msg="release name check failed" error="cannot reuse a name that is still in use"
+Error: INSTALLATION FAILED: release name check failed: cannot reuse a name that is still in use
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm upgrade --install web-app ./app-chart
+Release "web-app" has been upgraded. Happy Helming!
+NAME: web-app
+LAST DEPLOYED: Wed Oct  7 15:03:52 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 3
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm history web-app
+REVISION	UPDATED                 	STATUS    	CHART          	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 15:03:37 2026	superseded	app-chart-0.1.0	1.0        	Install complete
+2       	Wed Oct  7 15:03:51 2026	superseded	app-chart-0.1.0	1.0        	Upgrade complete
+3       	Wed Oct  7 15:03:52 2026	deployed  	app-chart-0.1.0	1.0        	Upgrade complete
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\07-install-upgrade> helm uninstall web-app
+release "web-app" uninstalled

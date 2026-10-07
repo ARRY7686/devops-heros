@@ -1,0 +1,32 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\03-github-actions-intro 10-33-34-226> Get-Content .github\workflows\hello.yml
+name: Hello World
+
+on: push
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message
+        run: echo "Hello from GitHub Actions"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\03-github-actions-intro 10-33-34-226> act -l
+time="2026-10-07T15:22:04+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Stage  Job ID     Job name   Workflow name  Workflow file  Events
+0      say-hello  say-hello  Hello World    hello.yml      push  
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\03-github-actions-intro 10-33-34-226> act push
+time="2026-10-07T15:22:05+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Hello World/say-hello] ⭐ Run Set up job
+[Hello World/say-hello] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Hello World/say-hello]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Hello World/say-hello]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Hello World/say-hello]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Hello World/say-hello]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Hello World/say-hello]   ✅  Success - Set up job
+[Hello World/say-hello] ⭐ Run Main Print message
+[Hello World/say-hello]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Hello World/say-hello]   | Hello from GitHub Actions
+[Hello World/say-hello]   ✅  Success - Main Print message [160.5991ms]
+[Hello World/say-hello] ⭐ Run Complete job
+[Hello World/say-hello] Cleaning up container for job say-hello
+[Hello World/say-hello]   ✅  Success - Complete job
+[Hello World/say-hello] 🏁  Job succeeded

@@ -1,0 +1,17 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl apply -f service.yaml
+service/troubleshooting-service configured
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get endpoints troubleshooting-service
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME                      ENDPOINTS                         AGE
+troubleshooting-service   10.244.0.102:80,10.244.0.103:80   34s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl exec dns-test -- nslookup troubleshooting-service
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+Name:	troubleshooting-service.session14.svc.cluster.local
+Address: 10.97.241.226
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl exec net-client -- wget -qO- -T 3 http://troubleshooting-service | Select-Object -First 4
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>

@@ -1,0 +1,306 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> terraform -chdir=ec2-extension destroy -auto-approve
+data.aws_ami.al2023: Reading...
+aws_vpc.main: Refreshing state... [id=vpc-5f8e9495713d73db3]
+data.aws_ami.al2023: Read complete after 0s [id=ami-0884624fc54d115f3]
+aws_internet_gateway.main: Refreshing state... [id=igw-5a62df95e9737dfac]
+aws_subnet.public: Refreshing state... [id=subnet-ad1b1813254c83cb7]
+aws_security_group.web: Refreshing state... [id=sg-07c2be8e4c43a5d20]
+aws_route_table.public: Refreshing state... [id=rtb-dc05d2e2051506079]
+aws_instance.web: Refreshing state... [id=i-38aaf7fed0fb896b2]
+aws_route_table_association.public: Refreshing state... [id=rtbassoc-06061216d9924b23c]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.web will be destroyed
+  - resource "aws_instance" "web" {
+      - ami                                  = "ami-0884624fc54d115f3" -> null
+      - arn                                  = "arn:aws:ec2:ap-south-1:123456789012:instance/i-38aaf7fed0fb896b2" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "ap-south-1a" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - force_destroy                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-38aaf7fed0fb896b2" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t3.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-382e4ce817f082f21" -> null
+      - private_dns                          = "ip-10-20-1-4.ap-south-1.compute.internal" -> null
+      - private_ip                           = "10.20.1.4" -> null
+      - public_dns                           = "ec2-54-214-69-40.ap-south-1.compute.amazonaws.com" -> null
+      - public_ip                            = "54.214.69.40" -> null
+      - region                               = "ap-south-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-ad1b1813254c83cb7" -> null
+      - tags                                 = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web"
+          - "Session"   = "19"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [] -> null
+        # (9 unchanged attributes hidden)
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - ebs_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 0 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-eb56cca04dc9f2d64" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp2" -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - primary_network_interface {
+          - delete_on_termination = false -> null
+          - network_interface_id  = "eni-382e4ce817f082f21" -> null
+        }
+    }
+
+  # aws_internet_gateway.main will be destroyed
+  - resource "aws_internet_gateway" "main" {
+      - arn      = "arn:aws:ec2:ap-south-1:123456789012:internet-gateway/igw-5a62df95e9737dfac" -> null
+      - id       = "igw-5a62df95e9737dfac" -> null
+      - owner_id = "123456789012" -> null
+      - region   = "ap-south-1" -> null
+      - tags     = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-igw"
+          - "Session"   = "19"
+        } -> null
+      - tags_all = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-igw"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id   = "vpc-5f8e9495713d73db3" -> null
+    }
+
+  # aws_route_table.public will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:ap-south-1:123456789012:route-table/rtb-dc05d2e2051506079" -> null
+      - id               = "rtb-dc05d2e2051506079" -> null
+      - owner_id         = "123456789012" -> null
+      - propagating_vgws = [] -> null
+      - region           = "ap-south-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-5a62df95e9737dfac"
+                # (12 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-rt"
+          - "Session"   = "19"
+        } -> null
+      - tags_all         = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-rt"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id           = "vpc-5f8e9495713d73db3" -> null
+    }
+
+  # aws_route_table_association.public will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-06061216d9924b23c" -> null
+      - region         = "ap-south-1" -> null
+      - route_table_id = "rtb-dc05d2e2051506079" -> null
+      - subnet_id      = "subnet-ad1b1813254c83cb7" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_security_group.web will be destroyed
+  - resource "aws_security_group" "web" {
+      - arn                    = "arn:aws:ec2:ap-south-1:123456789012:security-group/sg-07c2be8e4c43a5d20" -> null
+      - description            = "Allow HTTP and HTTPS for Session 19" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Allow outbound IPv4"
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+            },
+        ] -> null
+      - id                     = "sg-07c2be8e4c43a5d20" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "HTTP"
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "HTTPS"
+              - from_port        = 443
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 443
+            },
+        ] -> null
+      - name                   = "session19-mini-web-sg" -> null
+      - owner_id               = "123456789012" -> null
+      - region                 = "ap-south-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web-sg"
+          - "Session"   = "19"
+        } -> null
+      - tags_all               = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web-sg"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id                 = "vpc-5f8e9495713d73db3" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_subnet.public will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:ap-south-1:123456789012:subnet/subnet-ad1b1813254c83cb7" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "ap-south-1a" -> null
+      - availability_zone_id                           = "aps1-az1" -> null
+      - cidr_block                                     = "10.20.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-ad1b1813254c83cb7" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "123456789012" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "ap-south-1" -> null
+      - tags                                           = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-subnet"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                                       = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-subnet"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id                                         = "vpc-5f8e9495713d73db3" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_vpc.main will be destroyed
+  - resource "aws_vpc" "main" {
+      - arn                                  = "arn:aws:ec2:ap-south-1:123456789012:vpc/vpc-5f8e9495713d73db3" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.20.0.0/16" -> null
+      - default_network_acl_id               = "acl-1c4557cf5c4f375c0" -> null
+      - default_route_table_id               = "rtb-dba29075702d67ca2" -> null
+      - default_security_group_id            = "sg-20bbf8be7809d7634" -> null
+      - dhcp_options_id                      = "default" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-5f8e9495713d73db3" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-dba29075702d67ca2" -> null
+      - owner_id                             = "123456789012" -> null
+      - region                               = "ap-south-1" -> null
+      - tags                                 = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-vpc"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-vpc"
+          - "Session"   = "19"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 7 to destroy.
+
+Changes to Outputs:
+  - instance_id        = "i-38aaf7fed0fb896b2" -> null
+  - instance_public_ip = "54.214.69.40" -> null
+  - security_group_id  = "sg-07c2be8e4c43a5d20" -> null
+  - subnet_id          = "subnet-ad1b1813254c83cb7" -> null
+  - vpc_cidr           = "10.20.0.0/16" -> null
+  - vpc_id             = "vpc-5f8e9495713d73db3" -> null
+aws_route_table_association.public: Destroying... [id=rtbassoc-06061216d9924b23c]
+aws_instance.web: Destroying... [id=i-38aaf7fed0fb896b2]
+aws_route_table_association.public: Destruction complete after 0s
+aws_route_table.public: Destroying... [id=rtb-dc05d2e2051506079]
+aws_route_table.public: Destruction complete after 1s
+aws_internet_gateway.main: Destroying... [id=igw-5a62df95e9737dfac]
+aws_internet_gateway.main: Destruction complete after 0s
+aws_instance.web: Still destroying... [id=i-38aaf7fed0fb896b2, 00m10s elapsed]
+aws_instance.web: Destruction complete after 11s
+aws_security_group.web: Destroying... [id=sg-07c2be8e4c43a5d20]
+aws_subnet.public: Destroying... [id=subnet-ad1b1813254c83cb7]
+aws_subnet.public: Destruction complete after 0s
+aws_security_group.web: Destruction complete after 0s
+aws_vpc.main: Destroying... [id=vpc-5f8e9495713d73db3]
+aws_vpc.main: Destruction complete after 0s
+
+Destroy complete! Resources: 7 destroyed.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> aws ec2 describe-instances --query 'Reservations[].Instances[].State.Name' --output text
+terminated

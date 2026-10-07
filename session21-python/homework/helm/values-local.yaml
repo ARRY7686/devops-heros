@@ -1,0 +1,7 @@
+# Local minikube images (built with docker build + minikube image load)
+frontend:
+  image: taskboard-frontend
+  tag: local
+backend:
+  image: taskboard-backend
+  tag: local

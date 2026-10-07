@@ -1,0 +1,54 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm install demo-release my-first-chart
+NAME: demo-release
+LAST DEPLOYED: Wed Oct  7 15:03:12 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace session15 -l "app.kubernetes.io/name=my-first-chart,app.kubernetes.io/instance=demo-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace session15 $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace session15 port-forward $POD_NAME 8080:$CONTAINER_PORT
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl get pods
+NAME                                          READY   STATUS    RESTARTS   AGE
+demo-release-my-first-chart-5fdddbf44-2jml2   1/1     Running   0          1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm list
+NAME        	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART               	APP VERSION
+demo-release	session15	1       	2026-10-07 15:03:12.3265654 +0530 IST	deployed	my-first-chart-0.1.0	1.16.0     
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm status demo-release
+NAME: demo-release
+LAST DEPLOYED: Wed Oct  7 15:03:12 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+RESOURCES:
+==> v1/Service
+NAME                          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+demo-release-my-first-chart   ClusterIP   10.104.179.151   <none>        80/TCP    2s
+
+==> v1/Deployment
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
+demo-release-my-first-chart   1/1     1            1           2s
+
+==> v1/Pod(related)
+NAME                                          READY   STATUS    RESTARTS   AGE
+demo-release-my-first-chart-5fdddbf44-2jml2   1/1     Running   0          2s
+
+==> v1/ServiceAccount
+NAME                          AGE
+demo-release-my-first-chart   2s
+
+
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace session15 -l "app.kubernetes.io/name=my-first-chart,app.kubernetes.io/instance=demo-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace session15 $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace session15 port-forward $POD_NAME 8080:$CONTAINER_PORT
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm uninstall demo-release
+release "demo-release" uninstalled
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm list
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION

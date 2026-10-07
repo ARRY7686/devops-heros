@@ -1,0 +1,17 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> helm upgrade rollback-demo ..\07-install-upgrade\app-chart --set image.tag=doesnotexist --atomic --timeout 60s
+Flag --atomic has been deprecated, use --rollback-on-failure instead
+level=WARN msg="upgrade failed" name=rollback-demo error="resource Deployment/session15/rollback-demo-app not ready. status: InProgress, message: Pending termination: 1\ncontext deadline exceeded"
+Error: UPGRADE FAILED: release rollback-demo failed, and has been rolled back due to rollback-on-failure being set: resource Deployment/session15/rollback-demo-app not ready. status: InProgress, message: Pending termination: 1
+context deadline exceeded
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> helm history rollback-demo
+REVISION	UPDATED                 	STATUS    	CHART          	APP VERSION	DESCRIPTION                                                                                                                                   
+1       	Wed Oct  7 15:03:54 2026	superseded	app-chart-0.1.0	1.0        	Install complete                                                                                                                              
+2       	Wed Oct  7 15:03:54 2026	superseded	app-chart-0.1.0	1.0        	Upgrade complete                                                                                                                              
+3       	Wed Oct  7 15:04:15 2026	superseded	app-chart-0.1.0	1.0        	Rollback to 1                                                                                                                                 
+4       	Wed Oct  7 15:04:21 2026	failed    	app-chart-0.1.0	1.0        	Upgrade "rollback-demo" failed: resource Deployment/session15/rollback-demo-app not ready. status: InProgress, message: Pending termination...
+5       	Wed Oct  7 15:05:21 2026	deployed  	app-chart-0.1.0	1.0        	Rollback to 3                                                                                                                                 
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+rollback-demo-app-5666bb45b5-f6rk6   1/1     Running   0          93s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> helm uninstall rollback-demo
+release "rollback-demo" uninstalled

@@ -1,0 +1,25 @@
+# Same as 08-mini-project/app/argocd-application.yaml, with repoURL pointing at the
+# in-cluster Git server instead of YOUR_USERNAME/YOUR_GITOPS_REPO on GitHub.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: session20-mini
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: git://git-server.gitserver.svc.cluster.local/gitops.git
+    targetRevision: main
+    path: app
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: session20
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

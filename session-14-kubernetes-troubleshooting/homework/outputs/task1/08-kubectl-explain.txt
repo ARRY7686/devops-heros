@@ -1,0 +1,59 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl explain pod.spec.restartPolicy
+KIND:       Pod
+VERSION:    v1
+
+FIELD: restartPolicy <string>
+ENUM:
+    Always
+    Never
+    OnFailure
+
+DESCRIPTION:
+    Restart policy for all containers within the pod. One of Always, OnFailure,
+    Never. In some contexts, only a subset of those values may be permitted.
+    Default to Always. More info:
+    https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
+    
+    Possible enum values:
+     - `"Always"`
+     - `"Never"`
+     - `"OnFailure"`
+    
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl explain pod.spec.containers.imagePullPolicy
+KIND:       Pod
+VERSION:    v1
+
+FIELD: imagePullPolicy <string>
+ENUM:
+    Always
+    IfNotPresent
+    Never
+
+DESCRIPTION:
+    Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if
+    :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More
+    info: https://kubernetes.io/docs/concepts/containers/images#updating-images
+    
+    Possible enum values:
+     - `"Always"` means that kubelet always attempts to pull the latest image.
+    Container will fail If the pull fails.
+     - `"IfNotPresent"` means that kubelet pulls if the image isn't present on
+    disk. Container will fail if the image isn't present and the pull fails.
+     - `"Never"` means that kubelet never pulls an image, but only uses a local
+    image. Container will fail if the image isn't present
+    
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl explain service.spec.selector
+KIND:       Service
+VERSION:    v1
+
+FIELD: selector <map[string]string>
+
+
+DESCRIPTION:
+    Route service traffic to pods with label keys and values matching this
+    selector. If empty or not present, the service is assumed to have an
+    external process managing its endpoints, which Kubernetes will not modify.
+    Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if type
+    is ExternalName. More info:
+    https://kubernetes.io/docs/concepts/services-networking/service/
+    

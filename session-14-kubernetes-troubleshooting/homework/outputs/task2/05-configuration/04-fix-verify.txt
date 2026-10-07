@@ -1,0 +1,30 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl delete pod config-demo
+pod "config-demo" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> git diff --no-index broken-pod.yaml fixed-pod.yaml
+warning: in the working copy of 'broken-pod.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'fixed-pod.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/broken-pod.yaml b/fixed-pod.yaml
+index 20c72b2..0b780c3 100644
+--- a/broken-pod.yaml
++++ b/fixed-pod.yaml
+@@ -12,8 +12,8 @@ spec:
+           valueFrom:
+             configMapKeyRef:
+               name: app-settings
+-              # BUG: the ConfigMap key is "log_level" (lower case)
+-              key: LOG_LEVEL
++              # FIX: reference the key that actually exists in the ConfigMap
++              key: log_level
+         - name: APP_MODE
+           valueFrom:
+             configMapKeyRef:
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl apply -f fixed-pod.yaml
+pod/config-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl get pod config-demo
+NAME          READY   STATUS    RESTARTS   AGE
+config-demo   1/1     Running   0          3s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl logs config-demo
+LOG_LEVEL=info APP_MODE=production
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\configuration> kubectl exec config-demo -- printenv LOG_LEVEL APP_MODE
+info
+production

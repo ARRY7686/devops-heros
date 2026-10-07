@@ -1,0 +1,26 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> (Invoke-WebRequest -UseBasicParsing http://localhost:3000/).Content.Substring(0, 160)
+<!doctype html><html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>TaskBoard</title>  <script type="
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:3000/api/tasks | Format-Table id, title, status -AutoSize
+
+id title            status
+-- -----            ------
+ 1 Write Dockerfile DONE  
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose -f docker-compose.yml -f homework\compose\docker-compose.healthcheck.yml exec -T backend alembic current
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+0001_create_tasks (head)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose -f docker-compose.yml -f homework\compose\docker-compose.healthcheck.yml exec -T postgres psql -U taskboard -d taskboard -c '\dt'
+              List of relations
+ Schema |      Name       | Type  |   Owner   
+--------+-----------------+-------+-----------
+ public | alembic_version | table | taskboard
+ public | tasks           | table | taskboard
+(2 rows)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> ((Invoke-WebRequest -UseBasicParsing http://localhost:8000/metrics).Content -split "`n") | Select-String -Pattern '^http_requests_total' | Select-Object -First 6
+
+http_requests_total{handler="/ready",method="GET",status="2xx"} 2.0
+http_requests_total{handler="/health",method="GET",status="2xx"} 1.0
+http_requests_total{handler="/api/tasks",method="POST",status="2xx"} 2.0
+http_requests_total{handler="/api/tasks",method="GET",status="2xx"} 3.0
+http_requests_total{handler="/api/tasks/{task_id}",method="PUT",status="2xx"} 1.0
+http_requests_total{handler="/api/tasks/stats",method="GET",status="2xx"} 1.0

@@ -1,0 +1,21 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get servicemonitor -n taskboard
+NAME                          AGE
+taskboard-taskboard-backend   4m36s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> $prom = Start-Job { kubectl port-forward -n monitoring svc/kube-prometheus-stack-prometheus 9091:9090 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> (Invoke-RestMethod http://localhost:9091/api/v1/targets).data.activeTargets | Where-Object { $_.labels.job -like '*taskboard*' } | Select-Object @{n='job';e={$_.labels.job}}, scrapeUrl, health | Format-Table -AutoSize
+
+job                         scrapeUrl                        health
+---                         ---------                        ------
+taskboard-taskboard-backend http://10.244.0.150:8000/metrics up    
+taskboard-taskboard-backend http://10.244.0.154:8000/metrics up    
+taskboard-taskboard-backend http://10.244.0.157:8000/metrics up    
+taskboard-taskboard-backend http://10.244.0.147:8000/metrics up    
+taskboard-taskboard-backend http://10.244.0.155:8000/metrics up    
+taskboard-taskboard-backend http://10.244.0.156:8000/metrics up    
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> (Invoke-RestMethod http://localhost:9091/api/v1/query -Body @{query='sum by (handler) (http_requests_total{namespace="taskboard"})'}).data.result | ForEach-Object { '{0,-22} {1}' -f $_.metric.handler, $_.value[1] }
+/ready                 142
+/metrics               178
+/health                83
+/api/tasks             92283
+/api/tasks/stats       2

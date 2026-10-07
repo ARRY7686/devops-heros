@@ -1,0 +1,19 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker compose version
+Docker Compose version v5.5.0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get nodes
+NAME       STATUS   ROLES           AGE   VERSION
+minikube   Ready    control-plane   27d   v1.37.0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm version --short
+v4.3.0+gbec5b06
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> terraform version
+Terraform v1.16.5
+on windows_amd64
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> act --version
+act version 0.2.89
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> trivy --version
+Version: 0.75.0
+Vulnerability DB:
+  Version: 2
+  UpdatedAt: 2026-10-07 07:38:55.515026687 +0000 UTC
+  NextUpdate: 2026-10-08 07:38:55.515026457 +0000 UTC
+  DownloadedAt: 2026-10-07 09:57:00.9881164 +0000 UTC

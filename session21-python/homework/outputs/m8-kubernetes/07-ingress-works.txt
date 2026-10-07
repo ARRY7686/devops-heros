@@ -1,0 +1,35 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Ingress-Get /api/tasks
+HTTP 200
+[]
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod -Method Post http://localhost:8081/api/tasks -Headers @{ Host = 'taskboard.local' } -ContentType application/json -Body '{"title":"Deployed on Kubernetes via Helm","priority":"HIGH","assignee":"Student"}' | Format-Table id, title, status -AutoSize
+
+id title                           status
+-- -----                           ------
+ 1 Deployed on Kubernetes via Helm TODO  
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:8081/api/tasks/stats -Headers @{ Host = 'taskboard.local' } | ConvertTo-Json -Compress
+{"total":1,"todo":1,"inProgress":0,"done":0}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> (Ingress-Get /) | ForEach-Object { if ($_.Length -gt 160) { $_.Substring(0,160) } else { $_ } }
+HTTP 200
+<!doctype html><html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>TaskBoard</title>  <script type="
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get all -n taskboard
+NAME                                               READY   STATUS    RESTARTS      AGE
+pod/taskboard-frontend-5677d697dc-5fw2z            1/1     Running   0             18s
+pod/taskboard-postgres-755b4497b-2m2bg             1/1     Running   0             101s
+pod/taskboard-taskboard-backend-7d8fb7697c-tkw9t   1/1     Running   2 (97s ago)   101s
+
+NAME                                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/backend                       ClusterIP   10.109.159.52   <none>        8000/TCP   18s
+service/taskboard-frontend            ClusterIP   10.103.31.134   <none>        80/TCP     101s
+service/taskboard-postgres            ClusterIP   10.99.228.90    <none>        5432/TCP   101s
+service/taskboard-taskboard-backend   ClusterIP   10.98.172.161   <none>        8000/TCP   101s
+
+NAME                                          READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/taskboard-frontend            1/1     1            1           101s
+deployment.apps/taskboard-postgres            1/1     1            1           101s
+deployment.apps/taskboard-taskboard-backend   1/1     1            1           101s
+
+NAME                                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/taskboard-frontend-5677d697dc            1         1         1       18s
+replicaset.apps/taskboard-frontend-bbb7b895f             0         0         0       101s
+replicaset.apps/taskboard-postgres-755b4497b             1         1         1       101s
+replicaset.apps/taskboard-taskboard-backend-7d8fb7697c   1         1         1       101s

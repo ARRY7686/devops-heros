@@ -1,0 +1,12 @@
+# Referenced by README section 24 but missing from the repo; recreated for the lab.
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskboard-broken-service
+  namespace: taskboard
+spec:
+  selector:
+    app: taskboard-api        # BUG: backend Pods are labelled app=taskboard-backend
+  ports:
+    - port: 8000
+      targetPort: 8000

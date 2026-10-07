@@ -1,0 +1,202 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\failing-test-demo> act push -W .github\workflows\ci.yml --artifact-server-path ..\artifacts\09-failing
+time="2026-10-07T15:31:33+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+time="2026-10-07T15:31:33+05:30" level=info msg="Start server on http://10.114.0.31:34567"
+[CI Pipeline/Code Lint] ⭐ Run Set up job
+[CI Pipeline/Code Lint] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Code Lint]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[CI Pipeline/Code Lint]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Code Lint]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Code Lint]   ✅  Success - Set up job
+[CI Pipeline/Code Lint]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CI Pipeline/Code Lint] ⭐ Run Main Checkout code
+[CI Pipeline/Code Lint]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\failing-test-demo\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/homework/failing-test-demo
+[CI Pipeline/Code Lint]   ✅  Success - Main Checkout code [64.9982ms]
+[CI Pipeline/Code Lint] ⭐ Run Main Set up Python
+[CI Pipeline/Code Lint]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CI Pipeline/Code Lint]   ❓  ::group::Installed versions
+[CI Pipeline/Code Lint]   | (node:32) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Code Lint]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Code Lint]   | Successfully set up CPython (3.11.17)
+[CI Pipeline/Code Lint]   ❓  ::endgroup::
+[CI Pipeline/Code Lint]   | [command]/opt/hostedtoolcache/Python/3.11.17/x64/bin/pip cache dir
+[CI Pipeline/Code Lint]   | /root/.cache/pip
+[CI Pipeline/Code Lint]   ⚙  ***
+[CI Pipeline/Code Lint]   | Cache Size: ~0 MB (40755 B)
+[CI Pipeline/Code Lint]   | [command]/usr/bin/tar -xf /tmp/b0c0beab-464e-4c99-b65f-7bcbf9813e55/cache.tzst -P -C /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/homework/failing-test-demo --use-compress-program unzstd
+[CI Pipeline/Code Lint]   | Cache restored successfully
+[CI Pipeline/Code Lint]   | Cache restored from key: setup-python-linux-x64-24.04-ubuntu-python-3.11.17-pip-ea141d97be997b0188900a248dbb29cbe32a198229c2aff77db5598810b96884
+[CI Pipeline/Code Lint]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CI Pipeline/Code Lint]   ✅  Success - Main Set up Python [4.479984s]
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+[CI Pipeline/Code Lint]   ⚙  ::set-output:: python-version=3.11.17
+[CI Pipeline/Code Lint]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.17/x64/bin/python
+[CI Pipeline/Code Lint]   ⚙  ::set-output:: cache-hit=false
+[CI Pipeline/Code Lint]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Code Lint]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64/bin
+[CI Pipeline/Code Lint] ⭐ Run Main Install lint tool
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Code Lint]   | Requirement already satisfied: flake8 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (6.1.0)
+[CI Pipeline/Code Lint]   | Requirement already satisfied: mccabe<0.8.0,>=0.7.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from flake8) (0.7.0)
+[CI Pipeline/Code Lint]   | Requirement already satisfied: pycodestyle<2.12.0,>=2.11.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from flake8) (2.11.1)
+[CI Pipeline/Code Lint]   | Requirement already satisfied: pyflakes<3.2.0,>=3.1.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from flake8) (3.1.0)
+[CI Pipeline/Code Lint]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Code Lint]   ✅  Success - Main Install lint tool [567.8358ms]
+[CI Pipeline/Code Lint] ⭐ Run Main Run flake8
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CI Pipeline/Code Lint]   ✅  Success - Main Run flake8 [332.5576ms]
+[CI Pipeline/Code Lint] ⭐ Run Post Set up Python
+[CI Pipeline/Code Lint]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[CI Pipeline/Code Lint]   | (node:127) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Code Lint]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Code Lint]   | [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/homework/failing-test-demo --files-from manifest.txt --use-compress-program zstdmt
+[CI Pipeline/Code Lint]   | Cache Size: ~0 MB (40755 B)
+[CI Pipeline/Code Lint]   | Cache saved successfully
+[CI Pipeline/Code Lint]   | Cache saved with the key: setup-python-Linux-x64-24.04-Ubuntu-python-3.11.17-pip-ea141d97be997b0188900a248dbb29cbe32a198229c2aff77db5598810b96884
+[CI Pipeline/Code Lint]   ✅  Success - Post Set up Python [324.469ms]
+[CI Pipeline/Code Lint] ⭐ Run Complete job
+[CI Pipeline/Code Lint] Cleaning up container for job Code Lint
+[CI Pipeline/Code Lint]   ✅  Success - Complete job
+[CI Pipeline/Code Lint] 🏁  Job succeeded
+[CI Pipeline/Run Tests] ⭐ Run Set up job
+[CI Pipeline/Run Tests] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Run Tests]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[CI Pipeline/Run Tests]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Run Tests]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Run Tests]   ✅  Success - Set up job
+[CI Pipeline/Run Tests]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CI Pipeline/Run Tests]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Run Tests]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Run Tests] ⭐ Run Main Checkout code
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework\failing-test-demo\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/homework/failing-test-demo
+[CI Pipeline/Run Tests]   ✅  Success - Main Checkout code [94.8708ms]
+[CI Pipeline/Run Tests] ⭐ Run Main Set up Python
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CI Pipeline/Run Tests]   ❓  ::group::Installed versions
+[CI Pipeline/Run Tests]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Run Tests]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Run Tests]   | Successfully set up CPython (3.11.17)
+[CI Pipeline/Run Tests]   ❓  ::endgroup::
+[CI Pipeline/Run Tests]   | [command]/opt/hostedtoolcache/Python/3.11.17/x64/bin/pip cache dir
+[CI Pipeline/Run Tests]   | /root/.cache/pip
+[CI Pipeline/Run Tests]   ⚙  ***
+[CI Pipeline/Run Tests]   | Cache Size: ~0 MB (40755 B)
+[CI Pipeline/Run Tests]   | [command]/usr/bin/tar -xf /tmp/e9c04e41-1bf0-4ea3-85f7-5be51c0b8697/cache.tzst -P -C /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/homework/failing-test-demo --use-compress-program unzstd
+[CI Pipeline/Run Tests]   | Cache restored successfully
+[CI Pipeline/Run Tests]   | Cache restored from key: setup-python-linux-x64-24.04-ubuntu-python-3.11.17-pip-ea141d97be997b0188900a248dbb29cbe32a198229c2aff77db5598810b96884
+[CI Pipeline/Run Tests]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CI Pipeline/Run Tests]   ✅  Success - Main Set up Python [5.4272238s]
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: python-version=3.11.17
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.17/x64/bin/python
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: cache-hit=false
+[CI Pipeline/Run Tests]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64
+[CI Pipeline/Run Tests]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64/bin
+[CI Pipeline/Run Tests] ⭐ Run Main Install dependencies
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Run Tests]   | Requirement already satisfied: pytest==7.4.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from -r requirements.txt (line 1)) (7.4.0)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: pytest-cov==4.1.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from -r requirements.txt (line 2)) (4.1.0)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: flake8==6.1.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from -r requirements.txt (line 3)) (6.1.0)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: iniconfig in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from pytest==7.4.0->-r requirements.txt (line 1)) (2.3.1)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: packaging in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from pytest==7.4.0->-r requirements.txt (line 1)) (26.3)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: pluggy<2.0,>=0.12 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from pytest==7.4.0->-r requirements.txt (line 1)) (1.6.0)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: coverage>=5.2.1 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from coverage[toml]>=5.2.1->pytest-cov==4.1.0->-r requirements.txt (line 2)) (7.16.2)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: mccabe<0.8.0,>=0.7.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from flake8==6.1.0->-r requirements.txt (line 3)) (0.7.0)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: pycodestyle<2.12.0,>=2.11.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from flake8==6.1.0->-r requirements.txt (line 3)) (2.11.1)
+[CI Pipeline/Run Tests]   | Requirement already satisfied: pyflakes<3.2.0,>=3.1.0 in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (from flake8==6.1.0->-r requirements.txt (line 3)) (3.1.0)
+[CI Pipeline/Run Tests]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Run Tests]   ✅  Success - Main Install dependencies [578.3994ms]
+[CI Pipeline/Run Tests] ⭐ Run Main Run tests with coverage
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CI Pipeline/Run Tests]   | ============================= test session starts ==============================
+[CI Pipeline/Run Tests]   | platform linux -- Python 3.11.17, pytest-7.4.0, pluggy-1.6.0
+[CI Pipeline/Run Tests]   | rootdir: /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/homework/failing-test-demo
+[CI Pipeline/Run Tests]   | plugins: cov-4.1.0
+[CI Pipeline/Run Tests]   | collected 4 items
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | tests/test_app.py F...                                                   [100%]
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | =================================== FAILURES ===================================
+[CI Pipeline/Run Tests]   | ___________________________________ test_add ___________________________________
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   |     def test_add():
+[CI Pipeline/Run Tests]   | >       assert add(2, 3) == 5
+[CI Pipeline/Run Tests]   | E       assert -1 == 5
+[CI Pipeline/Run Tests]   | E        +  where -1 = add(2, 3)
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | tests/test_app.py:6: AssertionError
+[CI Pipeline/Run Tests]   | - generated xml file: /mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/homework/failing-test-demo/test-results/results.xml -
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | ---------- coverage: platform linux, python 3.11.17-final-0 ----------
+[CI Pipeline/Run Tests]   | Name     Stmts   Miss  Cover   Missing
+[CI Pipeline/Run Tests]   | --------------------------------------
+[CI Pipeline/Run Tests]   | app.py       8      0   100%
+[CI Pipeline/Run Tests]   | --------------------------------------
+[CI Pipeline/Run Tests]   | TOTAL        8      0   100%
+[CI Pipeline/Run Tests]   | Coverage XML written to file coverage.xml
+[CI Pipeline/Run Tests]   | 
+[CI Pipeline/Run Tests]   | =========================== short test summary info ============================
+[CI Pipeline/Run Tests]   | FAILED tests/test_app.py::test_add - assert -1 == 5
+[CI Pipeline/Run Tests]   |  +  where -1 = add(2, 3)
+[CI Pipeline/Run Tests]   | ========================= 1 failed, 3 passed in 0.05s ==========================
+[CI Pipeline/Run Tests]   ❌  Failure - Main Run tests with coverage [549.4762ms]
+[CI Pipeline/Run Tests] exitcode '1': failure
+[CI Pipeline/Run Tests] ⭐ Run Main Upload test results
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Run Tests]   | (node:99) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Run Tests]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Run Tests]   | With the provided path, there will be 1 file uploaded
+[CI Pipeline/Run Tests]   | Artifact name is valid!
+[CI Pipeline/Run Tests]   | Root directory input is valid!
+[CI Pipeline/Run Tests]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Run Tests]   | (node:99) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Run Tests]   | Uploaded bytes 464
+[CI Pipeline/Run Tests]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Run Tests]   | SHA256 digest of uploaded artifact zip is 6c1123af254c87a0400f520cd027bfd4cecf30609f1f19aa90e0691d16d3bf4c
+[CI Pipeline/Run Tests]   | Finalizing artifact upload
+[CI Pipeline/Run Tests]   | Artifact test-results.zip successfully finalized. Artifact ID 3486992502
+[CI Pipeline/Run Tests]   | Artifact test-results has been successfully uploaded! Final size is 464 bytes. Artifact ID is 3486992502
+[CI Pipeline/Run Tests]   | Artifact download URL: https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3486992502
+[CI Pipeline/Run Tests]   ✅  Success - Main Upload test results [3.5129978s]
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-url=https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/3486992502
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-id=3486992502
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-digest=6c1123af254c87a0400f520cd027bfd4cecf30609f1f19aa90e0691d16d3bf4c
+[CI Pipeline/Run Tests] ⭐ Run Main Upload coverage report
+[CI Pipeline/Run Tests]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Run Tests]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Run Tests]   | (node:116) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Run Tests]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Run Tests]   | With the provided path, there will be 1 file uploaded
+[CI Pipeline/Run Tests]   | Artifact name is valid!
+[CI Pipeline/Run Tests]   | Root directory input is valid!
+[CI Pipeline/Run Tests]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Run Tests]   | (node:116) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Run Tests]   | Uploaded bytes 575
+[CI Pipeline/Run Tests]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Run Tests]   | SHA256 digest of uploaded artifact zip is 07665d77c4f02e1defe16950d05e63b764a8271100df61859d4a3cfe4ec820c9
+[CI Pipeline/Run Tests]   | Finalizing artifact upload
+[CI Pipeline/Run Tests]   | Artifact coverage-report.zip successfully finalized. Artifact ID 1798326328
+[CI Pipeline/Run Tests]   | Artifact coverage-report has been successfully uploaded! Final size is 575 bytes. Artifact ID is 1798326328
+[CI Pipeline/Run Tests]   | Artifact download URL: https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/1798326328
+[CI Pipeline/Run Tests]   ✅  Success - Main Upload coverage report [3.9973005s]
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-url=https://github.com/ARRY7686/devops-heros/actions/runs/1/artifacts/1798326328
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-id=1798326328
+[CI Pipeline/Run Tests]   ⚙  ::set-output:: artifact-digest=07665d77c4f02e1defe16950d05e63b764a8271100df61859d4a3cfe4ec820c9
+[CI Pipeline/Run Tests] ⭐ Run Complete job
+[CI Pipeline/Run Tests]   ✅  Success - Complete job
+[CI Pipeline/Run Tests] 🏁  Job failed
+Error: Job 'Run Tests' failed

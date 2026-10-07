@@ -1,0 +1,60 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get pods -l app=troubleshooting-app -o wide
+NAME                                   READY   STATUS    RESTARTS   AGE   IP             NODE       NOMINATED NODE   READINESS GATES
+troubleshooting-app-59d4957864-lfp8r   1/1     Running   0          2s    10.244.0.102   minikube   <none>           <none>
+troubleshooting-app-59d4957864-vldrm   1/1     Running   0          2s    10.244.0.103   minikube   <none>           <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> $pod = kubectl get pods -l app=troubleshooting-app -o jsonpath='{.items[0].metadata.name}'
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl describe pod $pod
+Name:             troubleshooting-app-59d4957864-lfp8r
+Namespace:        session14
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Wed, 07 Oct 2026 15:11:34 +0530
+Labels:           app=troubleshooting-app
+                  pod-template-hash=59d4957864
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.102
+IPs:
+  IP:           10.244.0.102
+Controlled By:  ReplicaSet/troubleshooting-app-59d4957864
+Containers:
+  app:
+    Container ID:   containerd://c75bb9c809393e6af2416e6277e9f5dc21bd0c3a96963351dc677b274ae6d834
+    Image:          nginx:1.27
+    Image ID:       docker.io/library/nginx@sha256:6784fb0834aa7dbbe12e3d7471e69c290df3e6ba810dc38b34ae33d3c1c05f7d
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 07 Oct 2026 15:11:35 +0530
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xl2tr (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-xl2tr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  2s    default-scheduler  Successfully assigned session14/troubleshooting-app-59d4957864-lfp8r to minikube
+  Normal  Pulled     1s    kubelet            spec.containers{app}: Container image "nginx:1.27" already present on machine and can be accessed by the pod
+  Normal  Created    1s    kubelet            spec.containers{app}: Container created
+  Normal  Started    1s    kubelet            spec.containers{app}: Container started

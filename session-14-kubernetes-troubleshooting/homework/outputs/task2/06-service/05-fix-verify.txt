@@ -1,0 +1,56 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> git diff --no-index service.yaml ..\homework\manifests\service\service-fixed.yaml
+warning: in the working copy of '..\homework\manifests\service\service-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/service.yaml "b/..\\homework\\manifests\\service\\service-fixed.yaml"
+index e77a4e9..c5af1f4 100644
+--- a/service.yaml
++++ "b/..\\homework\\manifests\\service\\service-fixed.yaml"
+@@ -1,15 +1,12 @@
+ apiVersion: v1
+ kind: Service
+-
+ metadata:
+   name: web-service
+-
+ spec:
+   selector:
+-    app: web-ahsgdf
+-
++    # FIX: was "app: web-ahsgdf"; must match the label on the Deployment Pods
++    app: web
+   ports:
+     - port: 80
+       targetPort: 80
+-
+-  type: ClusterIP
+\ No newline at end of file
++  type: ClusterIP
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl apply -f ..\homework\manifests\service\service-fixed.yaml
+service/web-service configured
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get endpoints web-service
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME          ENDPOINTS                       AGE
+web-service   10.244.0.91:80,10.244.0.92:80   8s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec net-client -- wget -qO- -T 3 http://web-service
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>

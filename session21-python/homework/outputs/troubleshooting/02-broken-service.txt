@@ -1,0 +1,53 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl apply -f homework\troubleshooting\broken-service.yaml
+service/taskboard-broken-service created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get svc -n taskboard
+NAME                          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+backend                       ClusterIP   10.104.43.19    <none>        8000/TCP   3m57s
+taskboard-broken-service      ClusterIP   10.101.246.46   <none>        8000/TCP   1s
+taskboard-frontend            ClusterIP   10.99.71.235    <none>        80/TCP     5m21s
+taskboard-postgres            ClusterIP   10.96.37.218    <none>        5432/TCP   5m21s
+taskboard-taskboard-backend   ClusterIP   10.100.87.143   <none>        8000/TCP   5m21s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get endpoints taskboard-broken-service -n taskboard
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME                       ENDPOINTS   AGE
+taskboard-broken-service   <none>      1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get pods -n taskboard --show-labels
+NAME                                           READY   STATUS        RESTARTS        AGE     LABELS
+taskboard-broken-image-6669966b5b-fgkcb        0/1     Terminating   0               32s     app=broken-image,pod-template-hash=6669966b5b
+taskboard-frontend-bbb7b895f-57bdc             1/1     Running       4 (4m21s ago)   5m21s   app=taskboard-frontend,pod-template-hash=bbb7b895f
+taskboard-postgres-755b4497b-sj8qt             1/1     Running       0               5m21s   app=taskboard-postgres,pod-template-hash=755b4497b
+taskboard-taskboard-backend-7d8fb7697c-42k4x   1/1     Running       0               2m18s   app=taskboard-backend,pod-template-hash=7d8fb7697c
+taskboard-taskboard-backend-7d8fb7697c-bddpp   1/1     Running       0               2m3s    app=taskboard-backend,pod-template-hash=7d8fb7697c
+taskboard-taskboard-backend-7d8fb7697c-g9b4f   1/1     Running       3 (5m ago)      5m21s   app=taskboard-backend,pod-template-hash=7d8fb7697c
+taskboard-taskboard-backend-7d8fb7697c-nk7rm   1/1     Running       0               3m48s   app=taskboard-backend,pod-template-hash=7d8fb7697c
+taskboard-taskboard-backend-7d8fb7697c-pcqsh   1/1     Running       0               2m18s   app=taskboard-backend,pod-template-hash=7d8fb7697c
+taskboard-taskboard-backend-7d8fb7697c-zcskt   1/1     Running       0               2m3s    app=taskboard-backend,pod-template-hash=7d8fb7697c
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> git diff --no-index homework\troubleshooting\broken-service.yaml homework\troubleshooting\fixed-service.yaml
+warning: in the working copy of 'homework\troubleshooting\broken-service.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'homework\troubleshooting\fixed-service.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git "a/homework\\troubleshooting\\broken-service.yaml" "b/homework\\troubleshooting\\fixed-service.yaml"
+index 6b5975f..572ecd3 100644
+--- "a/homework\\troubleshooting\\broken-service.yaml"
++++ "b/homework\\troubleshooting\\fixed-service.yaml"
+@@ -1,4 +1,3 @@
+-# Referenced by README section 24 but missing from the repo; recreated for the lab.
+ apiVersion: v1
+ kind: Service
+ metadata:
+@@ -6,7 +5,7 @@ metadata:
+   namespace: taskboard
+ spec:
+   selector:
+-    app: taskboard-api        # BUG: backend Pods are labelled app=taskboard-backend
++    app: taskboard-backend    # FIX: matches the backend Pod label
+   ports:
+     - port: 8000
+       targetPort: 8000
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl apply -f homework\troubleshooting\fixed-service.yaml
+service/taskboard-broken-service configured
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get endpoints taskboard-broken-service -n taskboard
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME                       ENDPOINTS                                                           AGE
+taskboard-broken-service   10.244.0.147:8000,10.244.0.150:8000,10.244.0.154:8000 + 3 more...   4s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl delete -f homework\troubleshooting\fixed-service.yaml
+service "taskboard-broken-service" deleted from taskboard namespace

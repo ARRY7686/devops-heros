@@ -1,0 +1,20 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\05-variables> Copy-Item terraform.tfvars.example terraform.tfvars
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\05-variables> Get-Content terraform.tfvars
+aws_region   = "ap-south-1"
+environment  = "dev"
+project_name = "student-project"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\05-variables> terraform plan | Select-String -Pattern 'bucket_prefix|Environment|Project'
+
+      + bucket_prefix               = "student-project-dev-"
+          + "Environment" = "dev"
+          + "Project"     = "student-project"
+          + "Environment" = "dev"
+          + "Project"     = "student-project"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\05-variables> terraform plan -var environment=test | Select-String -Pattern 'bucket_prefix|Environment'
+
+      + bucket_prefix               = "student-project-test-"
+          + "Environment" = "test"
+          + "Environment" = "test"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\05-variables> Remove-Item terraform.tfvars
+

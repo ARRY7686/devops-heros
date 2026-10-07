@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: net-server
+  labels:
+    app: net-server
+spec:
+  containers:
+    - name: http
+      image: python:3.11-alpine
+      # FIX: listen on all interfaces so the Pod IP accepts traffic
+      command: ["python3", "-m", "http.server", "8080", "--bind", "0.0.0.0"]
+      ports:
+        - containerPort: 8080

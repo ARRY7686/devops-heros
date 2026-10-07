@@ -1,0 +1,28 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> helm install rollback-demo ..\07-install-upgrade\app-chart
+NAME: rollback-demo
+LAST DEPLOYED: Wed Oct  7 15:03:54 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+rollback-demo-app-5666bb45b5-f6rk6   1/1     Running   0          0s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> helm upgrade rollback-demo ..\07-install-upgrade\app-chart --set image.tag=doesnotexist
+Release "rollback-demo" has been upgraded. Happy Helming!
+NAME: rollback-demo
+LAST DEPLOYED: Wed Oct  7 15:03:54 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> kubectl get pods
+NAME                                 READY   STATUS             RESTARTS   AGE
+rollback-demo-app-5666bb45b5-f6rk6   1/1     Running            0          21s
+rollback-demo-app-6d599696f7-dd5gb   0/1     ImagePullBackOff   0          20s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\08-rollback> helm history rollback-demo
+REVISION	UPDATED                 	STATUS    	CHART          	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 15:03:54 2026	superseded	app-chart-0.1.0	1.0        	Install complete
+2       	Wed Oct  7 15:03:54 2026	deployed  	app-chart-0.1.0	1.0        	Upgrade complete

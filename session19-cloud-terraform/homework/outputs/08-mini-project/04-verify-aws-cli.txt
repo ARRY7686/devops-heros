@@ -1,0 +1,32 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\08-mini-project> aws ec2 describe-vpcs --filters Name=tag:Name,Values=session19-mini-vpc --query 'Vpcs[].{VpcId:VpcId,Cidr:CidrBlock,State:State}' --output table
+--------------------------------------------------------
+|                     DescribeVpcs                     |
++---------------+------------+-------------------------+
+|     Cidr      |   State    |          VpcId          |
++---------------+------------+-------------------------+
+|  10.20.0.0/16 |  available |  vpc-b1d6c47631722645a  |
++---------------+------------+-------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\08-mini-project> aws ec2 describe-subnets --filters Name=tag:Name,Values=session19-mini-public-subnet --query 'Subnets[].{SubnetId:SubnetId,Cidr:CidrBlock,AZ:AvailabilityZone}' --output table
+-------------------------------------------------------------
+|                      DescribeSubnets                      |
++-------------+----------------+----------------------------+
+|     AZ      |     Cidr       |         SubnetId           |
++-------------+----------------+----------------------------+
+|  ap-south-1a|  10.20.1.0/24  |  subnet-8d22356bb2f6071d7  |
++-------------+----------------+----------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\08-mini-project> aws ec2 describe-route-tables --filters Name=tag:Name,Values=session19-mini-public-rt --query 'RouteTables[].{RouteTableId:RouteTableId,VpcId:VpcId}' --output table
+----------------------------------------------------
+|                DescribeRouteTables               |
++------------------------+-------------------------+
+|      RouteTableId      |          VpcId          |
++------------------------+-------------------------+
+|  rtb-662e5970460c979a2 |  vpc-b1d6c47631722645a  |
++------------------------+-------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\08-mini-project> aws ec2 describe-security-groups --filters Name=group-name,Values=session19-mini-web-sg --query 'SecurityGroups[].{GroupId:GroupId,VpcId:VpcId}' --output table
+---------------------------------------------------
+|             DescribeSecurityGroups              |
++-----------------------+-------------------------+
+|        GroupId        |          VpcId          |
++-----------------------+-------------------------+
+|  sg-084fc70a61ed5082b |  vpc-b1d6c47631722645a  |
++-----------------------+-------------------------+

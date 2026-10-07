@@ -1,0 +1,52 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm install my-nginx bitnami/nginx
+NAME: my-nginx
+LAST DEPLOYED: Wed Oct  7 15:02:46 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+CHART NAME: nginx
+CHART VERSION: 25.2.1
+APP VERSION: 1.31.6
+
+⚠ WARNING: Since August 28th, 2025, only a limited subset of images/charts are available for free.
+    Subscribe to Bitnami Secure Images to receive continued support and security updates.
+    More info at https://bitnami.com and https://github.com/bitnami/containers/issues/83267
+
+** Please be patient while the chart is being deployed **
+NGINX can be accessed through the following DNS name from within your cluster:
+
+    my-nginx.session15.svc.cluster.local (port 80)
+
+To access NGINX from outside the cluster, follow the steps below:
+
+1. Get the NGINX URL by running these commands:
+
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        Watch the status with: 'kubectl get svc --namespace session15 -w my-nginx'
+
+    export SERVICE_PORT=$(kubectl get --namespace session15 -o jsonpath="{.spec.ports[0].port}" services my-nginx)
+    export SERVICE_IP=$(kubectl get svc --namespace session15 my-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo "http://${SERVICE_IP}:${SERVICE_PORT}"
+WARNING: Rolling tag detected (bitnami/nginx:latest), please note that it is strongly recommended to avoid using rolling tags in a production environment.
++info https://techdocs.broadcom.com/us/en/vmware-tanzu/bitnami-secure-images/bitnami-secure-images/services/bsi-doc/apps-tutorials-understand-rolling-tags-containers-index.html
+WARNING: Rolling tag detected (bitnami/git:latest), please note that it is strongly recommended to avoid using rolling tags in a production environment.
++info https://techdocs.broadcom.com/us/en/vmware-tanzu/bitnami-secure-images/bitnami-secure-images/services/bsi-doc/apps-tutorials-understand-rolling-tags-containers-index.html
+WARNING: Rolling tag detected (bitnami/nginx-exporter:latest), please note that it is strongly recommended to avoid using rolling tags in a production environment.
++info https://techdocs.broadcom.com/us/en/vmware-tanzu/bitnami-secure-images/bitnami-secure-images/services/bsi-doc/apps-tutorials-understand-rolling-tags-containers-index.html
+
+WARNING: There are "resources" sections in the chart not set. Using "resourcesPreset" is not recommended for production. For production installations, please set the following values according to your workload needs:
+  - cloneStaticSiteFromGit.gitSync.resources
+  - resources
++info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm list
+NAME    	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART       	APP VERSION
+my-nginx	session15	1       	2026-10-07 15:02:46.8104379 +0530 IST	deployed	nginx-25.2.1	1.31.6     
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-5ff6687869-z5q2j   1/1     Running   0          18s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> kubectl get services
+NAME       TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+my-nginx   LoadBalancer   10.102.146.149   <pending>     80:32239/TCP,443:32168/TCP   19s

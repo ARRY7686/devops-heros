@@ -1,0 +1,13 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm list -A
+NAME      	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART         	APP VERSION
+my-release	default  	1       	2026-09-22 12:31:44.6707277 +0530 IST	deployed	my-chart-0.1.0	1.16.0     
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl get all
+No resources found in session15 namespace.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl delete namespace session15
+namespace "session15" deleted
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl get namespace session15
+Error from server (NotFound): namespaces "session15" not found
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> helm repo remove bitnami
+"bitnami" has been removed from your repositories
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\homework> kubectl config set-context --current --namespace=default
+Context "minikube" modified.

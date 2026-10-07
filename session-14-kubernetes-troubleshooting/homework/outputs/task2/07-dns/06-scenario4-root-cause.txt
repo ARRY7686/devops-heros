@@ -1,0 +1,23 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl exec dns-test -- nslookup postgres-db-wrong-name.production.svc.cluster.local
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+** server can't find postgres-db-wrong-name.production.svc.cluster.local: NXDOMAIN
+
+command terminated with exit code 1
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl get namespace production
+Error from server (NotFound): namespaces "production" not found
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl get services -A
+NAMESPACE     NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                  AGE
+default       hpa-demo-service      ClusterIP   10.111.71.218   <none>        80/TCP                   83m
+default       kubernetes            ClusterIP   10.96.0.1       <none>        443/TCP                  18d
+default       my-release-my-chart   ClusterIP   10.99.12.122    <none>        80/TCP                   15d
+kube-system   kube-dns              ClusterIP   10.96.0.10      <none>        53/UDP,53/TCP,9153/TCP   27d
+kube-system   metrics-server        ClusterIP   10.97.71.47     <none>        443/TCP                  82m
+session14     web-service           ClusterIP   10.110.119.45   <none>        80/TCP                   34s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl exec dns-test -- nslookup kubernetes.default
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+Name:	kubernetes.default.svc.cluster.local
+Address: 10.96.0.1

@@ -1,0 +1,50 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> (terraform state list | Measure-Object).Count
+63
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> aws eks list-clusters
+{
+    "clusters": [
+        "taskboard-eks"
+    ]
+}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> aws eks describe-cluster --name taskboard-eks --query 'cluster.{Name:name,Status:status,Version:version,Endpoint:endpoint}' --output table
+--------------------------------------------------------------------------------
+|                                DescribeCluster                               |
++----------+-------------------------------------------------------------------+
+|  Endpoint|  https://EWKu9JZsqRaf5QxKT0Ww.19y.ap-south-1.eks.amazonaws.com/   |
+|  Name    |  taskboard-eks                                                    |
+|  Status  |  ACTIVE                                                           |
+|  Version |  1.31                                                             |
++----------+-------------------------------------------------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> aws eks list-nodegroups --cluster-name taskboard-eks
+{
+    "nodegroups": [
+        "main-20261007105126492900000013"
+    ]
+}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> aws ec2 describe-vpcs --filters Name=tag:Name,Values=taskboard-vpc --query 'Vpcs[].{VpcId:VpcId,Cidr:CidrBlock}' --output table
+-------------------------------------------
+|              DescribeVpcs               |
++---------------+-------------------------+
+|     Cidr      |          VpcId          |
++---------------+-------------------------+
+|  10.20.0.0/16 |  vpc-1712aa7e3a1553492  |
++---------------+-------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> aws ec2 describe-subnets --filters Name=tag:Name,Values=taskboard-vpc-* --query 'Subnets[].{Subnet:SubnetId,Cidr:CidrBlock,AZ:AvailabilityZone}' --output table
+---------------------------------------------------------------
+|                       DescribeSubnets                       |
++-------------+------------------+----------------------------+
+|     AZ      |      Cidr        |          Subnet            |
++-------------+------------------+----------------------------+
+|  ap-south-1a|  10.20.1.0/24    |  subnet-66cc6c4e8e07dc35e  |
+|  ap-south-1a|  10.20.101.0/24  |  subnet-15cd20f64473b05e2  |
+|  ap-south-1b|  10.20.2.0/24    |  subnet-d85feb4362a1b2f68  |
+|  ap-south-1b|  10.20.102.0/24  |  subnet-e690a8497fc55d00e  |
++-------------+------------------+----------------------------+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> aws ec2 describe-nat-gateways --query 'NatGateways[].{Nat:NatGatewayId,State:State,Subnet:SubnetId}' --output table
+--------------------------------------------------------------------
+|                        DescribeNatGateways                       |
++------------------------+------------+----------------------------+
+|           Nat          |   State    |          Subnet            |
++------------------------+------------+----------------------------+
+|  nat-4ffcc5297b316bc55 |  available |  subnet-15cd20f64473b05e2  |
++------------------------+------------+----------------------------+

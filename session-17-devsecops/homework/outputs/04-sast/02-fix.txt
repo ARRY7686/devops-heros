@@ -1,0 +1,92 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> Copy-Item -Recurse -Force ..\demo\app sast-fix\app
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> (Get-Content sast-fix\app\app.py) -replace 'debug=True', 'debug=os.environ.get("FLASK_DEBUG") == "1"' | Set-Content sast-fix\app\app.py
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> Select-String -Path sast-fix\app\app.py -Pattern 'app.run' -SimpleMatch
+
+sast-fix\app\app.py:234:    app.run(host="0.0.0.0", port=5001, debug=os.environ.get("FLASK_DEBUG") == "1")
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> bandit -r sast-fix\app -f screen
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.14.7
+Run started:2026-10-07 09:55:19.745747+00:00
+
+Test results:
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: sast-fix\app\app.py:79:19
+78	    return jsonify({
+79	        "message": random.choice(greetings),
+80	        "name": name,
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: sast-fix\app\app.py:190:13
+189	            duration = 0
+190	        elif random.random() < float(fail_chance):
+191	            status = "failed"
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: sast-fix\app\app.py:192:29
+191	            status = "failed"
+192	            duration = round(random.uniform(0.5, 5.0), 2)
+193	            failed = True
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: sast-fix\app\app.py:196:29
+195	            status = "passed"
+196	            duration = round(random.uniform(0.5, 15.0), 2)
+197	
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: sast-fix\app\app.py:207:20
+206	    total_time = round(sum(s["duration_s"] for s in stages), 2)
+207	    run_id = f"run-{random.randint(1000, 9999)}"
+208	
+
+--------------------------------------------------
+>> Issue: [B104:hardcoded_bind_all_interfaces] Possible binding to all interfaces.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-605 (https://cwe.mitre.org/data/definitions/605.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b104_hardcoded_bind_all_interfaces.html
+   Location: sast-fix\app\app.py:234:17
+233	if __name__ == "__main__":
+234	    app.run(host="0.0.0.0", port=5001, debug=os.environ.get("FLASK_DEBUG") == "1")
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 168
+	Total lines skipped (#nosec): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 5
+		Medium: 1
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 1
+		High: 5
+Files skipped (0):

@@ -1,0 +1,26 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> helm install notes-dev notes-chart
+NAME: notes-dev
+LAST DEPLOYED: Wed Oct  7 15:05:47 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+notes-dev-deploy-74956bd987-djtt5   1/1     Running   0          0s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl get services
+NAME            TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+notes-dev-svc   NodePort   10.102.210.240   <none>        80:30090/TCP   1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl get configmaps
+NAME               DATA   AGE
+kube-root-ca.crt   1      3m23s
+notes-dev-config   2      1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl exec deploy/notes-dev-deploy -- printenv APP_NAME ENVIRONMENT
+notes-app
+development
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl exec deploy/notes-dev-deploy -- curl -s localhost | Select-Object -First 4
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>

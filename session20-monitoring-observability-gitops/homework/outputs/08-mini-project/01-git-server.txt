@@ -1,0 +1,41 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> Get-Content git-server\git-server.yaml | Select-Object -First 30
+# In-cluster Git server for the GitOps mini project (replaces a GitHub repo).
+# git daemon serves the bare repo on port 9418:
+#  - the developer pushes to it through `kubectl port-forward` (git://localhost:9418/gitops.git)
+#  - Argo CD pulls from it inside the cluster (git://git-server.gitserver.svc.cluster.local/gitops.git)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: git-server
+  namespace: gitserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-server
+  template:
+    metadata:
+      labels:
+        app: git-server
+    spec:
+      initContainers:
+        - name: init-repo
+          image: alpine/git:2.47.2
+          command: ["sh", "-c"]
+          args:
+            - git init --bare --initial-branch=main /srv/git/gitops.git &&
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl apply -f git-server\git-server.yaml
+namespace/gitserver created
+deployment.apps/git-server created
+service/git-server created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> kubectl get pods,svc -n gitserver
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/git-server-7577cfd7c5-hvjh2   1/1     Running   0          4s
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/git-server   ClusterIP   10.106.26.201   <none>        9418/TCP   4s

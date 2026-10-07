@@ -1,0 +1,27 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> Copy-Item -Recurse -Force ..\06-git-as-source-of-truth\gitops-repo gitops-repo-06
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework> Set-Location gitops-repo-06
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git init -b main
+Initialized empty Git repository in C:/Users/aadig/OneDrive/Desktop/devops-heros/session20-monitoring-observability-gitops/homework/gitops-repo-06/.git/
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git config user.name 'devops-student'; git config user.email 'student@example.com'
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	README.md
+	app/
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git add .
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo-06> git commit -m 'Add session 20 application manifests'
+[main (root-commit) 3e9b057] Add session 20 application manifests
+ 3 files changed, 53 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 app/deployment.yaml
+ create mode 100644 app/service.yaml

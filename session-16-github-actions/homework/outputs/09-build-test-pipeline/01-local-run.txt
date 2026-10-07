@@ -1,0 +1,36 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262> Get-Content app.py
+def add(a, b):
+    return a + b
+
+
+def subtract(a, b):
+    return a - b
+
+
+def divide(a, b):
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a / b
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262> pip install -q -r requirements.txt
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262> flake8 app.py tests/
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262> python -m pytest tests/ --junitxml=test-results/results.xml --cov=app --cov-report=term-missing
+============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-7.4.0, pluggy-1.6.0
+rootdir: C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262
+plugins: platformdirs-4.12.3, cov-4.1.0
+collected 4 items
+
+tests\test_app.py ....                                                   [100%]
+
+- generated xml file: C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\09-build-test-pipeline 10-33-34-262\test-results\results.xml -
+
+---------- coverage: platform win32, python 3.14.7-final-0 -----------
+Name     Stmts   Miss  Cover   Missing
+--------------------------------------
+app.py       8      0   100%
+--------------------------------------
+TOTAL        8      0   100%
+
+============================== 4 passed in 0.18s ==============================

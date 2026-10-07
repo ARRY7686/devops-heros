@@ -1,0 +1,43 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\06-templates> helm template my-release template-demo
+---
+# Source: template-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-release-svc
+spec:
+  selector:
+    app: my-release
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+# Source: template-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-release-app
+  labels:
+    app: my-release
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-release
+  template:
+    metadata:
+      labels:
+        app: my-release
+    spec:
+      containers:
+        - name: app
+          image: "nginx:latest"
+          ports:
+            - containerPort: 80
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\06-templates> helm template my-release template-demo --set replicaCount=5 | Select-String -Pattern replicas:
+
+  replicas: 5
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\06-templates> helm template my-release template-demo --set service.enabled=false | Select-String -Pattern '^kind:'
+
+kind: Deployment

@@ -1,0 +1,14 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\05-introduction-to-gitops> kubectl apply -f app/
+deployment.apps/session20-app created
+service/session20-app created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\05-introduction-to-gitops> kubectl get deployment
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+session20-app   2/2     2            2           3s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\05-introduction-to-gitops> kubectl scale deployment --all --replicas=4
+deployment.apps/session20-app scaled
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\05-introduction-to-gitops> kubectl get deployment
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+session20-app   2/4     4            2           3s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\05-introduction-to-gitops> kubectl delete -f app/
+deployment.apps "session20-app" deleted from s20-demo namespace
+service "session20-app" deleted from s20-demo namespace

@@ -1,0 +1,15 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\terraform-s3-demo> terraform init
+Initializing the backend...
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Installing hashicorp/aws v6.66.0...
+- Installed hashicorp/aws v6.66.0 (signed by HashiCorp)
+
+Terraform has made some changes to the provider dependency selections recorded
+in the .terraform.lock.hcl file. Review those changes and commit them to your
+version control system if they represent changes you intended to make.
+
+Terraform has been successfully initialized!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\terraform-s3-demo> terraform validate
+Success! The configuration is valid.

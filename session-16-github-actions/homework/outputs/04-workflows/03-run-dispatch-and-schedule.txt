@@ -1,0 +1,35 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act workflow_dispatch -W workflow-dispatch.yml --input environment=staging --input run_smoke_tests=true
+time="2026-10-07T15:22:16+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Manual Trigger Example/manual-execution] ⭐ Run Set up job
+[Manual Trigger Example/manual-execution] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Manual Trigger Example/manual-execution]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Manual Trigger Example/manual-execution]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Manual Trigger Example/manual-execution]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Manual Trigger Example/manual-execution]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Manual Trigger Example/manual-execution]   ✅  Success - Set up job
+[Manual Trigger Example/manual-execution] ⭐ Run Main Report input parameters
+[Manual Trigger Example/manual-execution]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Manual Trigger Example/manual-execution]   | Selected environment: staging
+[Manual Trigger Example/manual-execution]   | Run smoke tests: true
+[Manual Trigger Example/manual-execution]   ✅  Success - Main Report input parameters [140.2659ms]
+[Manual Trigger Example/manual-execution] ⭐ Run Complete job
+[Manual Trigger Example/manual-execution] Cleaning up container for job manual-execution
+[Manual Trigger Example/manual-execution]   ✅  Success - Complete job
+[Manual Trigger Example/manual-execution] 🏁  Job succeeded
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act schedule -W schedule-cron.yml
+time="2026-10-07T15:22:17+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Scheduled Cron Example/nightly-maintenance] ⭐ Run Set up job
+[Scheduled Cron Example/nightly-maintenance] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Scheduled Cron Example/nightly-maintenance]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Scheduled Cron Example/nightly-maintenance]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Scheduled Cron Example/nightly-maintenance]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Scheduled Cron Example/nightly-maintenance]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Scheduled Cron Example/nightly-maintenance]   ✅  Success - Set up job
+[Scheduled Cron Example/nightly-maintenance] ⭐ Run Main Run nightly maintenance tasks
+[Scheduled Cron Example/nightly-maintenance]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Scheduled Cron Example/nightly-maintenance]   | Executing nightly automated maintenance job at Wed Oct  7 09:52:18 UTC 2026
+[Scheduled Cron Example/nightly-maintenance]   ✅  Success - Main Run nightly maintenance tasks [128.8139ms]
+[Scheduled Cron Example/nightly-maintenance] ⭐ Run Complete job
+[Scheduled Cron Example/nightly-maintenance] Cleaning up container for job nightly-maintenance
+[Scheduled Cron Example/nightly-maintenance]   ✅  Success - Complete job
+[Scheduled Cron Example/nightly-maintenance] 🏁  Job succeeded

@@ -1,0 +1,27 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\05-jobs-steps 10-33-34-238> act push -W conditional-steps.yml
+time="2026-10-07T16:14:16+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+Error: workflow is not valid. 'conditional-steps.yml': yaml: line 22: mapping values are not allowed in this context
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\05-jobs-steps 10-33-34-238> act push -W multiline-steps.yml
+time="2026-10-07T16:14:16+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+time="2026-10-07T16:14:16+05:30" level=info msg="deleted cache: &{ID:2 Key:setup-python-linux-x64-24.04-ubuntu-python-3.11.17-pip-ea141d97be997b0188900a248dbb29cbe32a198229c2aff77db5598810b96884 Version:dc4f892d7358e35233e412252917e6c8e7bf9fdeb0aa86c0a09998b5a784f0af Size:40755 Complete:true UsedAt:1791367301 CreatedAt:1791367033}" module=artifactcache
+time="2026-10-07T16:14:16+05:30" level=info msg="deleted cache: &{ID:3 Key:setup-python-linux-x64-24.04-ubuntu-python-3.11.17-pip-ea141d97be997b0188900a248dbb29cbe32a198229c2aff77db5598810b96884 Version:dc4f892d7358e35233e412252917e6c8e7bf9fdeb0aa86c0a09998b5a784f0af Size:40755 Complete:true UsedAt:1791367346 CreatedAt:1791367303}" module=artifactcache
+time="2026-10-07T16:14:16+05:30" level=info msg="deleted cache: &{ID:4 Key:setup-python-linux-x64-24.04-ubuntu-python-3.11.17-pip-ea141d97be997b0188900a248dbb29cbe32a198229c2aff77db5598810b96884 Version:dc4f892d7358e35233e412252917e6c8e7bf9fdeb0aa86c0a09998b5a784f0af Size:40763 Complete:true UsedAt:1791367375 CreatedAt:1791367349}" module=artifactcache
+[Multiline Steps Example/multiline-execution] ⭐ Run Set up job
+[Multiline Steps Example/multiline-execution] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Multiline Steps Example/multiline-execution]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Multiline Steps Example/multiline-execution]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Multiline Steps Example/multiline-execution]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Multiline Steps Example/multiline-execution]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Multiline Steps Example/multiline-execution]   ✅  Success - Set up job
+[Multiline Steps Example/multiline-execution] ⭐ Run Main Execute script with multiline commands and environment variables
+[Multiline Steps Example/multiline-execution]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Multiline Steps Example/multiline-execution]   | [INFO] Running multiline step
+[Multiline Steps Example/multiline-execution]   | [INFO] Environment parameter: demo-environment
+[Multiline Steps Example/multiline-execution]   | [INFO] Step parameter: step-specific-value
+[Multiline Steps Example/multiline-execution]   | [INFO] Current timestamp: 2026-10-07T10:44:17Z
+[Multiline Steps Example/multiline-execution]   | [PASS] Multiline block executed successfully
+[Multiline Steps Example/multiline-execution]   ✅  Success - Main Execute script with multiline commands and environment variables [147.7337ms]
+[Multiline Steps Example/multiline-execution] ⭐ Run Complete job
+[Multiline Steps Example/multiline-execution] Cleaning up container for job multiline-execution
+[Multiline Steps Example/multiline-execution]   ✅  Success - Complete job
+[Multiline Steps Example/multiline-execution] 🏁  Job succeeded

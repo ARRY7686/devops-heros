@@ -1,0 +1,29 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl delete pod fail-4-dns-failure-pod
+pod "fail-4-dns-failure-pod" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> git diff --no-index broken.yaml ..\..\homework\manifests\dns\scenario-4-fixed.yaml
+warning: in the working copy of '..\..\homework\manifests\dns\scenario-4-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/broken.yaml "b/..\\..\\homework\\manifests\\dns\\scenario-4-fixed.yaml"
+index 660fc3d..3bf42d2 100644
+--- a/broken.yaml
++++ "b/..\\..\\homework\\manifests\\dns\\scenario-4-fixed.yaml"
+@@ -12,8 +12,8 @@ spec:
+       command: ["sh", "-c"]
+       args:
+         - |
+-          echo "Attempting connection to internal database...";
+-          # BUG: Incorrect internal hostname
+-          curl -s --connect-timeout 3 http://postgres-db-wrong-name.production.svc.cluster.local:5432 || true
++          echo "Attempting connection to internal web service...";
++          # FIX: use the real Service name: <service>.<namespace>.svc.cluster.local
++          curl -sS -o /dev/null -w "HTTP %{http_code} from web-service\n" --connect-timeout 3 http://web-service.session14.svc.cluster.local:80
+           echo "Process sleeping...";
+           sleep 3600
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl apply -f ..\..\homework\manifests\dns\scenario-4-fixed.yaml
+pod/fail-4-dns-failure-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl get pod fail-4-dns-failure-pod
+NAME                     READY   STATUS    RESTARTS   AGE
+fail-4-dns-failure-pod   1/1     Running   0          6s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-4-dns-failure> kubectl logs fail-4-dns-failure-pod
+Attempting connection to internal web service...
+HTTP 200 from web-service
+Process sleeping...

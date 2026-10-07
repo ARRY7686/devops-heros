@@ -1,0 +1,24 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl apply -f pod.yaml
+pod/get-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get pods
+NAME       READY   STATUS    RESTARTS   AGE
+get-demo   1/1     Running   0          1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get pods -o wide
+NAME       READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+get-demo   1/1     Running   0          1s    10.244.0.20   minikube   <none>           <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get nodes
+NAME       STATUS   ROLES           AGE   VERSION
+minikube   Ready    control-plane   26d   v1.37.0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get services
+No resources found in session14 namespace.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get deployments
+No resources found in session14 namespace.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get all
+NAME           READY   STATUS    RESTARTS   AGE
+pod/get-demo   1/1     Running   0          1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get pods --show-labels
+NAME       READY   STATUS    RESTARTS   AGE   LABELS
+get-demo   1/1     Running   0          1s    app=get-demo
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl get pod get-demo -o custom-columns=NAME:.metadata.name,IP:.status.podIP,NODE:.spec.nodeName,IMAGE:.spec.containers[0].image
+NAME       IP            NODE       IMAGE
+get-demo   10.244.0.20   minikube   nginx:1.27

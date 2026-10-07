@@ -1,0 +1,12 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> $watch = Start-Job { kubectl get pods -w }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> kubectl delete pod get-demo
+pod "get-demo" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\01-kubectl-get> Receive-Job $watch; Stop-Job $watch; Remove-Job $watch
+NAME       READY   STATUS    RESTARTS   AGE
+get-demo   1/1     Running   0          3s
+get-demo   1/1     Terminating   0          6s
+get-demo   1/1     Terminating   0          6s
+get-demo   0/1     Completed     0          6s
+get-demo   0/1     Completed     0          6s
+get-demo   0/1     Completed     0          6s

@@ -1,0 +1,5 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\08-pending-pods> kubectl get pod pending-demo -o jsonpath='{.spec.nodeSelector}'
+{"kubernetes.io/hostname":"node-that-does-not-exist"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\08-pending-pods> kubectl get nodes -L kubernetes.io/hostname
+NAME       STATUS   ROLES           AGE   VERSION   HOSTNAME
+minikube   Ready    control-plane   27d   v1.37.0   minikube

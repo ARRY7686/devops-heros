@@ -1,0 +1,13 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl describe service web-wrong-port | Select-String -Pattern 'Port|Endpoints'
+
+Name:                     web-wrong-port
+Port:                     <unset>  80/TCP
+TargetPort:               8080/TCP
+Endpoints:                10.244.0.91:8080,10.244.0.92:8080
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get deployment web -o jsonpath='{.spec.template.spec.containers[0].ports}'
+[{"containerPort":80,"protocol":"TCP"}]
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec deploy/web -- curl -s -o /dev/null -w '%{http_code}' localhost:80
+200
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec deploy/web -- curl -sS localhost:8080
+curl: (7) Failed to connect to localhost port 8080 after 0 ms: Couldn't connect to server
+command terminated with exit code 7

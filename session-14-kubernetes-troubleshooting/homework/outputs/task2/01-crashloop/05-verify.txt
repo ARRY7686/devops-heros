@@ -1,0 +1,12 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl get pod crash-demo
+NAME         READY   STATUS    RESTARTS   AGE
+crash-demo   1/1     Running   0          2s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl logs crash-demo
+Application starting...
+Application is healthy
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl describe pod crash-demo | Select-String -Pattern 'State:|Ready:|Restart Count'
+
+    State:          Running
+    Ready:          True
+    Restart Count:  0
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s

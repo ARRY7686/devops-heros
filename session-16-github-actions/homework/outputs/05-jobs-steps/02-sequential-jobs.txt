@@ -1,0 +1,47 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\05-jobs-steps 10-33-34-238> act push -W sequential-jobs.yml
+time="2026-10-07T15:22:55+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Sequential Jobs Example/Build Stage] ⭐ Run Set up job
+[Sequential Jobs Example/Build Stage] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Sequential Jobs Example/Build Stage]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Sequential Jobs Example/Build Stage]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Sequential Jobs Example/Build Stage]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Sequential Jobs Example/Build Stage]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Sequential Jobs Example/Build Stage]   ✅  Success - Set up job
+[Sequential Jobs Example/Build Stage] ⭐ Run Main Compile application
+[Sequential Jobs Example/Build Stage]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Sequential Jobs Example/Build Stage]   | Compiling binary...
+[Sequential Jobs Example/Build Stage]   ✅  Success - Main Compile application [150.7954ms]
+[Sequential Jobs Example/Build Stage] ⭐ Run Complete job
+[Sequential Jobs Example/Build Stage] Cleaning up container for job Build Stage
+[Sequential Jobs Example/Build Stage]   ✅  Success - Complete job
+[Sequential Jobs Example/Build Stage] 🏁  Job succeeded
+[Sequential Jobs Example/Test Stage ] ⭐ Run Set up job
+[Sequential Jobs Example/Test Stage ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Sequential Jobs Example/Test Stage ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Sequential Jobs Example/Test Stage ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Sequential Jobs Example/Test Stage ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Sequential Jobs Example/Test Stage ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Sequential Jobs Example/Test Stage ]   ✅  Success - Set up job
+[Sequential Jobs Example/Test Stage ] ⭐ Run Main Run automated test suite
+[Sequential Jobs Example/Test Stage ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Sequential Jobs Example/Test Stage ]   | Executing test suite post-build...
+[Sequential Jobs Example/Test Stage ]   ✅  Success - Main Run automated test suite [143.0607ms]
+[Sequential Jobs Example/Test Stage ] ⭐ Run Complete job
+[Sequential Jobs Example/Test Stage ] Cleaning up container for job Test Stage
+[Sequential Jobs Example/Test Stage ]   ✅  Success - Complete job
+[Sequential Jobs Example/Test Stage ] 🏁  Job succeeded
+[Sequential Jobs Example/Deploy Stage] ⭐ Run Set up job
+[Sequential Jobs Example/Deploy Stage] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Sequential Jobs Example/Deploy Stage]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Sequential Jobs Example/Deploy Stage]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Sequential Jobs Example/Deploy Stage]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Sequential Jobs Example/Deploy Stage]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Sequential Jobs Example/Deploy Stage]   ✅  Success - Set up job
+[Sequential Jobs Example/Deploy Stage] ⭐ Run Main Deploy to cluster
+[Sequential Jobs Example/Deploy Stage]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Sequential Jobs Example/Deploy Stage]   | Deploying verified build to cluster...
+[Sequential Jobs Example/Deploy Stage]   ✅  Success - Main Deploy to cluster [157.0201ms]
+[Sequential Jobs Example/Deploy Stage] ⭐ Run Complete job
+[Sequential Jobs Example/Deploy Stage] Cleaning up container for job Deploy Stage
+[Sequential Jobs Example/Deploy Stage]   ✅  Success - Complete job
+[Sequential Jobs Example/Deploy Stage] 🏁  Job succeeded

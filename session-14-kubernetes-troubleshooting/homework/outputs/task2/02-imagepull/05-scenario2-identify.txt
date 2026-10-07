@@ -1,0 +1,13 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-2-imagepull> kubectl apply -f broken.yaml
+pod/fail-2-imagepull-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-2-imagepull> kubectl get pod fail-2-imagepull-pod
+NAME                   READY   STATUS         RESTARTS   AGE
+fail-2-imagepull-pod   0/1     ErrImagePull   0          3s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-2-imagepull> kubectl events --for pod/fail-2-imagepull-pod
+LAST SEEN   TYPE      REASON      OBJECT                     MESSAGE
+3s          Normal    Scheduled   Pod/fail-2-imagepull-pod   Successfully assigned session14/fail-2-imagepull-pod to minikube
+2s          Normal    Pulling     Pod/fail-2-imagepull-pod   Pulling image "yatri-api-service:v999-invalid-tag-does-not-exist"
+0s          Warning   Failed      Pod/fail-2-imagepull-pod   Failed to pull image "yatri-api-service:v999-invalid-tag-does-not-exist": failed to pull and unpack image "docker.io/library/yatri-api-service:v999-invalid-tag-does-not-exist": failed to resolve reference "docker.io/library/yatri-api-service:v999-invalid-tag-does-not-exist": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+0s          Warning   Failed      Pod/fail-2-imagepull-pod   Error: ErrImagePull
+0s          Normal    BackOff     Pod/fail-2-imagepull-pod   Back-off pulling image "yatri-api-service:v999-invalid-tag-does-not-exist"
+0s          Warning   Failed      Pod/fail-2-imagepull-pod   Error: ImagePullBackOff

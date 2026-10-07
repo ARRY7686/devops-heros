@@ -1,0 +1,16 @@
+# Override for ../../docker-compose.yml (use: docker compose -f docker-compose.yml -f homework/compose/docker-compose.healthcheck.yml up)
+# FIX: plain `depends_on: [postgres]` only waits for the container to START, not for
+# PostgreSQL to accept connections. The backend runs `alembic upgrade head` immediately,
+# gets "connection refused" and exits. Wait for a healthy database instead.
+services:
+  postgres:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taskboard -d taskboard"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  backend:
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure

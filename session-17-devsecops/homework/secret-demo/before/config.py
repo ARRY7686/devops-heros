@@ -1,0 +1,3 @@
+# Use placeholders here. Never commit real cloud credentials.
+AWS_ACCESS_KEY_ID = "YOUR_AWS_ACCESS_KEY_ID"
+AWS_SECRET_ACCESS_KEY = "YOUR_AWS_SECRET_ACCESS_KEY"

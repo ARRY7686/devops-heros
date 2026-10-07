@@ -1,0 +1,32 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> kubectl delete pod image-demo
+pod "image-demo" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> git diff --no-index broken-pod.yaml fixed-pod.yaml
+diff --git a/broken-pod.yaml b/fixed-pod.yaml
+index 4ce8672..5150973 100644
+--- a/broken-pod.yaml
++++ b/fixed-pod.yaml
+@@ -7,4 +7,4 @@ metadata:
+ spec:
+   containers:
+     - name: app
+-      image: nginx:this-image-does-not-exist
+\ No newline at end of file
++      image: nginx:1.27
+\ No newline at end of file
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> kubectl apply -f fixed-pod.yaml
+pod/image-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> kubectl get pod image-demo
+NAME         READY   STATUS    RESTARTS   AGE
+image-demo   1/1     Running   0          1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\07-imagepullbackoff> kubectl events --for pod/image-demo
+LAST SEEN           TYPE      REASON      OBJECT           MESSAGE
+55s                 Normal    Scheduled   Pod/image-demo   Successfully assigned session14/image-demo to minikube
+19s (x2 over 52s)   Normal    BackOff     Pod/image-demo   Back-off pulling image "nginx:this-image-does-not-exist"
+19s (x2 over 52s)   Warning   Failed      Pod/image-demo   Error: ImagePullBackOff
+4s (x3 over 54s)    Normal    Pulling     Pod/image-demo   Pulling image "nginx:this-image-does-not-exist"
+3s (x3 over 53s)    Warning   Failed      Pod/image-demo   Failed to pull image "nginx:this-image-does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/library/nginx:this-image-does-not-exist": failed to resolve reference "docker.io/library/nginx:this-image-does-not-exist": docker.io/library/nginx:this-image-does-not-exist: not found
+3s (x3 over 53s)    Warning   Failed      Pod/image-demo   Error: ErrImagePull
+1s                  Normal    Scheduled   Pod/image-demo   Successfully assigned session14/image-demo to minikube
+0s                  Normal    Pulled      Pod/image-demo   Container image "nginx:1.27" already present on machine and can be accessed by the pod
+0s                  Normal    Created     Pod/image-demo   Container created
+0s                  Normal    Started     Pod/image-demo   Container started

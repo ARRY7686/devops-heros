@@ -1,0 +1,42 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> Get-ChildItem -Recurse -Name simple-chart
+templates
+Chart.yaml
+values.yaml
+templates\deployment.yaml
+templates\service.yaml
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> Get-Content simple-chart\Chart.yaml
+apiVersion: v2
+name: simple-chart
+description: A simple Helm chart for learning
+type: application
+version: 0.1.0
+appVersion: "1.0"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> Get-Content simple-chart\values.yaml
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: latest
+
+service:
+  port: 80
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\03-chart-structure> Get-Content simple-chart\templates\deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.port }}

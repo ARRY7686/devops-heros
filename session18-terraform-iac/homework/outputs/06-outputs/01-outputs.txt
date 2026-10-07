@@ -1,0 +1,160 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\06-outputs> terraform init
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "~> 6.0"...
+- Installing hashicorp/aws v6.67.0...
+- Installed hashicorp/aws v6.67.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\06-outputs> terraform apply -auto-approve
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.demo will be created
+  + resource "aws_s3_bucket" "demo" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = (known after apply)
+      + bucket_domain_name          = (known after apply)
+      + bucket_namespace            = (known after apply)
+      + bucket_prefix               = "session18-output-"
+      + bucket_region               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = "ap-south-1"
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Name" = "Session 18 Output Demo"
+        }
+      + tags_all                    = {
+          + "Name" = "Session 18 Output Demo"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + cors_rule (known after apply)
+
+      + grant (known after apply)
+
+      + lifecycle_rule (known after apply)
+
+      + logging (known after apply)
+
+      + object_lock_configuration (known after apply)
+
+      + replication_configuration (known after apply)
+
+      + server_side_encryption_configuration (known after apply)
+
+      + versioning (known after apply)
+
+      + website (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + bucket_arn    = (known after apply)
+  + bucket_id     = (known after apply)
+  + bucket_region = "ap-south-1"
+aws_s3_bucket.demo: Creating...
+aws_s3_bucket.demo: Creation complete after 0s [id=session18-output-7dee7cd423341a51009bb24335]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bucket_arn = "arn:aws:s3:::session18-output-7dee7cd423341a51009bb24335"
+bucket_id = "session18-output-7dee7cd423341a51009bb24335"
+bucket_region = "ap-south-1"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\06-outputs> terraform output
+bucket_arn = "arn:aws:s3:::session18-output-7dee7cd423341a51009bb24335"
+bucket_id = "session18-output-7dee7cd423341a51009bb24335"
+bucket_region = "ap-south-1"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\06-outputs> terraform output bucket_id
+"session18-output-7dee7cd423341a51009bb24335"
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\06-outputs> terraform output -json
+{
+  "bucket_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:s3:::session18-output-7dee7cd423341a51009bb24335"
+  },
+  "bucket_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "session18-output-7dee7cd423341a51009bb24335"
+  },
+  "bucket_region": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ap-south-1"
+  }
+}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\06-outputs> terraform destroy -auto-approve
+aws_s3_bucket.demo: Refreshing state... [id=session18-output-7dee7cd423341a51009bb24335]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.demo will be destroyed
+  - resource "aws_s3_bucket" "demo" {
+      - arn                         = "arn:aws:s3:::session18-output-7dee7cd423341a51009bb24335" -> null
+      - bucket                      = "session18-output-7dee7cd423341a51009bb24335" -> null
+      - bucket_domain_name          = "session18-output-7dee7cd423341a51009bb24335.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_prefix               = "session18-output-" -> null
+      - bucket_region               = "ap-south-1" -> null
+      - bucket_regional_domain_name = "session18-output-7dee7cd423341a51009bb24335.s3.ap-south-1.amazonaws.com" -> null
+      - force_destroy               = false -> null
+      - hosted_zone_id              = "Z11RGJOFQNVJUP" -> null
+      - id                          = "session18-output-7dee7cd423341a51009bb24335" -> null
+      - object_lock_enabled         = false -> null
+      - region                      = "ap-south-1" -> null
+      - tags                        = {} -> null
+      - tags_all                    = {} -> null
+        # (3 unchanged attributes hidden)
+
+      - grant {
+          - id          = "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - versioning {
+          - enabled    = false -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  - bucket_arn    = "arn:aws:s3:::session18-output-7dee7cd423341a51009bb24335" -> null
+  - bucket_id     = "session18-output-7dee7cd423341a51009bb24335" -> null
+  - bucket_region = "ap-south-1" -> null
+aws_s3_bucket.demo: Destroying... [id=session18-output-7dee7cd423341a51009bb24335]
+aws_s3_bucket.demo: Destruction complete after 0s
+
+Destroy complete! Resources: 1 destroyed.

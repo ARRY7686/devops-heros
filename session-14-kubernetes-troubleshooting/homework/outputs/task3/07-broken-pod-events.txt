@@ -1,0 +1,13 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl events --for pod/project-broken-pod
+LAST SEEN          TYPE      REASON      OBJECT                   MESSAGE
+18s                Normal    Scheduled   Pod/project-broken-pod   Successfully assigned session14/project-broken-pod to minikube
+15s                Normal    BackOff     Pod/project-broken-pod   Back-off pulling image "nginx:this-tag-does-not-exist"
+15s                Warning   Failed      Pod/project-broken-pod   Error: ImagePullBackOff
+3s (x2 over 17s)   Normal    Pulling     Pod/project-broken-pod   Pulling image "nginx:this-tag-does-not-exist"
+2s (x2 over 16s)   Warning   Failed      Pod/project-broken-pod   Failed to pull image "nginx:this-tag-does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/library/nginx:this-tag-does-not-exist": failed to resolve reference "docker.io/library/nginx:this-tag-does-not-exist": docker.io/library/nginx:this-tag-does-not-exist: not found
+2s (x2 over 16s)   Warning   Failed      Pod/project-broken-pod   Error: ErrImagePull
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\mini-project> kubectl get events --field-selector involvedObject.name=project-broken-pod,type=Warning
+LAST SEEN   TYPE      REASON   OBJECT                   MESSAGE
+2s          Warning   Failed   pod/project-broken-pod   Failed to pull image "nginx:this-tag-does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/library/nginx:this-tag-does-not-exist": failed to resolve reference "docker.io/library/nginx:this-tag-does-not-exist": docker.io/library/nginx:this-tag-does-not-exist: not found
+2s          Warning   Failed   pod/project-broken-pod   Error: ErrImagePull
+15s         Warning   Failed   pod/project-broken-pod   Error: ImagePullBackOff

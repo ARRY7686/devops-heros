@@ -1,0 +1,11 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl apply -f server-broken.yaml
+pod/net-server created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl get pods net-server net-client -o wide
+NAME         READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+net-server   1/1     Running   0          3s    10.244.0.98   minikube   <none>           <none>
+net-client   1/1     Running   0          75s   10.244.0.93   minikube   <none>           <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> $ip = kubectl get pod net-server -o jsonpath='{.status.podIP}'
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl exec net-client -- wget -qO- -T 3 http://${ip}:8080
+wget: can't connect to remote host (10.244.0.98): Connection refused
+command terminated with exit code 1

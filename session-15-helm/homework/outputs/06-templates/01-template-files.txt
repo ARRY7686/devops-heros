@@ -1,0 +1,45 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\06-templates> Get-Content template-demo\values.yaml
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: latest
+
+service:
+  port: 80
+  enabled: true
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\06-templates> Get-Content template-demo\templates\deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-app
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.port }}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\06-templates> Get-Content template-demo\templates\service.yaml
+{{- if .Values.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-svc
+spec:
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+{{- end }}

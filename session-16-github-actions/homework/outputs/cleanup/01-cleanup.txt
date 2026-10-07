@@ -1,0 +1,10 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> docker ps -a --filter name=act- --format '{{.Names}}'
+act-Python-DevSecOps-Pipeline-SCA--Dependency-Scan-c9b15dfed5d2c686b0cad5544dced26576f084b780f5c9358c8bdada6aba99e1
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> Remove-Item -Recurse -Force ..\09-build-test-pipeline*\test-results, ..\09-build-test-pipeline*\.coverage, ..\09-build-test-pipeline*\.pytest_cache, ..\09-build-test-pipeline*\__pycache__, ..\09-build-test-pipeline*\tests\__pycache__ -ErrorAction SilentlyContinue
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> Remove-Item -Recurse -Force failing-test-demo
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\homework> Get-ChildItem -Name
+artifacts
+outputs
+screenshots

@@ -1,0 +1,18 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> $auth = @{ Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes('admin:admin')) }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> $body = @{ name = 'Prometheus'; type = 'prometheus'; url = 'http://prometheus:9090'; access = 'proxy'; isDefault = $true } | ConvertTo-Json
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> $ds = (Invoke-RestMethod -Method Post http://localhost:3000/api/datasources -Headers $auth -ContentType application/json -Body $body).datasource
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> $ds | Select-Object id, uid, name, type, url | Format-List
+
+
+id   : 1
+uid  : eg0i24e1lxr0gc
+name : Prometheus
+type : prometheus
+url  : http://prometheus:9090
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> Invoke-RestMethod "http://localhost:3000/api/datasources/uid/$($ds.uid)/health" -Headers $auth | ConvertTo-Json -Compress
+{"details":{"application":"Prometheus","features":{"rulerApiEnabled":false}},"message":"Successfully queried the Prometheus API.","status":"OK"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> (Invoke-RestMethod "http://localhost:3000/api/datasources/proxy/uid/$($ds.uid)/api/v1/query?query=up" -Headers $auth).data.result | ForEach-Object { 'up{0} = {1}' -f ($_.metric | ConvertTo-Json -Compress), $_.value[1] }
+up{"__name__":"up","instance":"prometheus:9090","job":"prometheus"} = 1

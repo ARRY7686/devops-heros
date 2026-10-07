@@ -1,0 +1,23 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl get pods -o wide
+NAME            READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+describe-demo   1/1     Running   0          41s   10.244.0.21   minikube   <none>           <none>
+events-demo     1/1     Running   0          6s    10.244.0.24   minikube   <none>           <none>
+exec-demo       1/1     Running   0          9s    10.244.0.23   minikube   <none>           <none>
+logs-demo       1/1     Running   0          38s   10.244.0.22   minikube   <none>           <none>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl get nodes -o wide
+NAME       STATUS   ROLES           AGE   VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                              CONTAINER-RUNTIME
+minikube   Ready    control-plane   26d   v1.37.0   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   6.18.33.2-microsoft-standard-WSL2 (amd64)   containerd://2.3.4
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl get services -o wide -A
+NAMESPACE     NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                  AGE   SELECTOR
+default       hpa-demo-service      ClusterIP   10.111.71.218   <none>        80/TCP                   54m   app=hpa-demo
+default       kubernetes            ClusterIP   10.96.0.1       <none>        443/TCP                  18d   <none>
+default       my-release-my-chart   ClusterIP   10.99.12.122    <none>        80/TCP                   15d   app.kubernetes.io/instance=my-release,app.kubernetes.io/name=my-chart
+kube-system   kube-dns              ClusterIP   10.96.0.10      <none>        53/UDP,53/TCP,9153/TCP   26d   k8s-app=kube-dns
+kube-system   metrics-server        ClusterIP   10.97.71.47     <none>        443/TCP                  53m   k8s-app=metrics-server
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl delete pod describe-demo logs-demo exec-demo events-demo
+pod "describe-demo" deleted from session14 namespace
+pod "logs-demo" deleted from session14 namespace
+pod "exec-demo" deleted from session14 namespace
+pod "events-demo" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting> kubectl get pods
+No resources found in session14 namespace.

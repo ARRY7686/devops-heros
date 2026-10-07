@@ -1,0 +1,23 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> helm upgrade notes-dev notes-chart -f notes-chart/values-prod.yaml
+Release "notes-dev" has been upgraded. Happy Helming!
+NAME: notes-dev
+LAST DEPLOYED: Wed Oct  7 15:05:49 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl get pods
+NAME                               READY   STATUS    RESTARTS   AGE
+notes-dev-deploy-bbcc464b4-24p2p   1/1     Running   0          6s
+notes-dev-deploy-bbcc464b4-djnbl   1/1     Running   0          22s
+notes-dev-deploy-bbcc464b4-ld54f   1/1     Running   0          7s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl get deployment notes-dev-deploy -o wide
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES       SELECTOR
+notes-dev-deploy   3/3     3            3           24s   notes        nginx:1.25   app=notes-dev
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> kubectl exec deploy/notes-dev-deploy -- printenv ENVIRONMENT
+production
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\mini-project> helm history notes-dev
+REVISION	UPDATED                 	STATUS    	CHART            	APP VERSION	DESCRIPTION     
+1       	Wed Oct  7 15:05:47 2026	superseded	notes-chart-0.1.0	1.0        	Install complete
+2       	Wed Oct  7 15:05:49 2026	deployed  	notes-chart-0.1.0	1.0        	Upgrade complete

@@ -1,0 +1,35 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act push -W push-trigger.yml
+time="2026-10-07T15:22:13+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Push Trigger Example/notify-push] ⭐ Run Set up job
+[Push Trigger Example/notify-push] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Push Trigger Example/notify-push]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Push Trigger Example/notify-push]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Push Trigger Example/notify-push]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Push Trigger Example/notify-push]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Push Trigger Example/notify-push]   ✅  Success - Set up job
+[Push Trigger Example/notify-push] ⭐ Run Main Report push event
+[Push Trigger Example/notify-push]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Push Trigger Example/notify-push]   | Code pushed to branch main by nektos/act
+[Push Trigger Example/notify-push]   ✅  Success - Main Report push event [140.5104ms]
+[Push Trigger Example/notify-push] ⭐ Run Complete job
+[Push Trigger Example/notify-push] Cleaning up container for job notify-push
+[Push Trigger Example/notify-push]   ✅  Success - Complete job
+[Push Trigger Example/notify-push] 🏁  Job succeeded
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\04-workflows 10-33-34-230> act pull_request -W pr-trigger.yml
+time="2026-10-07T15:22:14+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Pull Request Trigger Example/validate-pr] ⭐ Run Set up job
+[Pull Request Trigger Example/validate-pr] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Pull Request Trigger Example/validate-pr]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Pull Request Trigger Example/validate-pr]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Pull Request Trigger Example/validate-pr]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Pull Request Trigger Example/validate-pr]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Pull Request Trigger Example/validate-pr]   ✅  Success - Set up job
+[Pull Request Trigger Example/validate-pr] ⭐ Run Main Validate PR metadata
+[Pull Request Trigger Example/validate-pr]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Pull Request Trigger Example/validate-pr]   | PR # targeting 
+[Pull Request Trigger Example/validate-pr]   | Source branch: 
+[Pull Request Trigger Example/validate-pr]   ✅  Success - Main Validate PR metadata [115.4528ms]
+[Pull Request Trigger Example/validate-pr] ⭐ Run Complete job
+[Pull Request Trigger Example/validate-pr] Cleaning up container for job validate-pr
+[Pull Request Trigger Example/validate-pr]   ✅  Success - Complete job
+[Pull Request Trigger Example/validate-pr] 🏁  Job succeeded

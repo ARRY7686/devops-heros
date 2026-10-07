@@ -1,0 +1,12 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> $pw = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String((kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}')))
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> 'admin password length: ' + $pw.Length
+admin password length: 16
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> $argo = Start-Job { kubectl port-forward svc/argocd-server -n argocd 8080:443 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> Invoke-RestMethod https://localhost:8080/api/version | Select-Object Version, BuildDate, Platform | Format-List
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> $token = (Invoke-RestMethod -Method Post https://localhost:8080/api/v1/session -ContentType application/json -Body (@{ username = 'admin'; password = $pw } | ConvertTo-Json)).token
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\07-argocd> 'logged in, JWT length: ' + $token.Length
+logged in, JWT length: 257

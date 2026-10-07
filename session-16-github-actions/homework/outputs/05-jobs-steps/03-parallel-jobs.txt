@@ -1,0 +1,47 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\05-jobs-steps 10-33-34-238> act push -W parallel-jobs.yml
+time="2026-10-07T15:22:59+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Parallel Jobs Example/Code Quality Linter] ⭐ Run Set up job
+[Parallel Jobs Example/Code Quality Linter] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Parallel Jobs Example/Run Unit Tests     ] ⭐ Run Set up job
+[Parallel Jobs Example/Run Unit Tests     ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Parallel Jobs Example/Vulnerability Scan ] ⭐ Run Set up job
+[Parallel Jobs Example/Vulnerability Scan ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Parallel Jobs Example/Run Unit Tests     ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Parallel Jobs Example/Vulnerability Scan ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Parallel Jobs Example/Code Quality Linter]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Parallel Jobs Example/Run Unit Tests     ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Parallel Jobs Example/Vulnerability Scan ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Parallel Jobs Example/Code Quality Linter]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Parallel Jobs Example/Run Unit Tests     ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Parallel Jobs Example/Code Quality Linter]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Parallel Jobs Example/Vulnerability Scan ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Parallel Jobs Example/Code Quality Linter]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Parallel Jobs Example/Run Unit Tests     ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Parallel Jobs Example/Vulnerability Scan ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Parallel Jobs Example/Code Quality Linter]   ✅  Success - Set up job
+[Parallel Jobs Example/Run Unit Tests     ]   ✅  Success - Set up job
+[Parallel Jobs Example/Vulnerability Scan ]   ✅  Success - Set up job
+[Parallel Jobs Example/Code Quality Linter] ⭐ Run Main Flake8 lint execution
+[Parallel Jobs Example/Vulnerability Scan ] ⭐ Run Main Security scanner execution
+[Parallel Jobs Example/Run Unit Tests     ] ⭐ Run Main Unit test execution
+[Parallel Jobs Example/Code Quality Linter]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Parallel Jobs Example/Vulnerability Scan ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Parallel Jobs Example/Run Unit Tests     ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Parallel Jobs Example/Code Quality Linter]   | Running linter in parallel...
+[Parallel Jobs Example/Code Quality Linter]   ✅  Success - Main Flake8 lint execution [281.6874ms]
+[Parallel Jobs Example/Run Unit Tests     ]   | Running unit tests in parallel...
+[Parallel Jobs Example/Run Unit Tests     ]   ✅  Success - Main Unit test execution [260.3557ms]
+[Parallel Jobs Example/Vulnerability Scan ]   | Running static security scan in parallel...
+[Parallel Jobs Example/Vulnerability Scan ]   ✅  Success - Main Security scanner execution [281.1621ms]
+[Parallel Jobs Example/Code Quality Linter] ⭐ Run Complete job
+[Parallel Jobs Example/Code Quality Linter] Cleaning up container for job Code Quality Linter
+[Parallel Jobs Example/Vulnerability Scan ] ⭐ Run Complete job
+[Parallel Jobs Example/Vulnerability Scan ] Cleaning up container for job Vulnerability Scan
+[Parallel Jobs Example/Run Unit Tests     ] ⭐ Run Complete job
+[Parallel Jobs Example/Run Unit Tests     ] Cleaning up container for job Run Unit Tests
+[Parallel Jobs Example/Vulnerability Scan ]   ✅  Success - Complete job
+[Parallel Jobs Example/Vulnerability Scan ] 🏁  Job succeeded
+[Parallel Jobs Example/Code Quality Linter]   ✅  Success - Complete job
+[Parallel Jobs Example/Code Quality Linter] 🏁  Job succeeded
+[Parallel Jobs Example/Run Unit Tests     ]   ✅  Success - Complete job
+[Parallel Jobs Example/Run Unit Tests     ] 🏁  Job succeeded

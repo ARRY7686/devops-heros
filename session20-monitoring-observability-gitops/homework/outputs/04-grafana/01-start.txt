@@ -1,0 +1,36 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> Get-Content docker-compose.yml
+services:
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: session20-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  grafana:
+    image: grafana/grafana:12.1.1
+    container_name: session20-grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> docker compose up -d
+ Network 04-grafana_default Creating 
+ Network 04-grafana_default Creating 
+ Network 04-grafana_default Created 
+ Network 04-grafana_default Created 
+ Container session20-prometheus Creating 
+ Container session20-prometheus Created 
+ Container session20-grafana Creating 
+ Container session20-grafana Created 
+ Container session20-prometheus Starting 
+ Container session20-prometheus Started 
+ Container session20-grafana Starting 
+ Container session20-grafana Started 
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> docker compose ps
+NAME                   IMAGE                    COMMAND                  SERVICE      CREATED          STATUS          PORTS
+session20-grafana      grafana/grafana:12.1.1   "/run.sh"                grafana      19 seconds ago   Up 18 seconds   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+session20-prometheus   prom/prometheus:v3.5.0   "/bin/prometheus --c…"   prometheus   19 seconds ago   Up 18 seconds   0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> Invoke-RestMethod http://localhost:3000/api/health | ConvertTo-Json -Compress
+{"database":"ok","version":"12.1.1","commit":"df5de8219b41d1e639e003bf5f3a85913761d167"}

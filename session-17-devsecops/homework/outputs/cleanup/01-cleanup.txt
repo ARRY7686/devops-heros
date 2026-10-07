@@ -1,0 +1,16 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl delete namespace session17
+namespace "session17" deleted
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl config set-context --current --namespace=default
+Context "minikube" modified.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> docker rm -f s17-registry
+s17-registry
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> docker rmi localhost:5000/session17-python:1.0 session17-python:1.0
+Untagged: localhost:5000/session17-python:1.0
+Untagged: session17-python:1.0
+Deleted: sha256:7fc9f622fc5b2e59c6d701edacb437f6a8b46f61b5c53bd508b6be1d79f8d073
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> minikube image rm session17-python:1.0
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> Remove-Item -Recurse -Force ..\demo\.pytest_cache -ErrorAction SilentlyContinue
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework> kubectl get namespace session17
+Error from server (NotFound): namespaces "session17" not found

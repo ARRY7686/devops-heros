@@ -1,0 +1,37 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> helm template my-app .\my-app | Select-String -Pattern replicas:,image:
+
+  replicas: 1
+          image: "nginx:1.16.0"
+      image: busybox
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> helm template my-app .\my-app --set replicaCount=3 | Select-String -Pattern replicas:
+
+  replicas: 3
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> helm template my-app .\my-app -f values-prod.yaml | Select-String -Pattern replicas:
+
+  replicas: 5
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> helm template my-app .\my-app -f values-prod.yaml --set replicaCount=2 | Select-String -Pattern replicas:
+
+  replicas: 2
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> helm install my-app .\my-app --set replicaCount=3
+NAME: my-app
+LAST DEPLOYED: Wed Oct  7 15:03:33 2026
+NAMESPACE: session15
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace session15 -l "app.kubernetes.io/name=my-app,app.kubernetes.io/instance=my-app" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace session15 $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace session15 port-forward $POD_NAME 8080:$CONTAINER_PORT
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+my-app-746c67b6df-5m66w   1/1     Running   0          1s
+my-app-746c67b6df-dq887   1/1     Running   0          1s
+my-app-746c67b6df-ml6pg   1/1     Running   0          1s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> helm get values my-app
+USER-SUPPLIED VALUES:
+replicaCount: 3
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\05-values-yaml> helm uninstall my-app
+release "my-app" uninstalled

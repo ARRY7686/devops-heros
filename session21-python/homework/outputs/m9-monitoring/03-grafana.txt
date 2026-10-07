@@ -1,0 +1,27 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> $gpw = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String((kubectl get secret -n monitoring kube-prometheus-stack-grafana -o jsonpath='{.data.admin-password}')))
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> $graf = Start-Job { kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana 3001:80 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> $gauth = @{ Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("admin:$gpw")) }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:3001/api/health | ConvertTo-Json -Compress
+{"database":"ok","version":"13.2.3","commit":"90ffed056f0884267356c12a0eeb72a022af53f1"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Invoke-RestMethod http://localhost:3001/api/datasources -Headers $gauth | Select-Object name, type, url | Format-Table -AutoSize
+
+name type url
+---- ---- ---
+             
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> (Invoke-RestMethod 'http://localhost:3001/api/search?type=dash-db' -Headers $gauth) | Select-Object -First 10 title | Format-Table -AutoSize
+
+title                                                 
+-----                                                 
+Alertmanager / Overview                               
+CoreDNS                                               
+etcd                                                  
+Grafana Overview                                      
+Kubernetes / API server                               
+Kubernetes / Compute Resources /  Multi-Cluster       
+Kubernetes / Compute Resources / Cluster              
+Kubernetes / Compute Resources / Namespace (Pods)     
+Kubernetes / Compute Resources / Namespace (Workloads)
+Kubernetes / Compute Resources / Node (Pods)          

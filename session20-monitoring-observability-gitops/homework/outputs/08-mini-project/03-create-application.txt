@@ -1,0 +1,40 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> git diff --no-index ..\..\08-mini-project\app\argocd-application.yaml ..\argocd\session20-mini-application.yaml
+warning: in the working copy of '..\argocd\session20-mini-application.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git "a/..\\..\\08-mini-project\\app\\argocd-application.yaml" "b/..\\argocd\\session20-mini-application.yaml"
+index f4b3fa7..53c64d5 100644
+--- "a/..\\..\\08-mini-project\\app\\argocd-application.yaml"
++++ "b/..\\argocd\\session20-mini-application.yaml"
+@@ -1,4 +1,5 @@
+-# Apply this file from your local/admin environment; do not put it under the Git source path.
++# Same as 08-mini-project/app/argocd-application.yaml, with repoURL pointing at the
++# in-cluster Git server instead of YOUR_USERNAME/YOUR_GITOPS_REPO on GitHub.
+ apiVersion: argoproj.io/v1alpha1
+ kind: Application
+ metadata:
+@@ -8,7 +9,7 @@ spec:
+   project: default
+ 
+   source:
+-    repoURL: https://github.com/YOUR_USERNAME/YOUR_GITOPS_REPO.git
++    repoURL: git://git-server.gitserver.svc.cluster.local/gitops.git
+     targetRevision: main
+     path: app
+ 
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl apply -f ..\argocd\session20-mini-application.yaml
+application.argoproj.io/session20-mini created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get applications -n argocd
+NAME             SYNC STATUS   HEALTH STATUS
+session20-mini   Synced        Healthy
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\homework\gitops-repo> kubectl get all -n session20
+NAME                                  READY   STATUS    RESTARTS   AGE
+pod/session20-mini-68946db7dd-4tnzz   1/1     Running   0          3s
+pod/session20-mini-68946db7dd-jlhfp   1/1     Running   0          3s
+
+NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+service/session20-mini   ClusterIP   10.109.211.201   <none>        80/TCP    3s
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/session20-mini   2/2     2            2           3s
+
+NAME                                        DESIRED   CURRENT   READY   AGE
+replicaset.apps/session20-mini-68946db7dd   2         2         2       3s

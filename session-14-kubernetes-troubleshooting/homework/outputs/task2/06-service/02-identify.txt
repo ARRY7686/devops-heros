@@ -1,0 +1,3 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec net-client -- wget -qO- -T 3 http://web-service
+wget: can't connect to remote host (10.110.119.45): Connection refused
+command terminated with exit code 1

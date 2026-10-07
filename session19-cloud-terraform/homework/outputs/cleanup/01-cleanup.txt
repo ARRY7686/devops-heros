@@ -1,0 +1,18 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> Get-ChildItem -Path .. -Recurse -Force -Include .terraform, .terraform.lock.hcl, terraform.tfstate, terraform.tfstate.backup -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> Get-ChildItem ec2-extension -Exclude ec2.tf | Remove-Item -Force
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> git -C .. status --short
+?? "../DevOps Homework.pdf"
+?? "../session-13-storage-hpa-probes/image copy.png"
+?? ../session-13-storage-hpa-probes/image.png
+?? ../session-14-kubernetes-troubleshooting/homework/
+?? ../session-15-helm/homework/
+?? ../session-16-github-actions/homework/
+?? ../session-17-devsecops/homework/
+?? ../session18-terraform-iac/homework/
+?? homework/
+?? ../session20-monitoring-observability-gitops/homework/
+?? ../session21-python/homework/
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> docker rm -f s18-moto
+s18-moto

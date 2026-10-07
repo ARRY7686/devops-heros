@@ -1,0 +1,11 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session20-monitoring-observability-gitops\04-grafana> docker compose down
+ Container session20-grafana Stopping 
+ Container session20-grafana Stopped 
+ Container session20-grafana Removing 
+ Container session20-grafana Removed 
+ Container session20-prometheus Stopping 
+ Container session20-prometheus Stopped 
+ Container session20-prometheus Removing 
+ Container session20-prometheus Removed 
+ Network 04-grafana_default Removing 
+ Network 04-grafana_default Removed 

@@ -1,0 +1,8 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get service web-service -o jsonpath='{.spec.selector}'
+{"app":"web-ahsgdf"}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get pods -l app=web-ahsgdf
+No resources found in session14 namespace.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get pods -l app=web
+NAME                   READY   STATUS    RESTARTS   AGE
+web-557577df75-64425   1/1     Running   0          4s
+web-557577df75-6r2wk   1/1     Running   0          4s

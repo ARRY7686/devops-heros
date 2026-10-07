@@ -1,0 +1,23 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\08-pending-pods> kubectl delete pod pending-demo
+pod "pending-demo" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\08-pending-pods> git diff --no-index broken-pod.yaml fixed-pod.yaml
+diff --git a/broken-pod.yaml b/fixed-pod.yaml
+index b5f3b3e..32cecd4 100644
+--- a/broken-pod.yaml
++++ b/fixed-pod.yaml
+@@ -5,9 +5,6 @@ metadata:
+   name: pending-demo
+ 
+ spec:
+-  nodeSelector:
+-    kubernetes.io/hostname: node-that-does-not-exist
+-
+   containers:
+     - name: nginx
+       image: nginx:1.27
+\ No newline at end of file
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\08-pending-pods> kubectl apply -f fixed-pod.yaml
+pod/pending-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\08-pending-pods> kubectl get pod pending-demo -o wide
+NAME           READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+pending-demo   1/1     Running   0          1s    10.244.0.86   minikube   <none>           <none>

@@ -1,0 +1,26 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\03-kubectl-logs> kubectl apply -f pod.yaml
+pod/logs-demo created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\03-kubectl-logs> kubectl get pod logs-demo
+NAME        READY   STATUS    RESTARTS   AGE
+logs-demo   1/1     Running   0          14s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\03-kubectl-logs> kubectl logs logs-demo
+Application started
+Connecting to database...
+Database connection successful
+Application is running
+Application is healthy
+Application is healthy
+Application is healthy
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\03-kubectl-logs> kubectl logs logs-demo --tail=2 --timestamps
+2026-10-07T09:08:21.886430431Z Application is healthy
+2026-10-07T09:08:26.886639355Z Application is healthy
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\03-kubectl-logs> kubectl logs logs-demo -c app --since=10s
+Application is healthy
+Application is healthy
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\03-kubectl-logs> $follow = Start-Job { kubectl logs -f logs-demo --tail=1 }
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\03-kubectl-logs> Receive-Job $follow; Stop-Job $follow; Remove-Job $follow
+Application is healthy
+Application is healthy
+Application is healthy
+Application is healthy

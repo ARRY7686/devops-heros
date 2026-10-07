@@ -1,0 +1,89 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> Get-Content main.tf
+# Same configuration as ../../terraform/main.tf, rewritten as multi-line HCL.
+# The original puts every argument of a block on one line, which HCL rejects
+# ("Invalid single-argument block definition").
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.8.1"
+
+  name            = "taskboard-vpc"
+  cidr            = "10.20.0.0/16"
+  azs             = ["ap-south-1a", "ap-south-1b"]
+  private_subnets = ["10.20.1.0/24", "10.20.2.0/24"]
+  public_subnets  = ["10.20.101.0/24", "10.20.102.0/24"]
+
+  enable_nat_gateway = true
+  single_nat_gateway = true
+}
+
+module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "20.37.1"
+
+  cluster_name    = var.cluster_name
+  cluster_version = "1.31"
+
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnets
+
+  cluster_endpoint_public_access           = true
+  enable_cluster_creator_admin_permissions = true
+
+  eks_managed_node_groups = {
+    main = {
+      instance_types = ["t3.medium"]
+      min_size       = 2
+      max_size       = 4
+      desired_size   = 2
+    }
+  }
+}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> aws sts get-caller-identity
+{
+    "UserId": "AKIAIOSFODNN7EXAMPLE",
+    "Account": "123456789012",
+    "Arn": "arn:aws:sts::123456789012:user/moto"
+}
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> terraform init
+Initializing the backend...
+
+Initializing modules...
+Downloading registry.terraform.io/terraform-aws-modules/vpc/aws 5.8.1 for vpc...
+- vpc in .terraform\modules\vpc
+Downloading registry.terraform.io/terraform-aws-modules/eks/aws 20.37.1 for eks...
+- eks in .terraform\modules\eks
+- eks.fargate_profile in .terraform\modules\eks\modules\fargate-profile
+Downloading registry.terraform.io/terraform-aws-modules/kms/aws 2.1.0 for eks.kms...
+- eks.kms in .terraform\modules\eks.kms
+- eks.eks_managed_node_group in .terraform\modules\eks\modules\eks-managed-node-group
+- eks.self_managed_node_group in .terraform\modules\eks\modules\self-managed-node-group
+- eks.eks_managed_node_group.user_data in .terraform\modules\eks\modules\_user_data
+- eks.self_managed_node_group.user_data in .terraform\modules\eks\modules\_user_data
+
+Initializing provider plugins...
+- Finding hashicorp/cloudinit versions matching ">= 2.0.0"...
+- Finding hashicorp/null versions matching ">= 3.0.0"...
+- Finding hashicorp/aws versions matching ">= 4.33.0, ~> 5.0, >= 5.30.0, >= 5.95.0, < 6.0.0"...
+- Finding hashicorp/tls versions matching ">= 3.0.0"...
+- Finding hashicorp/time versions matching ">= 0.9.0"...
+- Installing hashicorp/null v3.3.2...
+- Installed hashicorp/null v3.3.2 (signed by HashiCorp)
+- Installing hashicorp/aws v5.100.0...
+- Installed hashicorp/aws v5.100.0 (signed by HashiCorp)
+- Installing hashicorp/tls v4.4.1...
+- Installed hashicorp/tls v4.4.1 (signed by HashiCorp)
+- Installing hashicorp/time v0.14.2...
+- Installed hashicorp/time v0.14.2 (signed by HashiCorp)
+- Installing hashicorp/cloudinit v2.4.1...
+- Installed hashicorp/cloudinit v2.4.1 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> terraform fmt -check
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python\homework\terraform-fixed> terraform validate
+Success! The configuration is valid.

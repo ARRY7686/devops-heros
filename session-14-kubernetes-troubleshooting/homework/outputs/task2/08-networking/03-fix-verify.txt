@@ -1,0 +1,34 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl delete pod net-server
+pod "net-server" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> git diff --no-index server-broken.yaml server-fixed.yaml
+warning: in the working copy of 'server-broken.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/server-broken.yaml b/server-fixed.yaml
+index 2e54cc8..b15d46c 100644
+--- a/server-broken.yaml
++++ b/server-fixed.yaml
+@@ -8,7 +8,7 @@ spec:
+   containers:
+     - name: http
+       image: python:3.11-alpine
+-      # BUG: binds to the loopback interface only, so other Pods cannot reach it
+-      command: ["python3", "-m", "http.server", "8080", "--bind", "127.0.0.1"]
++      # FIX: listen on all interfaces so the Pod IP accepts traffic
++      command: ["python3", "-m", "http.server", "8080", "--bind", "0.0.0.0"]
+       ports:
+         - containerPort: 8080
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl apply -f server-fixed.yaml
+pod/net-server created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl exec net-server -- netstat -tln
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> $ip = kubectl get pod net-server -o jsonpath='{.status.podIP}'
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\homework\manifests\networking> kubectl exec net-client -- wget -qO- -T 3 http://${ip}:8080 | Select-Object -First 6
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Directory listing for /</title>
+</head>

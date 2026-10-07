@@ -1,0 +1,29 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Get-Job | Stop-Job; Get-Job | Remove-Job
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm uninstall taskboard -n taskboard
+release "taskboard" uninstalled
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl delete namespace taskboard
+namespace "taskboard" deleted
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> minikube addons disable ingress
+🌑  "The 'ingress' addon is disabled
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> minikube image rm taskboard-backend:local taskboard-frontend:local
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> docker rmi taskboard-backend:local taskboard-frontend:local session21-python-backend session21-python-frontend
+Untagged: taskboard-backend:local
+Untagged: taskboard-frontend:local
+Untagged: session21-python-backend:latest
+Deleted: sha256:a4635cefa2fdf5e61d39ef950c8483f9d911f23ff5eb26a792840d2cb5d10b85
+Untagged: session21-python-frontend:latest
+Deleted: sha256:bf46f1015f80f195e5c0c5b1d88809b08bf14e58917e363a71a780f565750fc3
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Remove-Item -Force backend\test.db -ErrorAction SilentlyContinue
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl config set-context --current --namespace=default
+Context "minikube" modified.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   27d
+kube-node-lease   Active   27d
+kube-public       Active   27d
+kube-system       Active   27d
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> git status --short .
+?? homework/

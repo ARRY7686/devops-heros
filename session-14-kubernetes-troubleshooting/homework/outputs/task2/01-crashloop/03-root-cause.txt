@@ -1,0 +1,25 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl logs crash-demo
+Application starting...
+Something went wrong!
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl logs crash-demo --previous
+unable to retrieve container logs for containerd://f74afead21086daf0c7476ad1638c2fffdf6d5d83056a5d7a39afe2fe8905fe7
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl get pod crash-demo -o jsonpath='exitCode={.status.containerStatuses[0].lastState.terminated.exitCode}'
+exitCode=1
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> Get-Content broken-pod.yaml
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: crash-demo
+
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command:
+        - sh
+        - -c
+        - |
+          echo "Application starting..."
+          echo "Something went wrong!"
+          exit 1

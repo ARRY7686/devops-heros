@@ -1,0 +1,28 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework\secret-demo> Get-Content after\config.py
+# GOOD: credentials come from the environment (GitHub Secrets / K8s Secrets at runtime)
+import os
+
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "")
+DEMO_API_KEY = os.environ.get("DEMO_API_KEY", "")
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework\secret-demo> gitleaks dir after --no-banner
+3:27PM INF scanned ~327 bytes (327 bytes) in 3.22ms
+3:27PM INF no leaks found
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework\secret-demo> echo exit=$LASTEXITCODE
+exit=0
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework\secret-demo> gitleaks dir ..\..\demo --no-banner
+3:27PM INF scanned ~99815 bytes (99.82 KB) in 53ms
+3:27PM INF no leaks found
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-17-devsecops\homework\secret-demo> trivy fs --scanners secret -q ..\..\demo
+
+Report Summary
+
+┌──────────────────┬──────┬─────────┐
+│      Target      │ Type │ Secrets │
+├──────────────────┼──────┼─────────┤
+│ requirements.txt │ pip  │    -    │
+└──────────────────┴──────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)

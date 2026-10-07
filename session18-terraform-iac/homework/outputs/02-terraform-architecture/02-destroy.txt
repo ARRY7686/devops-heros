@@ -1,0 +1,57 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\02-terraform-architecture> terraform destroy -auto-approve
+aws_s3_bucket.architecture_demo: Refreshing state... [id=session18-architecture-8eb3d80e20c50fde5bf8acf8ca]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.architecture_demo will be destroyed
+  - resource "aws_s3_bucket" "architecture_demo" {
+      - arn                         = "arn:aws:s3:::session18-architecture-8eb3d80e20c50fde5bf8acf8ca" -> null
+      - bucket                      = "session18-architecture-8eb3d80e20c50fde5bf8acf8ca" -> null
+      - bucket_domain_name          = "session18-architecture-8eb3d80e20c50fde5bf8acf8ca.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_prefix               = "session18-architecture-" -> null
+      - bucket_region               = "ap-south-1" -> null
+      - bucket_regional_domain_name = "session18-architecture-8eb3d80e20c50fde5bf8acf8ca.s3.ap-south-1.amazonaws.com" -> null
+      - force_destroy               = false -> null
+      - hosted_zone_id              = "Z11RGJOFQNVJUP" -> null
+      - id                          = "session18-architecture-8eb3d80e20c50fde5bf8acf8ca" -> null
+      - object_lock_enabled         = false -> null
+      - region                      = "ap-south-1" -> null
+      - tags                        = {} -> null
+      - tags_all                    = {} -> null
+        # (3 unchanged attributes hidden)
+
+      - grant {
+          - id          = "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - versioning {
+          - enabled    = false -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  - bucket_arn = "arn:aws:s3:::session18-architecture-8eb3d80e20c50fde5bf8acf8ca" -> null
+aws_s3_bucket.architecture_demo: Destroying... [id=session18-architecture-8eb3d80e20c50fde5bf8acf8ca]
+aws_s3_bucket.architecture_demo: Destruction complete after 0s
+
+Destroy complete! Resources: 1 destroyed.
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session18-terraform-iac\02-terraform-architecture> Get-ChildItem -Force -Name
+.terraform
+.terraform.lock.hcl
+main.tf
+README.md
+terraform.tfstate
+terraform.tfstate.backup

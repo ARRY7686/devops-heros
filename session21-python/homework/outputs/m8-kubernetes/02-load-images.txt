@@ -1,0 +1,18 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> minikube image load taskboard-backend:local
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> minikube image load taskboard-frontend:local
+
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> minikube image ls | Select-String taskboard
+
+docker.io/library/taskboard-frontend:local
+docker.io/library/taskboard-backend:local
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> Get-Content homework\helm\values-local.yaml
+# Local minikube images (built with docker build + minikube image load)
+frontend:
+  image: taskboard-frontend
+  tag: local
+backend:
+  image: taskboard-backend
+  tag: local
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl apply -f k8s\namespace.yaml
+namespace/taskboard created

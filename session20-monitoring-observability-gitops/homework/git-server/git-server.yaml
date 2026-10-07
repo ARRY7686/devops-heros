@@ -1,0 +1,66 @@
+# In-cluster Git server for the GitOps mini project (replaces a GitHub repo).
+# git daemon serves the bare repo on port 9418:
+#  - the developer pushes to it through `kubectl port-forward` (git://localhost:9418/gitops.git)
+#  - Argo CD pulls from it inside the cluster (git://git-server.gitserver.svc.cluster.local/gitops.git)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: git-server
+  namespace: gitserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-server
+  template:
+    metadata:
+      labels:
+        app: git-server
+    spec:
+      initContainers:
+        - name: init-repo
+          image: alpine/git:2.47.2
+          command: ["sh", "-c"]
+          args:
+            - git init --bare --initial-branch=main /srv/git/gitops.git &&
+              git -C /srv/git/gitops.git config daemon.receivepack true
+          volumeMounts:
+            - name: repos
+              mountPath: /srv/git
+      containers:
+        - name: git-daemon
+          image: alpine:3.20
+          command: ["sh", "-c"]
+          args:
+            - apk add --no-cache git git-daemon >/dev/null &&
+              exec git daemon --reuseaddr --base-path=/srv/git --export-all --enable=receive-pack --verbose /srv/git
+          ports:
+            - containerPort: 9418
+          readinessProbe:
+            tcpSocket:
+              port: 9418
+            periodSeconds: 2
+          volumeMounts:
+            - name: repos
+              mountPath: /srv/git
+      volumes:
+        - name: repos
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: git-server
+  namespace: gitserver
+spec:
+  selector:
+    app: git-server
+  ports:
+    - name: git
+      port: 9418
+      targetPort: 9418

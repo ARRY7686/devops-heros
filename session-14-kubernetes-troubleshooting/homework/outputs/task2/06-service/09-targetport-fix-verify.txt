@@ -1,0 +1,29 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> git diff --no-index ..\homework\manifests\service\wrong-targetport-service.yaml ..\homework\manifests\service\wrong-targetport-service-fixed.yaml
+warning: in the working copy of '..\homework\manifests\service\wrong-targetport-service.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '..\homework\manifests\service\wrong-targetport-service-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git "a/..\\homework\\manifests\\service\\wrong-targetport-service.yaml" "b/..\\homework\\manifests\\service\\wrong-targetport-service-fixed.yaml"
+index e3afbc7..c8b506d 100644
+--- "a/..\\homework\\manifests\\service\\wrong-targetport-service.yaml"
++++ "b/..\\homework\\manifests\\service\\wrong-targetport-service-fixed.yaml"
+@@ -7,6 +7,6 @@ spec:
+     app: web
+   ports:
+     - port: 80
+-      # BUG: nginx listens on 80, not 8080
+-      targetPort: 8080
++      # FIX: point at the port the container actually listens on
++      targetPort: 80
+   type: ClusterIP
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl apply -f ..\homework\manifests\service\wrong-targetport-service-fixed.yaml
+service/web-wrong-port configured
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl get endpoints web-wrong-port
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME             ENDPOINTS                       AGE
+web-wrong-port   10.244.0.91:80,10.244.0.92:80   8s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl exec net-client -- wget -qO- -T 3 http://web-wrong-port | Select-Object -First 4
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\09-service-dns-troubleshooting> kubectl delete service web-wrong-port
+service "web-wrong-port" deleted from session14 namespace

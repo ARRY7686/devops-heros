@@ -1,0 +1,21 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-2-imagepull> kubectl delete pod fail-2-imagepull-pod
+pod "fail-2-imagepull-pod" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-2-imagepull> git diff --no-index broken.yaml ..\..\homework\manifests\imagepull\scenario-2-fixed.yaml
+warning: in the working copy of '..\..\homework\manifests\imagepull\scenario-2-fixed.yaml', LF will be replaced by CRLF the next time Git touches it
+diff --git a/broken.yaml "b/..\\..\\homework\\manifests\\imagepull\\scenario-2-fixed.yaml"
+index 9665394..8f622ec 100644
+--- a/broken.yaml
++++ "b/..\\..\\homework\\manifests\\imagepull\\scenario-2-fixed.yaml"
+@@ -8,5 +8,5 @@ metadata:
+ spec:
+   containers:
+     - name: web-app
+-      # BUG: Typo in image name and tag
+-      image: yatri-api-service:v999-invalid-tag-does-not-exist
++      # FIX: use an image + tag that exists in the registry
++      image: nginx:1.27
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-2-imagepull> kubectl apply -f ..\..\homework\manifests\imagepull\scenario-2-fixed.yaml
+pod/fail-2-imagepull-pod created
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\scenarios\scenario-2-imagepull> kubectl get pod fail-2-imagepull-pod -o wide
+NAME                   READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+fail-2-imagepull-pod   1/1     Running   0          1s    10.244.0.85   minikube   <none>           <none>

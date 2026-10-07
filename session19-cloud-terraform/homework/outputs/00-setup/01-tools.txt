@@ -1,0 +1,16 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> terraform version
+Terraform v1.16.5
+on windows_amd64
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> docker ps --filter name=s18-moto --format '{{.Names}}  {{.Image}}  {{.Ports}}'
+s18-moto  motoserver/moto:latest  0.0.0.0:4566->5000/tcp, [::]:4566->5000/tcp
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session19-cloud-terraform\homework> Get-ChildItem env:AWS_* | Format-Table -AutoSize
+
+Name                        Value                                    
+----                        -----                                    
+AWS_ACCESS_KEY_ID           test                                     
+AWS_ENDPOINT_URL_S3_CONTROL http://localhost.localstack.cloud:4566   
+AWS_ENDPOINT_URL_S3         http://s3.localhost.localstack.cloud:4566
+AWS_ENDPOINT_URL            http://localhost:4566                    
+AWS_SECRET_ACCESS_KEY       test                                     
+AWS_REGION                  ap-south-1                               
+AWS_DEFAULT_REGION          ap-south-1                               

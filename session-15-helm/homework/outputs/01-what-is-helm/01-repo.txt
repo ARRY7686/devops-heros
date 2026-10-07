@@ -1,0 +1,27 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm repo add bitnami https://charts.bitnami.com/bitnami
+"bitnami" has been added to your repositories
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈Happy Helming!⎈
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm repo list
+NAME   	URL                               
+bitnami	https://charts.bitnami.com/bitnami
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm search repo bitnami/nginx
+NAME                            	CHART VERSION	APP VERSION	DESCRIPTION                                       
+bitnami/nginx                   	25.2.1       	1.31.6     	NGINX Open Source is a web server that can be a...
+bitnami/nginx-ingress-controller	12.0.7       	1.13.1     	NGINX Ingress Controller is an Ingress controll...
+bitnami/nginx-intel             	2.1.15       	0.4.9      	DEPRECATED NGINX Open Source for Intel is a lig...
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-15-helm\01-what-is-helm> helm show chart bitnami/nginx | Select-Object -First 12
+annotations:
+  fips: "true"
+  images: |
+    - name: git
+      version: 2.56.0
+      image: registry-1.docker.io/bitnami/git:latest
+    - name: nginx
+      version: 1.31.6
+      image: registry-1.docker.io/bitnami/nginx:latest
+    - name: nginx-exporter
+      version: 1.5.3
+      image: registry-1.docker.io/bitnami/nginx-exporter:latest

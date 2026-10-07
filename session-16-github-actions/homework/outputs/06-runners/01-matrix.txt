@@ -1,0 +1,138 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242> act push -W .github\workflows\matrix-demo.yml
+time="2026-10-07T15:23:03+05:30" level=info msg="Using docker host 'npipe:////./pipe/docker_engine', and daemon socket 'npipe:////./pipe/docker_engine'"
+[Matrix Runner Demonstration/matrix-job-2] ⭐ Run Set up job
+[Matrix Runner Demonstration/matrix-job-1] ⭐ Run Set up job
+[Matrix Runner Demonstration/matrix-job-2] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Matrix Runner Demonstration/matrix-job-1] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=false
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Matrix Runner Demonstration/matrix-job-1]   ✅  Success - Set up job
+[Matrix Runner Demonstration/matrix-job-2]   ✅  Success - Set up job
+[Matrix Runner Demonstration/matrix-job-1]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[Matrix Runner Demonstration/matrix-job-2]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[Matrix Runner Demonstration/matrix-job-1] 🧪  Matrix: map[os:ubuntu-latest python-version:3.10]
+[Matrix Runner Demonstration/matrix-job-1] ⭐ Run Main actions/checkout@v4
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/06-runners 10-33-34-242
+[Matrix Runner Demonstration/matrix-job-1]   ✅  Success - Main actions/checkout@v4 [122.7442ms]
+[Matrix Runner Demonstration/matrix-job-1] ⭐ Run Main actions/setup-python@v5
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[Matrix Runner Demonstration/matrix-job-2] 🧪  Matrix: map[os:ubuntu-latest python-version:3.11]
+[Matrix Runner Demonstration/matrix-job-2] ⭐ Run Main actions/checkout@v4
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker cp src=C:\Users\aadig\OneDrive\Desktop\devops-heros\session-16-github-actions\06-runners 10-33-34-242\. dst=/mnt/c/Users/aadig/OneDrive/Desktop/devops-heros/session-16-github-actions/06-runners 10-33-34-242
+[Matrix Runner Demonstration/matrix-job-2]   ✅  Success - Main actions/checkout@v4 [104.4501ms]
+[Matrix Runner Demonstration/matrix-job-2] ⭐ Run Main actions/setup-python@v5
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker cp src=C:\Users\aadig\.cache\act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[Matrix Runner Demonstration/matrix-job-1]   ❓  ::group::Installed versions
+[Matrix Runner Demonstration/matrix-job-1]   | Version 3.10 was not found in the local cache
+[Matrix Runner Demonstration/matrix-job-1]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Matrix Runner Demonstration/matrix-job-1]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Matrix Runner Demonstration/matrix-job-1]   | Version 3.10 is available for downloading
+[Matrix Runner Demonstration/matrix-job-1]   | Download from "https://github.com/actions/python-versions/releases/download/3.10.22-36876129702/python-3.10.22-linux-24.04-x64.tar.gz"
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[Matrix Runner Demonstration/matrix-job-2]   ❓  ::group::Installed versions
+[Matrix Runner Demonstration/matrix-job-2]   | Version 3.11 was not found in the local cache
+[Matrix Runner Demonstration/matrix-job-2]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Matrix Runner Demonstration/matrix-job-2]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Matrix Runner Demonstration/matrix-job-2]   | Version 3.11 is available for downloading
+[Matrix Runner Demonstration/matrix-job-2]   | Download from "https://github.com/actions/python-versions/releases/download/3.11.17-36876195594/python-3.11.17-linux-24.04-x64.tar.gz"
+[Matrix Runner Demonstration/matrix-job-1]   | Extract downloaded archive
+[Matrix Runner Demonstration/matrix-job-1]   | [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /tmp/690bf2b7-c60c-44a4-b4ae-38fe93bcb373 -f /tmp/7a079e85-5eb6-41a1-97d3-cedb229b98b2
+[Matrix Runner Demonstration/matrix-job-1]   | Execute installation script
+[Matrix Runner Demonstration/matrix-job-1]   | Check if Python hostedtoolcache folder exist...
+[Matrix Runner Demonstration/matrix-job-1]   | Creating Python hostedtoolcache folder...
+[Matrix Runner Demonstration/matrix-job-1]   | Create Python 3.10.22 folder
+[Matrix Runner Demonstration/matrix-job-1]   | Copy Python binaries to hostedtoolcache folder
+[Matrix Runner Demonstration/matrix-job-1]   | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+[Matrix Runner Demonstration/matrix-job-1]   | Upgrading pip...
+[Matrix Runner Demonstration/matrix-job-1]   | Collecting pip
+[Matrix Runner Demonstration/matrix-job-1]   | Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+[Matrix Runner Demonstration/matrix-job-1]   | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 4.2 MB/s eta 0:00:00
+[Matrix Runner Demonstration/matrix-job-1]   | 
+[Matrix Runner Demonstration/matrix-job-1]   | Installing collected packages: pip
+[Matrix Runner Demonstration/matrix-job-1]   | Attempting uninstall: pip
+[Matrix Runner Demonstration/matrix-job-1]   | Found existing installation: pip 23.0.1
+[Matrix Runner Demonstration/matrix-job-1]   | Uninstalling pip-23.0.1:
+[Matrix Runner Demonstration/matrix-job-1]   | Successfully uninstalled pip-23.0.1
+[Matrix Runner Demonstration/matrix-job-1]   | Successfully installed pip-26.2.1
+[Matrix Runner Demonstration/matrix-job-1]   | Create complete file
+[Matrix Runner Demonstration/matrix-job-1]   | Successfully set up CPython (3.10.22)
+[Matrix Runner Demonstration/matrix-job-1]   ❓  ::endgroup::
+[Matrix Runner Demonstration/matrix-job-1]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[Matrix Runner Demonstration/matrix-job-1]   ✅  Success - Main actions/setup-python@v5 [24.0546667s]
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.10.22/x64
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.10.22/x64/lib/pkgconfig
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.10.22/x64
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.10.22/x64
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.10.22/x64
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.10.22/x64/lib
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-output:: python-version=3.10.22
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.10.22/x64/bin/python
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.10.22/x64
+[Matrix Runner Demonstration/matrix-job-1]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.10.22/x64/bin
+[Matrix Runner Demonstration/matrix-job-1] ⭐ Run Main python -c "import sys; print(f'Running on Python {sys.version}')"
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Matrix Runner Demonstration/matrix-job-1]   | Running on Python 3.10.22 (main, Oct  1 2026, 14:30:20) [GCC 13.3.0]
+[Matrix Runner Demonstration/matrix-job-1]   ✅  Success - Main python -c "import sys; print(f'Running on Python {sys.version}')" [245.5175ms]
+[Matrix Runner Demonstration/matrix-job-1] ⭐ Run Post actions/setup-python@v5
+[Matrix Runner Demonstration/matrix-job-1]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[Matrix Runner Demonstration/matrix-job-1]   | (node:93) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Matrix Runner Demonstration/matrix-job-1]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Matrix Runner Demonstration/matrix-job-1]   ✅  Success - Post actions/setup-python@v5 [232.1825ms]
+[Matrix Runner Demonstration/matrix-job-1] ⭐ Run Complete job
+[Matrix Runner Demonstration/matrix-job-1] Cleaning up container for job matrix-job
+[Matrix Runner Demonstration/matrix-job-1]   ✅  Success - Complete job
+[Matrix Runner Demonstration/matrix-job-1] 🏁  Job succeeded
+[Matrix Runner Demonstration/matrix-job-2]   | Extract downloaded archive
+[Matrix Runner Demonstration/matrix-job-2]   | [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /tmp/a7fe4c07-0967-481f-9cb2-b78783f48bd5 -f /tmp/e537bf7d-a9fc-46bb-95d8-c0421b40670d
+[Matrix Runner Demonstration/matrix-job-2]   | Execute installation script
+[Matrix Runner Demonstration/matrix-job-2]   | Check if Python hostedtoolcache folder exist...
+[Matrix Runner Demonstration/matrix-job-2]   | Create Python 3.11.17 folder
+[Matrix Runner Demonstration/matrix-job-2]   | Copy Python binaries to hostedtoolcache folder
+[Matrix Runner Demonstration/matrix-job-2]   | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+[Matrix Runner Demonstration/matrix-job-2]   | Upgrading pip...
+[Matrix Runner Demonstration/matrix-job-2]   | Collecting pip
+[Matrix Runner Demonstration/matrix-job-2]   | Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+[Matrix Runner Demonstration/matrix-job-2]   | Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+[Matrix Runner Demonstration/matrix-job-2]   | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 2.2 MB/s eta 0:00:00
+[Matrix Runner Demonstration/matrix-job-2]   | 
+[Matrix Runner Demonstration/matrix-job-2]   | Installing collected packages: pip
+[Matrix Runner Demonstration/matrix-job-2]   | Attempting uninstall: pip
+[Matrix Runner Demonstration/matrix-job-2]   | Found existing installation: pip 24.0
+[Matrix Runner Demonstration/matrix-job-2]   | Uninstalling pip-24.0:
+[Matrix Runner Demonstration/matrix-job-2]   | Successfully uninstalled pip-24.0
+[Matrix Runner Demonstration/matrix-job-2]   | Successfully installed pip-26.2.1
+[Matrix Runner Demonstration/matrix-job-2]   | Create complete file
+[Matrix Runner Demonstration/matrix-job-2]   | Successfully set up CPython (3.11.17)
+[Matrix Runner Demonstration/matrix-job-2]   ❓  ::endgroup::
+[Matrix Runner Demonstration/matrix-job-2]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[Matrix Runner Demonstration/matrix-job-2]   ✅  Success - Main actions/setup-python@v5 [32.0869373s]
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.17/x64
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/x64
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.17/x64/lib
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-output:: python-version=3.11.17
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.17/x64/bin/python
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64
+[Matrix Runner Demonstration/matrix-job-2]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/x64/bin
+[Matrix Runner Demonstration/matrix-job-2] ⭐ Run Main python -c "import sys; print(f'Running on Python {sys.version}')"
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Matrix Runner Demonstration/matrix-job-2]   | Running on Python 3.11.17 (main, Oct  1 2026, 14:32:31) [GCC 13.3.0]
+[Matrix Runner Demonstration/matrix-job-2]   ✅  Success - Main python -c "import sys; print(f'Running on Python {sys.version}')" [237.2074ms]
+[Matrix Runner Demonstration/matrix-job-2] ⭐ Run Post actions/setup-python@v5
+[Matrix Runner Demonstration/matrix-job-2]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[Matrix Runner Demonstration/matrix-job-2]   | (node:92) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[Matrix Runner Demonstration/matrix-job-2]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[Matrix Runner Demonstration/matrix-job-2]   ✅  Success - Post actions/setup-python@v5 [232.2841ms]
+[Matrix Runner Demonstration/matrix-job-2] ⭐ Run Complete job
+[Matrix Runner Demonstration/matrix-job-2] Cleaning up container for job matrix-job
+[Matrix Runner Demonstration/matrix-job-2]   ✅  Success - Complete job
+[Matrix Runner Demonstration/matrix-job-2] 🏁  Job succeeded

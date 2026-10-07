@@ -1,0 +1,28 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get pods -n ingress-nginx
+NAME                                       READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-tdgxs       0/1     Completed   0          27s
+ingress-nginx-admission-patch-468wg        0/1     Completed   0          27s
+ingress-nginx-controller-d7cd8c989-8mh9j   1/1     Running     0          27s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> minikube image ls | Select-String taskboard
+
+docker.io/library/taskboard-frontend:local
+docker.io/library/taskboard-backend:local
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> helm upgrade --install taskboard ./helm/taskboard -n taskboard --create-namespace -f homework\helm\values-local.yaml -f helm\taskboard\values-dev.yaml --set monitoring.serviceMonitor.enabled=false
+Release "taskboard" does not exist. Installing it now.
+NAME: taskboard
+LAST DEPLOYED: Wed Oct  7 16:35:50 2026
+NAMESPACE: taskboard
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get pods -n taskboard
+NAME                                           READY   STATUS             RESTARTS      AGE
+taskboard-frontend-bbb7b895f-ddw8p             0/1     CrashLoopBackOff   3 (16s ago)   75s
+taskboard-postgres-755b4497b-2m2bg             1/1     Running            0             75s
+taskboard-taskboard-backend-7d8fb7697c-tkw9t   1/1     Running            2 (71s ago)   75s
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session21-python> kubectl get svc -n taskboard
+NAME                          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+taskboard-frontend            ClusterIP   10.103.31.134   <none>        80/TCP     75s
+taskboard-postgres            ClusterIP   10.99.228.90    <none>        5432/TCP   75s
+taskboard-taskboard-backend   ClusterIP   10.98.172.161   <none>        8000/TCP   75s

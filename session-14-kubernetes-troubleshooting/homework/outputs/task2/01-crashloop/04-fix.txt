@@ -1,0 +1,19 @@
+﻿PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl delete pod crash-demo
+pod "crash-demo" deleted from session14 namespace
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> git diff --no-index broken-pod.yaml fixed-pod.yaml
+diff --git a/broken-pod.yaml b/fixed-pod.yaml
+index e7127b6..3687f82 100644
+--- a/broken-pod.yaml
++++ b/fixed-pod.yaml
+@@ -13,5 +13,5 @@ spec:
+         - -c
+         - |
+           echo "Application starting..."
+-          echo "Something went wrong!"
+-          exit 1
+\ No newline at end of file
++          echo "Application is healthy"
++          sleep 3600
+\ No newline at end of file
+PS C:\Users\aadig\OneDrive\Desktop\devops-heros\session-14-kubernetes-troubleshooting\06-crashloopbackoff> kubectl apply -f fixed-pod.yaml
+pod/crash-demo created
